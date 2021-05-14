@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="28fd694d-edfc-43e2-872e-b031e08dd2c7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/learn-Variable.go" beforeDir="false" afterPath="$PROJECT_DIR$/learn-Variable.go" afterDir="false" />
+=======
+    <list default="true" id="d39a66fc-ace4-4314-a555-0f4d2d291fd3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/learn-map.go" beforeDir="false" afterPath="$PROJECT_DIR$/learn-map.go" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< Updated upstream
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -23,11 +29,100 @@
     <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+=======
+  <component name="GOROOT" path="/usr/local/go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="$PROJECT_DIR$/.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1sVSiPnglB71vGvfssXVLQ1Tjx9" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RunManager">
+    <configuration name="go build learn-map.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="golang-learn" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/learn-map.go" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.go build learn-map.go" />
+      </list>
+    </recent_temporary>
+>>>>>>> Stashed changes
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
+<<<<<<< Updated upstream
     <servers />
   </component>
+=======
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d39a66fc-ace4-4314-a555-0f4d2d291fd3" name="Default Changelist" comment="" />
+      <created>1620956389776</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1620956389776</updated>
+      <workItem from="1620956393081" duration="1295000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="438" y="201" key="#GOROOT" timestamp="1620956769393">
+      <screen x="59" y="25" width="1733" height="1095" />
+    </state>
+    <state x="438" y="201" key="#GOROOT/1792.25.2560.1415/59.25.1733.1095@59.25.1733.1095" timestamp="1620956769393" />
+    <state width="1358" height="247" key="GridCell.Tab.0.bottom" timestamp="1620959570105">
+      <screen x="59" y="25" width="1733" height="1095" />
+    </state>
+    <state width="1358" height="247" key="GridCell.Tab.0.bottom/1792.25.2560.1415/59.25.1733.1095@59.25.1733.1095" timestamp="1620959570105" />
+    <state width="1358" height="247" key="GridCell.Tab.0.center" timestamp="1620959570104">
+      <screen x="59" y="25" width="1733" height="1095" />
+    </state>
+    <state width="1358" height="247" key="GridCell.Tab.0.center/1792.25.2560.1415/59.25.1733.1095@59.25.1733.1095" timestamp="1620959570104" />
+    <state width="1358" height="247" key="GridCell.Tab.0.left" timestamp="1620959570104">
+      <screen x="59" y="25" width="1733" height="1095" />
+    </state>
+    <state width="1358" height="247" key="GridCell.Tab.0.left/1792.25.2560.1415/59.25.1733.1095@59.25.1733.1095" timestamp="1620959570104" />
+    <state width="1358" height="247" key="GridCell.Tab.0.right" timestamp="1620959570104">
+      <screen x="59" y="25" width="1733" height="1095" />
+    </state>
+    <state width="1358" height="247" key="GridCell.Tab.0.right/1792.25.2560.1415/59.25.1733.1095@59.25.1733.1095" timestamp="1620959570104" />
+    <state x="493" y="368" key="com.intellij.ide.util.TipDialog" timestamp="1620956394232">
+      <screen x="59" y="25" width="1733" height="1095" />
+    </state>
+    <state x="493" y="368" key="com.intellij.ide.util.TipDialog/1792.25.2560.1415/59.25.1733.1095@59.25.1733.1095" timestamp="1620956394232" />
+  </component>
+>>>>>>> Stashed changes
 </project>
