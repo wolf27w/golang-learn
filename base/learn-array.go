@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 //import "fmt"
 
 //数组(array)：是同一种数据类型元素的集合。申明确定，使用修改，但是数组大小不可更改,语法：var 数组变量名 [元素数量]T
@@ -165,11 +167,48 @@ package main
 //4 10
 //[10 3 4 8 10]
 
+//数组练习，求数组所有元素只和
 
+//func sumarr(a [10]int) int  {//根据下标统计元素只和
+//	var sum int = 0
+//	for i := 0; i < len(a); i++ {
+//		sum += a[i]
+//	}
+//	return sum
+//}
+//
+//func main()  {
+//	rand.Seed(time.Now().Unix())
+//	var b [10]int
+//
+//	for i := 0; i < len(b);i++ {  //随机生成0到1000的随机数，赋值给b
+//		b[i] = rand.Intn(1000)
+//	}
+//	fmt.Println(b)
+//	sum := sumarr(b)
+//	fmt.Printf("sum=%d\n",sum)
+//}
 
+//求两个元素只和等于8的下标
+func myTest(a [5]int, target int) {
+	// 遍历数组
+	for i := 0; i < len(a); i++ {
+		other := target - a[i]
+		// 继续遍历
+		for j := i + 1; j < len(a); j++ {
+			if a[j] == other {
+				fmt.Printf("(%d,%d)\n", i, j)
+			}
+		}
+	}
+}
 
-
-
-
+func main() {
+	b := [5]int{1, 3, 5, 8, 7}
+	myTest(b, 8)
+}
+//输出结果：
+//(0,4)
+//(1,2)
 
 
