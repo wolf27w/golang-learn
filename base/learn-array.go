@@ -64,11 +64,12 @@ package main
 
 //##初始化数组，针对不同类型的数组
 //全局变量
+//var arr0 [2][3]int = [...][3]int{{1,2,3},{7,8,9}}
 //var arr0 [5]int = [5]int{1,2,3}    //[1 2 3 0 0]
 //var arr1 = [5]int{1,2,3,4,5}       //[1 2 3 4 5]
 //var arr2 = [...]int{1,2,3,4,5,6}   //[1 2 3 4 5 6]
 //var str = [5]string{3: "hello word",4:"Tom"}  //[   hello word Tom]
-//局部变量
+////局部变量
 //func main()  {
 //	a := [3]int{1,2}     //[1 2 0]
 //	b := [...]int{1,2,3,4}   //[1 2 3 4]
@@ -83,4 +84,55 @@ package main
 //	fmt.Println(arr0,arr1,arr2,str)
 //	fmt.Println(a,b,c,d)
 //}
+//    全局
+//    var arr0 [5][3]int   //
+//    var arr1 [2][3]int = [...][3]int{{1, 2, 3}, {7, 8, 9}}
+//    局部：
+//    a := [2][3]int{{1, 2, 3}, {4, 5, 6}}
+//    b := [...][2]int{{1, 1}, {2, 2}, {3, 3}} // 第 2 纬度不能用 "..."【长度不能使用...】。
+
+
+//var arr0 [5][3]int   //[[0 0 0] [0 0 0] [0 0 0] [0 0 0] [0 0 0]]
+//var arr1 [2][3]int = [...][3]int{{1,2,3},{7,8,9}}  //[[1 2 3] [7 8 9]]
 //
+//func main()  {
+//	a := [2][3]int{{1,2,3},{4,5,6}}  //[[1 2 3] [4 5 6]]
+//	b := [...][2]int{{1,1},{2,2},{3,3}}  //[[1 1] [2 2] [3 3]]
+//	fmt.Println(arr0,arr1)
+//	fmt.Println(a,b)
+//}
+//值拷贝
+//func text(x [2]int)  {
+//	fmt.Printf("x: %p\n", &x)
+//	x[1] = 1000
+//}
+//func main()  {
+//	a := [2]int{}
+//	fmt.Printf("a: %p\n",&a)  //使用了printf内存地址
+//	text(a)
+//	fmt.Println(a)
+//}
+
+//内置函数len和cap都繁华数组长度(元素数量)
+
+func main()  {
+	a := [2]int{}
+	print(len(a),cap(a))
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
