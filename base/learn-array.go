@@ -115,18 +115,55 @@ package main
 
 //内置函数len和cap都繁华数组长度(元素数量)
 
-func main()  {
-	a := [2]int{}
-	print(len(a),cap(a))
-}
+//func main()  {
+//	a := [2]int{}
+//	print(len(a),cap(a))
+//}
 
+//多维数组变量
+//
+//func main()  {
+//	var f [2][3]int =[...][3]int{{1,2,3},{7,8,9}}
+//	for k1,v1 := range f {
+//		for k2,v2 := range v1 {
+//			fmt.Printf("(%d,%d)=%d",k1,k2,v2)
+//		}
+//		fmt.Println()
+//	}
+//}
+//输出结果：
+//(0,0)=1(0,1)=2(0,2)=3
+//(1,0)=7(1,1)=8(1,2)=9
 
+//数组拷贝和传参
 
-
-
-
-
-
+//func test(arr *[5]int)  {
+//	arr[0] = 10
+//	for i,v := range arr {
+//		fmt.Println(i,v)
+//	}
+//}
+//func main()  {
+//	var arr1 [5]int
+//	test(&arr1)
+//	fmt.Println(arr1)
+//	arr2 := [...]int{2,3,4,8,10}
+//	test(&arr2)
+//	fmt.Println(arr2)
+//}
+//输出结果：
+//0 10
+//1 0
+//2 0
+//3 0
+//4 0
+//[10 0 0 0 0]
+//0 10
+//1 3
+//2 4
+//3 8
+//4 10
+//[10 3 4 8 10]
 
 
 
