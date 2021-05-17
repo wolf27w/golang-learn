@@ -20,8 +20,7 @@ package main
 
 
 
-
-
+//下面这个函数访问越界，如飞下标在数组合法范围内，则触发访问越界，会panic。数组是值类型，赋值和传参会复制整个数组，因此，改变副本的值，不会改变本身的值，对"=="和"!="操作符，因为内存总是呗初始化过的，指针数组[n]*T，数组指针*[n]T
 //func main()  {
 //	var a[5] int
 //	var b[10] int
@@ -61,3 +60,27 @@ package main
 //		fmt.Println(index, value)
 //	}
 //}
+
+
+//##初始化数组，针对不同类型的数组
+//全局变量
+//var arr0 [5]int = [5]int{1,2,3}    //[1 2 3 0 0]
+//var arr1 = [5]int{1,2,3,4,5}       //[1 2 3 4 5]
+//var arr2 = [...]int{1,2,3,4,5,6}   //[1 2 3 4 5 6]
+//var str = [5]string{3: "hello word",4:"Tom"}  //[   hello word Tom]
+//局部变量
+//func main()  {
+//	a := [3]int{1,2}     //[1 2 0]
+//	b := [...]int{1,2,3,4}   //[1 2 3 4]
+//	c := [5]int{2:100,4:200}  //[0 0 100 0 200]
+//	d := [...]struct {        //[{user1 10} {user2 20}]
+//		name string
+//		age uint8
+//	}{
+//		{"user1",10},
+//		{"user2",20},
+//	}
+//	fmt.Println(arr0,arr1,arr2,str)
+//	fmt.Println(a,b,c,d)
+//}
+//
