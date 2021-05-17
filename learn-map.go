@@ -16,6 +16,8 @@
 
 package main
 
+import "fmt"
+
 //map中的数据都是成对出现的，语法结构为：map[KeyType]ValueType keyType表示键类型，valueType表示键对应的值的类型
 //map类型的变量默认初始值为nil，需要使用make()函数累分配内存，语法为： make(map[KeyType]ValueType, [cap]  cap表示map的容量，改参数虽然不是必须的，但是在初始化map的时候就为其制定一个合适的容量
 //func main() {
@@ -295,6 +297,8 @@ package main
 //}
 //}
 
-
-
+func main()  {
+	s := [5]int{1, 2, 3, 1, 2}
+	fmt.Println(s[0] ^ s[1] ^ s[2] ^ s[3] ^ s[4])
+}
 
