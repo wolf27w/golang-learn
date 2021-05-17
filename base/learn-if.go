@@ -5,3 +5,15 @@ package main
 //if 布尔表达式 {
 ///* 在布尔表达式为 true 时执行 */
 //}
+//if 判读语句
+
+//func main()  {
+//	x := 0
+//	if n := "abc";x > 0 {  
+//		fmt.Println(n[2])
+//	} else if x < 0 {
+//		fmt.Println(n[1])
+//	} else {
+//		fmt.Println(n[0]) //字符串a的二进制值97
+//	}
+//}
