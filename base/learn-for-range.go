@@ -89,3 +89,13 @@ func main() {
 //2 3
 //3 4
 //4 5
+
+//for 和 for range有什么区别?
+//主要是使用场景不同
+//for可以
+//遍历array和slice
+//遍历key为整型递增的map
+//遍历string
+//for range可以完成所有for可以做的事情，却能做到for不能做的，包括
+//遍历key为string类型的map并同时获取key和value
+//遍历channel
