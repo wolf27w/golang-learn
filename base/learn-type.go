@@ -3,3 +3,20 @@ package main
 //golan中，基本的数据类型，如string，整型，浮点型，布尔等数据类型，可以使用type关键字来定义类型
 //将MyInt定义为int类型
 //type MyInt int
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
