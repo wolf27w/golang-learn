@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 //golang的循环语句
 //for循环语法
 //for init; condition; post { }
@@ -90,3 +92,9 @@ package main
 //		}
 //	}
 //}
+//无限循环
+func main() {
+	for true  {
+		fmt.Printf("这是无限循环。\n");
+	}
+}
