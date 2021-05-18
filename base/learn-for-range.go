@@ -99,3 +99,8 @@ func main() {
 //for range可以完成所有for可以做的事情，却能做到for不能做的，包括
 //遍历key为string类型的map并同时获取key和value
 //遍历channel
+//
+//1.三个语句都可以配合标签(label)使用
+//2.标签名区分大小写，定以后若不使用会造成编译错误
+//3.continue、break配合标签(label)可用于多层循环跳出
+//4.goto是调整执行位置，与continue、break配合标签(label)的结果并不相同
