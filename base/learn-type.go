@@ -28,9 +28,21 @@ package main
 //	字段名 字段类型
 //	…
 //}
-
-
-
+//1.类型名：标识自定义结构体的名称，在同一个包内不能重复。
+//2.字段名：表示结构体字段名。结构体中的字段名必须唯一。
+//3.字段类型：表示结构体字段的具体类型。
+//举例：
+//type person struct {
+//	name string
+//	city string
+//	age  int8
+//}
+//或者
+//type person1 struct {
+//	name, city string
+//	age        int8
+//}
+//这样我们就拥有了一个person的自定义类型，它有name、city、age三个字段，分别表示姓名、城市和年龄
 
 
 
