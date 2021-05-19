@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 //golang没有"类"的概念，也不支持"类"的继承等面向对象的概念，golang中通过结构体的内嵌在配合接口比面向对象具有更高的扩展性和灵活性。
 //golan中，基本的数据类型，如string，整型，浮点型，布尔等数据类型，可以使用type关键字来定义类型
 //将MyInt定义为int类型
@@ -78,15 +76,47 @@ type person struct {
 //	fmt.Printf("p2=%#v\n", p2) //p2=&main.person{name:"", city:"", age:0}
 //}
 
-func main()  {
-	var p2 = new(person)
-	p2.name = "测试"
-	p2.age = 18
-	p2.city = "北京"
-	fmt.Printf("p2=%#v\n", p2) //p2=&main.person{name:"测试", city:"北京", age:18}
-}
+//func main()  {
+//	var p2 = new(person)
+//	p2.name = "测试"
+//	p2.age = 18
+//	p2.city = "北京"
+//	fmt.Printf("p2=%#v\n", p2) //p2=&main.person{name:"测试", city:"北京", age:18}
+//}
+//使用&对结构体进行去地址操作相当于对该结构体类型进行了一次new实例化操作
+//func main()  {
+//	p3 := &person{}
+//	fmt.Printf("%T\n", p3)     //*main.person
+//	fmt.Printf("p3=%#v\n", p3) //p3=&main.person{name:"", city:"", age:0}
+//	p3.name = "博客"
+//	p3.age = 30
+//	p3.city = "成都"
+//	fmt.Printf("p3=%#v\n", p3) //p3=&main.person{name:"博客", city:"成都", age:30}
+//}//p3.name = "博客"其实在底层是(*p3).name = "博客"，这是Go语言帮我们实现的语法糖。
 
+//结构体初始化
+//func main() {
+//	var p4 person
+//	fmt.Printf("p4=%#v\n", p4) //p4=main.person{name:"", city:"", age:0}
+//}
 
-
-
-
+//type student struct {
+//	name string
+//	age  int
+//}
+//
+//func main() {
+//	m := make(map[string]*student)
+//	stus := []student{
+//		{name: "pprof.cn", age: 18},
+//		{name: "测试", age: 23},
+//		{name: "博客", age: 28},
+//	}
+//
+//	for _, stu := range stus {
+//		m[stu.name] = &stu
+//	}
+//	for k, v := range m {
+//		fmt.Println(k, "=>", v.name)
+//	}
+//}
