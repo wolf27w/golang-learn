@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 //golang没有"类"的概念，也不支持"类"的继承等面向对象的概念，golang中通过结构体的内嵌在配合接口比面向对象具有更高的扩展性和灵活性。
 //golan中，基本的数据类型，如string，整型，浮点型，布尔等数据类型，可以使用type关键字来定义类型
 //将MyInt定义为int类型
@@ -46,11 +48,11 @@ package main
 
 
 
-type person struct {
-	name string
-	city string
-	age  int8
-}
+//type person struct {
+//	name string
+//	city string
+//	age  int8
+//}
 //func main() {
 //	var p1 person
 //	p1.name = "pprof.cn"    //通过.来访问结构体的字段（成员变量）
@@ -239,5 +241,39 @@ type person struct {
 //	p1.Dream()
 //}
 //方法与函数的区别是，函数不属于任何类型，方法属于特定的类型。
+
+
+//指针类型接受者
+//指针类型接受者是有一个结构体的指针组成，由于指针的特效，调用方法时修改指针的任意成员变量，在方法结束后，修改都是有效的，这种方式就十分接近于其他语言中面向对象的this或者self，，例如：
+
+type Person struct {
+	name string
+	age  int8
+}
+
+//NewPerson 构造函数
+func NewPerson(name string, age int8) *Person {
+	return &Person{
+		name: name,
+		age:  age,
+	}
+}
+////Dream Person做梦的方法
+func (p Person) Dream() {
+	fmt.Printf("%s的梦想是学好Go语言！\n", p.name)
+}
+////SetAge2 Person做梦的方法
+func (p Person) SetAge2(newAge int8) {
+	p.age = newAge
+}
+func main() {
+	p1 := NewPerson("测试", 25)
+	p1.Dream()
+	fmt.Println(p1.age) // 25
+	p1.SetAge2(30) // (*p1).SetAge2(30)
+	fmt.Println(p1.age) // 25
+}
+//Go语言会在代码运行时将接收者的值复制一份。在值类型接收者的方法中可以获取接收者的成员值，但修改操作只是针对副本，无法修改接收者变量本身。
+
 
 
