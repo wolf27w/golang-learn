@@ -46,11 +46,11 @@ package main
 
 
 
-//type person struct {
-//	name string
-//	city string
-//	age  int8
-//}
+type person struct {
+	name string
+	city string
+	age  int8
+}
 //func main() {
 //	var p1 person
 //	p1.name = "pprof.cn"    //通过.来访问结构体的字段（成员变量）
@@ -189,10 +189,55 @@ package main
 //测试 => wolf
 //wolf => wolf
 
+//###################构造函数
+//原本golang结构体里没有构造函数，下面我们自己实现一个person的结构函数，因为struct是值类型，
+
+//func newPerson(name, city string, age int8) *person {
+//	return &person{
+//		name: name,
+//		city: city,
+//		age:  age,
+//	}
+//}
+//func main()  {
+//	p9 := newPerson("pprof.cn", "测试", 90)
+//	fmt.Printf("%#v\n", p9)  //&main.person{name:"pprof.cn", city:"测试", age:90}
+//}
 
 
+//方法和接收者
+//Go语言中的方法（Method）是一种作用于特定类型变量的函数。这种特定类型变量叫做接收者（Receiver）。接收者的概念就类似于其他语言中的this或者 self。
+//语法：
+//func (接收者变量 接收者类型) 方法名(参数列表) (返回参数) {
+//	函数体
+//}
+
+//1.接收者变量：接收者中的参数变量名在命名时，官方建议使用接收者类型名的第一个小写字母，而不是self、this之类的命名。例如，Person类型的接收者变量应该命名为 p，Connector类型的接收者变量应该命名为c等。
+//2.接收者类型：接收者类型和参数类似，可以是指针类型和非指针类型。
+//3.方法名、参数列表、返回参数：具体格式与函数定义相同。
 
 
-
+//Person 结构体
+//type Person struct {
+//	name string
+//	age  int8
+//}
+////NewPerson 构造函数
+//func NewPerson(name string, age int8) *Person {
+//	return &Person{
+//		name: name,
+//		age:  age,
+//	}
+//}
+////Dream Person做梦的方法
+//func (p Person) Dream() {
+//	fmt.Printf("%s的梦想是学好Go语言！\n", p.name) //测试的梦想是学好Go语言！
+//}
+//
+//func main() {
+//	p1 := NewPerson("测试", 25)
+//	p1.Dream()
+//}
+//方法与函数的区别是，函数不属于任何类型，方法属于特定的类型。
 
 
