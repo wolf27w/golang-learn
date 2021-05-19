@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 //golang没有"类"的概念，也不支持"类"的继承等面向对象的概念，golang中通过结构体的内嵌在配合接口比面向对象具有更高的扩展性和灵活性。
 //golan中，基本的数据类型，如string，整型，浮点型，布尔等数据类型，可以使用type关键字来定义类型
 //将MyInt定义为int类型
@@ -46,12 +48,43 @@ package main
 
 
 
+type person struct {
+	name string
+	city string
+	age  int8
+}
+//func main() {
+//	var p1 person
+//	p1.name = "pprof.cn"    //通过.来访问结构体的字段（成员变量）
+//	p1.city = "北京"
+//	p1.age = 18
+//	fmt.Printf("p1=%v\n", p1)  //p1={pprof.cn 北京 18}
+//	fmt.Printf("p1=%#v\n", p1) //p1=main.person{name:"pprof.cn", city:"北京", age:18}
+//}
 
 
+//匿名结构体
 
+//func main() {
+//	var user struct{Name string; Age int}
+//	user.Name = "pprof.cn"
+//	user.Age = 18
+//	fmt.Printf("%#v\n", user) //struct { Name string; Age int }{Name:"pprof.cn", Age:18}
+//}
+//通过new关键字对结构体进行实例化，得到结构体对地址，语法如下：
+//func main()  {
+//	var p2 = new(person)
+//	fmt.Printf("%T\n", p2)     //*main.person
+//	fmt.Printf("p2=%#v\n", p2) //p2=&main.person{name:"", city:"", age:0}
+//}
 
-
-
+func main()  {
+	var p2 = new(person)
+	p2.name = "测试"
+	p2.age = 18
+	p2.city = "北京"
+	fmt.Printf("p2=%#v\n", p2) //p2=&main.person{name:"测试", city:"北京", age:18}
+}
 
 
 
