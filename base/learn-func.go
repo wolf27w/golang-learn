@@ -1,4 +1,5 @@
 package main
+
 //函数的特点
 //• 无需声明原型。
 //• 支持不定 变参。
@@ -18,4 +19,35 @@ package main
 //函数可以返回任意数量的返回值。
 //使用关键字 func 定义函数，左大括号依旧不能另起一行。
 
+//func sway(x, y int, s string) (int, string) {
+//	// 类型相同的相邻参数，参数类型可合并。 多返回值必须用括号。
+//	n := x + y
+//	return n, fmt.Sprintf("你好%s,age%d",s, n)
+//}
+//func main()  {
+//	var a,b int = 10,20
+//	var s string ="wulaoer.org"
+//	fmt.Println(sway(a,b,s))
+//}
+//输出结果：30 你好wulaoer.org,age30
 
+//函数作为对象，可以作为参数传递，建议将复杂签名定义为函数类型，
+//func test(fn func() int) int {
+//	return fn()
+//}
+//// 定义函数类型。
+//type FormatFunc func(s string, x, y int) string  //定义函数类型
+//
+//func format(fn FormatFunc, s string, x, y int) string {  //把复杂的函数类型作为参数，传到函数中
+//	return fn(s, x, y)
+//}
+//func main() {
+//	s1 := test(func() int { return 100 }) // 直接将匿名函数当参数。
+//
+//	s2 := format(func(s string, x, y int) string {  //将复制的签名定义函数类型
+//		return fmt.Sprintf(s, x, y)
+//	}, "%d, %d", 10, 20)
+//
+//	println(s1, s2)
+//}
+//输出结果：100 10, 20
