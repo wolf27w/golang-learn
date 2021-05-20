@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 //golang没有"类"的概念，也不支持"类"的继承等面向对象的概念，golang中通过结构体的内嵌在配合接口比面向对象具有更高的扩展性和灵活性。
 //golan中，基本的数据类型，如string，整型，浮点型，布尔等数据类型，可以使用type关键字来定义类型
 //将MyInt定义为int类型
@@ -572,3 +574,21 @@ package main
 //xiaohong
 //xiaohuang
 //ceshi
+
+
+
+
+func test(s string, n ...int) string {
+	var x int
+	for _, i := range n {
+		fmt.Println(i)
+		x += i
+	}
+	return fmt.Sprintf(s, x)
+}
+
+func main() {
+	s := []int{1, 2, 3}
+	res := test("sum: %d", s...)    // slice... 展开slice
+	println(res)
+}
