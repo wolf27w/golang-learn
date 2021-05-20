@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 //golang没有"类"的概念，也不支持"类"的继承等面向对象的概念，golang中通过结构体的内嵌在配合接口比面向对象具有更高的扩展性和灵活性。
 //golan中，基本的数据类型，如string，整型，浮点型，布尔等数据类型，可以使用type关键字来定义类型
 //将MyInt定义为int类型
@@ -246,34 +244,164 @@ import "fmt"
 //指针类型接受者
 //指针类型接受者是有一个结构体的指针组成，由于指针的特效，调用方法时修改指针的任意成员变量，在方法结束后，修改都是有效的，这种方式就十分接近于其他语言中面向对象的this或者self，，例如：
 
-type Person struct {
-	name string
-	age  int8
-}
-
-//NewPerson 构造函数
-func NewPerson(name string, age int8) *Person {
-	return &Person{
-		name: name,
-		age:  age,
-	}
-}
-////Dream Person做梦的方法
-func (p Person) Dream() {
-	fmt.Printf("%s的梦想是学好Go语言！\n", p.name)
-}
-////SetAge2 Person做梦的方法
-func (p Person) SetAge2(newAge int8) {
-	p.age = newAge
-}
-func main() {
-	p1 := NewPerson("测试", 25)
-	p1.Dream()
-	fmt.Println(p1.age) // 25
-	p1.SetAge2(30) // (*p1).SetAge2(30)
-	fmt.Println(p1.age) // 25
-}
+//type Person struct {
+//	name string
+//	age  int8
+//}
+//
+////NewPerson 构造函数
+//func NewPerson(name string, age int8) *Person {
+//	return &Person{
+//		name: name,
+//		age:  age,
+//	}
+//}
+//////Dream Person做梦的方法
+//func (p Person) Dream() {
+//	fmt.Printf("%s的梦想是学好Go语言！\n", p.name)
+//}
+//////SetAge2 Person做梦的方法
+//func (p Person) SetAge2(newAge int8) {
+//	p.age = newAge
+//}
+//func main() {
+//	p1 := NewPerson("测试", 25)
+//	p1.Dream()
+//	fmt.Println(p1.age) // 25
+//	p1.SetAge2(30) // (*p1).SetAge2(30)
+//	fmt.Println(p1.age) // 25
+//}
 //Go语言会在代码运行时将接收者的值复制一份。在值类型接收者的方法中可以获取接收者的成员值，但修改操作只是针对副本，无法修改接收者变量本身。
+
+//什么时候应该使用指针类型接收者
+//1.需要修改接收者中的值
+//2.接收者是拷贝代价比较大的大对象
+//3.保证一致性，如果有某个方法使用了指针接收者，那么其他的方法也应该使用指针接收者。
+
+//任意类型添加方法，接受者类型可以是任何类型，不仅仅是结构体，任何类型都可以拥有方法，
+//举例：基于内置的int类型使用type关键字可以定义新的自定义类型，然后为我们的自定义类型添加方法。
+
+//MyInt 将int定义为自定义MyInt类型
+//type MyInt int
+//
+////SayHello 为MyInt添加一个SayHello的方法
+//func (m MyInt) SayHello() {
+//	fmt.Println("Hello, 我是一个int。")
+//}
+//func main() {
+//	var m1 MyInt
+//	m1.SayHello() //Hello, 我是一个int。
+//	m1 = 100
+//	fmt.Printf("%#v  %T\n", m1, m1) //100  main.MyInt
+//}
+//注意事项： 非本地类型不能定义方法，也就是说我们不能给别的包的类型定义方法。
+
+
+//######结构体匿名字段
+//结构体允许其成员字段在声明时没有字段名而只有类型，这种没有名字的字段就称为匿名字段。
+//Person 结构体Person类型
+//type Person struct {
+//	string
+//	int
+//}
+//func main() {
+//	p1 := Person{
+//		"pprof.cn",
+//		18,
+//	}
+//	fmt.Printf("%#v\n", p1)        //main.Person{string:"pprof.cn", int:18}
+//	fmt.Println(p1.string, p1.int) //pprof.cn 18
+//}
+
+//匿名字段默认采用类型名作为字段名，结构体要求字段名称必须唯一，因此一个结构体中同种类型的匿名字段只能有一个。
+
+
+//#######################嵌套结构体
+//一个结构体中可以嵌套包含另一个结构体或结构体指针。
+//Address 地址结构体
+//type Address struct {
+//	Province string
+//	City     string
+//}
+////User 用户结构体
+//type User struct {
+//	Name    string
+//	Gender  string
+//	Address Address
+//}
+//func main() {
+//	user1 := User{
+//		Name:   "pprof",
+//		Gender: "女",
+//		Address: Address{
+//			Province: "黑龙江",
+//			City:     "哈尔滨",
+//		},
+//	}
+//	fmt.Printf("user1=%#v\n", user1)//user1=main.User{Name:"pprof", Gender:"女", Address:main.Address{Province:"黑龙江", City:"哈尔滨"}}
+//}
+
+
+//############## 嵌套匿名结构体
+
+////Address 地址结构体
+//type Address struct {
+//	Province string
+//	City     string
+//}
+////User 用户结构体
+//type User struct {
+//	Name    string
+//	Gender  string
+//	Address //匿名结构体
+//}
+//func main() {
+//	var user2 User
+//	user2.Name = "pprof"
+//	user2.Gender = "女"
+//	user2.Address.Province = "黑龙江"    //通过匿名结构体.字段名访问
+//	user2.City = "哈尔滨"                //直接访问匿名结构体的字段名
+//	fmt.Printf("user2=%#v\n", user2) //user2=main.User{Name:"pprof", Gender:"女", Address:main.Address{Province:"黑龙江", City:"哈尔滨"}}
+//}
+
+//当访问结构体成员时会先在结构体中查找该字段，找不到再去匿名结构体中查找。
+
+//#############嵌套结构体的字段名冲突
+
+//嵌套结构体内部可能存在相同的字段名。这个时候为了避免歧义需要指定具体的内嵌结构体的字段。
+
+//Address 地址结构体
+//type Address struct {
+//	Province   string
+//	City       string
+//	CreateTime string
+//}
+////Email 邮箱结构体
+//type Email struct {
+//	Account    string
+//	CreateTime string
+//}
+////User 用户结构体
+//type User struct {
+//	Name   string
+//	Gender string
+//	Address
+//	Email
+//}
+//func main() {
+//	var user3 User
+//	user3.Name = "pprof"
+//	user3.Gender = "女"
+//	// user3.CreateTime = "2019" //ambiguous selector user3.CreateTime
+//	user3.Address.CreateTime = "2000" //指定Address结构体中的CreateTime
+//	user3.Email.CreateTime = "2000"   //指定Email结构体中的CreateTime
+//	fmt.Printf("user3=%#v\n",user3)//ser3=main.User{Name:"pprof", Gender:"女", Address:main.Address{Province:"", City:"", CreateTime:"2000"}, Email:main.Email{Account:"", CreateTime:"2000"}}
+//}
+
+
+
+
+
 
 
 
