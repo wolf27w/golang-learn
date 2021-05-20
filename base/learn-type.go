@@ -399,9 +399,176 @@ package main
 //}
 
 
+//################结构体的继承
+//结构体也可以实现其他编程语言中面向对象的继承
+//Animal 动物
+//type Animal struct {
+//	name string
+//}
+//func (a *Animal) move() {
+//	fmt.Printf("%s会动！\n", a.name)
+//}
+////Dog 狗
+//type Dog struct {
+//	Feet    int8
+//	*Animal //通过嵌套匿名结构体实现继承
+//}
+//func (d *Dog) wang() {
+//	fmt.Printf("%s会汪汪汪~\n", d.name)
+//}
+//func main() {
+//	d1 := &Dog{
+//		Feet: 4,
+//		Animal: &Animal{ //注意嵌套的是结构体指针
+//			name: "乐乐",
+//		},
+//	}
+//	d1.wang() //乐乐会汪汪汪~
+//	d1.move() //乐乐会动！
+//}
+//结构体中字段大写开头表示可公开访问，小写表示私有（仅在定义当前结构体的包中可访问）。
+
+//#######结构体与json序列化
+//JSON(JavaScript Object Notation) 是一种轻量级的数据交换格式。易于人阅读和编写。同时也易于机器解析和生成。JSON键值对是用来保存JS对象的一种方式，键/值对组合中的键名写在前面并用双引号""包裹，使用冒号:分隔，然后紧接着值；多个键值之间使用英文,分隔。
+
+//Student 学生
+//type Student struct {
+//	ID     int
+//	Gender string
+//	Name   string
+//}
+////Class 班级
+//type Class struct {
+//	Title    string
+//	Students []*Student
+//}
+//func main() {
+//	c := &Class{
+//		Title:    "101",
+//		Students: make([]*Student, 0, 200),
+//	}
+//	for i := 0; i < 10; i++ {
+//		stu := &Student{
+//			Name:   fmt.Sprintf("stu%02d", i),
+//			Gender: "男",
+//			ID:     i,
+//		}
+//		c.Students = append(c.Students, stu)
+//	}
+//	//JSON序列化：结构体-->JSON格式的字符串
+//	data, err := json.Marshal(c)
+//	if err != nil {
+//		fmt.Println("json marshal failed")
+//		return
+//	}
+//	fmt.Printf("json:%s\n", data)
+//	//JSON反序列化：JSON格式的字符串-->结构体
+//	str := `{"Title":"101","Students":[{"ID":0,"Gender":"男","Name":"stu00"},{"ID":1,"Gender":"男","Name":"stu01"},{"ID":2,"Gender":"男","Name":"stu02"},{"ID":3,"Gender":"男","Name":"stu03"},{"ID":4,"Gender":"男","Name":"stu04"},{"ID":5,"Gender":"男","Name":"stu05"},{"ID":6,"Gender":"男","Name":"stu06"},{"ID":7,"Gender":"男","Name":"stu07"},{"ID":8,"Gender":"男","Name":"stu08"},{"ID":9,"Gender":"男","Name":"stu09"}]}`
+//	c1 := &Class{}
+//	err = json.Unmarshal([]byte(str), c1)
+//	if err != nil {
+//		fmt.Println("json unmarshal failed!") //json:{"Title":"101","Students":[{"ID":0,"Gender":"男","Name":"stu00"},{"ID":1,"Gender":"男","Name":"stu01"},{"ID":2,"Gender":"男","Name":"stu02"},{"ID":3,"Gender":"男","Name":"stu03"},{"ID":4,"Gender":"男","Name":"stu04"},{"ID":5,"Gender":"男","Name":"stu05"},{"ID":6,"Gender":"男","Name":"stu06"},{"ID":7,"Gender":"男","Name":"stu07"},{"ID":8,"Gender":"男","Name":"stu08"},{"ID":9,"Gender":"男","Name":"stu09"}]}
+//		return
+//	}
+//	fmt.Printf("%#v\n", c1)//&main.Class{Title:"101", Students:[]*main.Student{(*main.Student)(0xc000090690), (*main.Student)(0xc0000906c0), (*main.Student)(0xc0000906f0), (*main.Student)(0xc000090720), (*main.Student)(0xc000090780), (*main.Student)(0xc0000907b0), (*main.Student)(0xc0000907e0), (*main.Student)(0xc000090810), (*main.Student)(0xc000090840), (*main.Student)(0xc000090870)}}
+//}
+
+//结构体标签(TAG)
+//Tag是结构体的元信息，可以在运行的时候通过反射的机制读取出来
+//Tag在结构体字段的后方定义，由一对反引号包裹起来，具体的格式如下：
+//`key1:"value1" key2:"value2"`
+//结构体标签由一个或多个键值对组成。键与值使用冒号分隔，值用双引号括起来。键值对之间使用一个空格分隔。 注意事项： 为结构体编写Tag时，必须严格遵守键值对的规则。结构体标签的解析代码的容错能力很差，一旦格式写错，编译和运行时都不会提示任何错误，通过反射也无法正确取值。例如不要在key和value之间添加空格。
+
+//Student 学生
+//type Student struct {
+//	ID     int    `json:"id"` //通过指定tag实现json序列化该字段时的key
+//	Gender string //json序列化是默认使用字段名作为key
+//	name   string //私有不能被json包访问
+//}
+//func main() {
+//	s1 := Student{
+//		ID:     1,
+//		Gender: "女",
+//		name:   "pprof",
+//	}
+//	data, err := json.Marshal(s1)
+//	if err != nil {
+//		fmt.Println("json marshal failed!")
+//		return
+//	}
+//	fmt.Printf("json str:%s\n", data) //json str:{"id":1,"Gender":"女"}
+//}
 
 
+//练习
+//type student struct {
+//	id   int
+//	name string
+//	age  int
+//}
+//
+//func demo(ce []student) {
+//	//切片是引用传递，是可以改变值的
+//	ce[1].age = 999
+//	// ce = append(ce, student{3, "xiaowang", 56})
+//	// return ce
+//}
+//func main() {
+//	var ce []student  //定义一个切片类型的结构体
+//	ce = []student{
+//		student{1, "xiaoming", 22},
+//		student{2, "xiaozhang", 33},
+//	}
+//	fmt.Println(ce)
+//	demo(ce)
+//	fmt.Println(ce)
+//}
+//输出结果：
+//[{1 xiaoming 22} {2 xiaozhang 33}]
+//[{1 xiaoming 22} {2 xiaozhang 999}]
 
 
+//删除map类型结构体
 
+//type student struct {
+//	id   int
+//	name string
+//	age  int
+//}
+//
+//func main() {
+//	ce := make(map[int]student)
+//	ce[1] = student{1, "xiaolizi", 22}
+//	ce[2] = student{2, "wang", 23}
+//	fmt.Println(ce)
+//	delete(ce, 2)
+//	fmt.Println(ce)
+//}
+//输出结果
+//map[1:{1 xiaolizi 22} 2:{2 wang 23}]
+//map[1:{1 xiaolizi 22}]
 
+//实现map有序出书
+
+//func main() {
+//	map1 := make(map[int]string, 5)
+//	map1[1] = "www.topgoer.com"
+//	map1[2] = "rpc.topgoer.com"
+//	map1[5] = "ceshi"
+//	map1[3] = "xiaohong"
+//	map1[4] = "xiaohuang"
+//	sli := []int{}
+//	for k, _ := range map1 {
+//		sli = append(sli, k)
+//	}
+//	sort.Ints(sli)
+//	for i := 0; i < len(map1); i++ {
+//		fmt.Println(map1[sli[i]])
+//	}
+//}
+//输出结果
+//www.topgoer.com
+//rpc.topgoer.com
+//xiaohong
+//xiaohuang
+//ceshi
