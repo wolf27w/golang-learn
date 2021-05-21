@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 //函数的特点
 //• 无需声明原型。
 //• 支持不定 变参。
@@ -86,14 +88,46 @@ package main
 //Golang 可变参数本质上就是 slice。只能有一个，且必须是最后一个。
 //在参数赋值时可以不用用一个一个的赋值，可以直接传递一个数组或者切片，特别注意的是在参数后加上“…”即可。
 
+//func myfunc(args ...int) {    //0个或多个参数
+//}
+//func add(a int, args…int) int {    //1个或多个参数
+//}
+//func add(a int, b int, args…int) int {    //2个或多个参数
+//}
+
+//注意：其中args是一个slice，我们可以通过arg[index]依次访问所有参数,通过len(arg)来判断传递参数的个数.
+//任意类型的不定参数： 就是函数的参数和每个参数的类型都不是固定的。
+//用interface{}传递任意类型数据是Go语言的惯例用法，而且interface{}是类型安全的
+
+//func test(s string, n ...int) string {
+//	var x int
+//	for _, i := range n {
+//		x += i
+//	}
+//
+//	return fmt.Sprintf(s, x)
+//}
+//
+//func main() {
+//	println(test("sum: %d", 1, 2, 3))
+//}
 
 
+//使用slice做对象变参数时
+func test(s string, n ...int) string {
+	var x int
+	for _, i := range n {
+		x += i
+	}
 
+	return fmt.Sprintf(s, x)
+}
 
-
-
-
-
+func main() {
+	s := []int{1, 2, 3}
+	res := test("sum: %d", s...)    // slice... 展开slice
+	println(res)
+}
 
 
 
