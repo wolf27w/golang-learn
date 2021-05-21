@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 //函数的特点
 //• 无需声明原型。
 //• 支持不定 变参。
@@ -114,20 +112,27 @@ import "fmt"
 
 
 //使用slice做对象变参数时
-func test(s string, n ...int) string {
-	var x int
-	for _, i := range n {
-		x += i
-	}
+//func test(s string, n ...int) string {
+//	var x int
+//	for _, i := range n {
+//		x += i
+//	}
+//
+//	return fmt.Sprintf(s, x)
+//}
+//
+//func main() {
+//	s := []int{1, 2, 3}
+//	res := test("sum: %d", s...)    // slice... 展开slice
+//	println(res)
+//}
 
-	return fmt.Sprintf(s, x)
-}
 
-func main() {
-	s := []int{1, 2, 3}
-	res := test("sum: %d", s...)    // slice... 展开slice
-	println(res)
-}
+//############函数返回值
+
+//"_"标识符，用来忽略函数的某个返回值
+
+
 
 
 
