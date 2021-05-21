@@ -234,9 +234,46 @@ package main
 
 
 //###################匿名函数################################
+//匿名函数就是不需要定义函数名的一种函数实现方式，，匿名函数又一个不带函数名的函数申明和函数体组成，匿名函数优越性在于可以直接使用函数内的变量，不必申明
+
+//func main() {
+//	getSqrt := func(a float64) float64 {
+//		return math.Sqrt(a)
+//	}
+//	fmt.Println(getSqrt(4))
+//}
+//输出结果：2
 
 
+//匿名函数可赋值给变量，做为结构字段，或者在 channel 里传送
 
+//func main() {
+//	// --- function variable ---
+//	fn := func() { println("Hello, World!") }
+//	fn()
+//
+//	// --- function collection ---
+//	fns := [](func(x int) int){
+//		func(x int) int { return x + 1 },
+//		func(x int) int { return x + 2 },
+//	}
+//	println(fns[0](100))
+//	// --- function as field ---
+//	d := struct {
+//		fn func() string
+//	}{
+//		fn: func() string { return "Hello, World!" },
+//	}
+//	println(d.fn())
+//	// --- channel of function ---
+//	fc := make(chan func() string, 2)
+//	fc <- func() string { return "Hello, World!" }
+//	println((<-fc)())
+//}
 
-
+//输出结果
+//Hello, World!
+//101
+//Hello, World!
+//Hello, World!
 
