@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 //函数的特点
 //• 无需声明原型。
 //• 支持不定 变参。
@@ -322,8 +320,110 @@ import "fmt"
 //x (0xc0000b2008) = 100
 
 
+//test 实际返回的是 FuncVal 对象，其中包含了匿名函数地址、闭包对象指针。当调 匿名函数时，只需以某个寄存器传递该对象即可。
+
+// 外部引用函数参数局部变量
+//func add(base int) func(int) int {
+//	return func(i int) int {
+//		base += i
+//		return base
+//	}
+//}
+//
+//func main() {
+//	tmp1 := add(10)
+//	fmt.Println(tmp1(1), tmp1(2))  //返回两个闭包
+//	// 此时tmp1和tmp2不是一个实体了
+//	tmp2 := add(100)
+//	fmt.Println(tmp2(1), tmp2(2))
+//}
+//输出结果
+//11 13
+//101 103
 
 
 
+// 返回2个函数类型的返回值
+//func test01(base int) (func(int) int, func(int) int) {
+//	// 定义2个函数，并返回
+//	// 相加
+//	add := func(i int) int {
+//		base += i
+//		return base
+//	}
+//	// 相减
+//	sub := func(i int) int {
+//		base -= i
+//		return base
+//	}
+//	// 返回
+//	return add, sub
+//}
+//
+//func main() {
+//	f1, f2 := test01(10)
+//	// base一直是没有消
+//	fmt.Println(f1(1), f2(2))
+//	// 此时base是9
+//	fmt.Println(f1(3), f2(4))
+//}
+//输出结果
+//11 9
+//12 8
 
 
+
+//递归，就是在运行的过程中调用自己。 一个函数调用自己，就叫做递归函数
+//1.子问题须与原始问题为同样的事，且更为简单。
+//2.不能无限制地调用本身，须有个出口，化简为非递归状况处理。
+
+//一个正整数的阶乘（factorial）是所有小于及等于该数的正整数的积，并且0的阶乘为1。自然数n的阶乘写作n!。1808年
+
+
+//func factorial(i int) int {
+//	if i <= 1 {
+//		return 1
+//	}
+//	return i * factorial(i-1)
+//}
+//
+//func main() {
+//	var i int = 7
+//	fmt.Printf("Factorial of %d is %d\n", i, factorial(i))
+//}
+//输出结果
+//Factorial of 7 is 5040
+
+
+
+//斐波那契数列(Fibonacci)
+
+//这个数列从第3项开始，每一项都等于前两项之和。
+
+//func fibonaci(i int) int {
+//	if i == 0 {
+//		return 0
+//	}
+//	if i == 1 {
+//		return 1
+//	}
+//	return fibonaci(i-1) + fibonaci(i-2)
+//}
+//
+//func main() {
+//	var i int
+//	for i = 0; i < 10; i++ {
+//		fmt.Printf("%d\n", fibonaci(i))
+//	}
+//}
+//输出结果
+//0
+//1
+//1
+//2
+//3
+//5
+//8
+//13
+//21
+//34
