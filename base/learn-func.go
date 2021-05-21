@@ -205,7 +205,7 @@ package main
 
 
 //func add(x, y int) (z int) {
-//	defer func() {  //defer延迟调用通过闭包读取和修改
+//	defer func() {  //命名返回参数允许 defer 延迟调用通过闭包读取和修改。
 //		z += 100
 //	}()
 //	z = x + y
@@ -218,8 +218,19 @@ package main
 //输出结果： 103
 
 
-
-
+//func add(x, y int) (z int) {
+//	defer func() {
+//		println(z) // 输出: 203
+//	}()
+//
+//	z = x + y
+//	return z + 200 // 执行顺序: (z = z + 200) -> (call defer) -> (return)
+//}
+//
+//func main() {
+//	println(add(1, 2)) // 输出: 203
+//}
+//这里注意，执行顺序很重要
 
 
 
