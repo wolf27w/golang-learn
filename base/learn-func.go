@@ -188,13 +188,34 @@ package main
 //输出结果：3，3
 
 
+//命名返回参数，可以看作与形参类似的局部变量
+
+//func add(x, y int) (z int) {
+//	z = x + y
+//	return
+//}
+//
+//func main() {
+//	println(add(1, 2))
+//}
+//输出结果：3
 
 
+//命名返回参数可被同名局部变量遮蔽，此时需要显式返回。
 
 
-
-
-
+//func add(x, y int) (z int) {
+//	defer func() {  //defer延迟调用通过闭包读取和修改
+//		z += 100
+//	}()
+//	z = x + y
+//	return
+//}
+//
+//func main() {
+//	println(add(1, 2))
+//}
+//输出结果： 103
 
 
 
