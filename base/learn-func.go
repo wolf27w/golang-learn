@@ -166,8 +166,26 @@ package main
 //}
 //输出结果：1
 
+//多返回值可以其他函数参数调用实惨
 
-
+//func test() (int, int) {
+//	return 1, 2
+//}
+//func add(x, y int) int {
+//	return x + y
+//}
+//func sum(n ...int) int {
+//	var x int
+//	for _, i := range n { //i循环等于1，2和为3
+//		x += i
+//	}
+//	return x
+//}
+//func main() {
+//	println(add(test()))
+//	println(sum(test()))
+//}
+//输出结果：3，3
 
 
 
