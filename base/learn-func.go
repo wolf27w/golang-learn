@@ -152,7 +152,19 @@ package main
 //}
 //输出结果：1 2 3 3 1
 
-
+//返回值不能用容器对象接受多返回值，只能用多个变量，或"_"忽略
+//func test() (int, int) {
+//	return 1, 2
+//}
+//
+//func main() {
+//	// s := make([]int, 2)
+//	// s = test()   // Error: multiple-value test() in single-value context
+//
+//	x, _ := test() //忽略一个变量
+//	println(x)
+//}
+//输出结果：1
 
 
 
