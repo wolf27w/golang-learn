@@ -1,5 +1,7 @@
 package main
 
+import "os"
+
 //函数的特点
 //• 无需声明原型。
 //• 支持不定 变参。
@@ -742,8 +744,53 @@ package main
 //解释：在这里，你同样需要检查 res 的值是否为 nil ，这是 http.Get 中的一个警告。通常情况下，出错的时候，返回的内容应为空并且错误会被返回，可当你获得的是一个重定向 error 时， res 的值并不会为 nil ，但其又会将错误返回。上面的代码保证了无论如何 Body 都会被关闭，如果你没有打算使用其中的数据，那么你还需要丢弃已经接收的数据。
 
 
+//############不检查错误
+//f.Close() 可能会返回一个错误，可这个错误会被我们忽略掉
+
+//func do() error {
+//	f, err := os.Open("book.txt")
+//	if err != nil {
+//		return err
+//	}
+//
+//	if f != nil {
+//		defer f.Close()
+//	}
+//
+//	// ..code...
+//
+//	return nil
+//}
+//
+//func main() {
+//	do()
+//}
 
 
+//改进一下
+
+func do() error {
+	f, err := os.Open("book.txt")
+	if err != nil {
+		return err
+	}
+
+	if f != nil {
+		defer func() {
+			if err := f.Close(); err != nil {
+				// log etc
+			}
+		}()
+	}
+
+	// ..code...
+
+	return nil
+}
+
+func main() {
+	do()
+}
 
 
 
