@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"os"
 )
 
@@ -828,17 +829,54 @@ import (
 
 //如果你尝试使用相同的变量释放不同的资源，那么这个操作可能无法正常执行。
 
+//func do() error {
+//	f, err := os.Open("book.txt")
+//	if err != nil {
+//		return err
+//	}
+//	if f != nil {
+//		defer func() {
+//			if err := f.Close(); err != nil {
+//				fmt.Printf("defer close book.txt err %v\n", err)
+//			}
+//		}()
+//	}
+//
+//	// ..code...
+//
+//	f, err = os.Open("another-book.txt")
+//	if err != nil {
+//		return err
+//	}
+//	if f != nil {
+//		defer func() {
+//			if err := f.Close(); err != nil {
+//				fmt.Printf("defer close another-book.txt err %v\n", err)
+//			}
+//		}()
+//	}
+//
+//	return nil
+//}
+//
+//func main() {
+//	do()
+//}
+//输出结果： defer close book.txt err close ./another-book.txt: file already closed
+//当延迟函数执行时，只有最后一个变量会被用到，因此，f 变量 会成为最后那个资源 (another-book.txt)。而且两个 defer 都会将这个资源作为最后的资源来关闭
+
+
 func do() error {
 	f, err := os.Open("book.txt")
 	if err != nil {
 		return err
 	}
 	if f != nil {
-		defer func() {
+		defer func(f io.Closer) {
 			if err := f.Close(); err != nil {
 				fmt.Printf("defer close book.txt err %v\n", err)
 			}
-		}()
+		}(f)
 	}
 
 	// ..code...
@@ -848,11 +886,11 @@ func do() error {
 		return err
 	}
 	if f != nil {
-		defer func() {
+		defer func(f io.Closer) {
 			if err := f.Close(); err != nil {
 				fmt.Printf("defer close another-book.txt err %v\n", err)
 			}
-		}()
+		}(f)
 	}
 
 	return nil
@@ -861,11 +899,6 @@ func do() error {
 func main() {
 	do()
 }
-
-
-
-
-
 
 
 
