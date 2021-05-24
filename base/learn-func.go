@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 //函数的特点
 //• 无需声明原型。
 //• 支持不定 变参。
@@ -668,10 +670,27 @@ package main
 //解释：在有具名返回值的函数中（这里具名返回值为 i），执行 return 2 的时候实际上已经将 i 的值重新赋值为 2。所以defer closure 输出结果为 2 而不是 1。
 
 
+//###########defer nil函数
+func test() {
+	var run func() = nil
+	defer run()
+	fmt.Println("runs")
+}
 
+func main() {
+	defer func() {
+		if err := recover(); err != nil {
+			fmt.Println(err)
+		}
+	}()
+	test()
+}
 
+//输出结果
+//runs
+//runtime error: invalid memory address or nil pointer dereference
 
-
+//解释：名为 test 的函数一直运行至结束，然后 defer 函数会被执行且会因为值为 nil 而产生 panic 异常。然而值得注意的是，run() 的声明是没有问题，因为在test函数运行完成后它才会被调用。
 
 
 
