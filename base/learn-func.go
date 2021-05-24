@@ -1,10 +1,5 @@
 package main
 
-import (
-	"fmt"
-	"net/http"
-)
-
 //函数的特点
 //• 无需声明原型。
 //• 支持不定 变参。
@@ -699,28 +694,52 @@ import (
 //在错误的位置使用defer
 
 //当http.Get失败时抛出异常
-func do() error {
-	res, err := http.Get("http://www.google.com")
-	defer res.Body.Close()
-	if err != nil {
-		return err
-	}
+//func do() error {
+//	res, err := http.Get("http://www.google.com")
+//	defer res.Body.Close()
+//	if err != nil {
+//		return err
+//	}
+//
+//	// ..code...
+//
+//	return nil
+//}
+//
+//func main() {
+//	do()
+//}
 
-	// ..code...
+//输出结果
+//panic: runtime error: invalid memory address or nil pointer dereference
+//[signal SIGSEGV: segmentation violation code=0x1 addr=0x40 pc=0x1247f2b]
 
-	return nil
-}
-
-func main() {
-	do()
-}
+//因为在这里我们并没有检查我们的请求是否成功执行，当它失败的时候，我们访问了 Body 中的空变量 res ，因此会抛出异常
 
 
+//当且仅当 http.Get 成功执行时才使用 defer
+//func do() error {
+//	res, err := http.Get("http://www.wulaoer.org")
+//	if res != nil {
+//		defer res.Body.Close()
+//	}
+//
+//	if err != nil {
+//		return err
+//	}
+//
+//	// ..code...
+//
+//	return nil
+//}
+//
+//func main() {
+//	do()
+//}
 
+//当有错误的时候，err 会被返回，否则当整个函数返回的时候，会关闭 res.Body 。
 
-
-
-
+//解释：在这里，你同样需要检查 res 的值是否为 nil ，这是 http.Get 中的一个警告。通常情况下，出错的时候，返回的内容应为空并且错误会被返回，可当你获得的是一个重定向 error 时， res 的值并不会为 nil ，但其又会将错误返回。上面的代码保证了无论如何 Body 都会被关闭，如果你没有打算使用其中的数据，那么你还需要丢弃已经接收的数据。
 
 
 
