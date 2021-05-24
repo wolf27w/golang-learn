@@ -769,7 +769,34 @@ import "os"
 
 //改进一下
 
-func do() error {
+//func do() error {
+//	f, err := os.Open("book.txt")
+//	if err != nil {
+//		return err
+//	}
+//
+//	if f != nil {
+//		defer func() {
+//			if err := f.Close(); err != nil {
+//				// log etc
+//			}
+//		}()
+//	}
+//
+//	// ..code...
+//
+//	return nil
+//}
+//
+//func main() {
+//	do()
+//}
+
+
+//通过命名的返回变量来返回 defer 内的错误。
+
+
+func do() (err error) {
 	f, err := os.Open("book.txt")
 	if err != nil {
 		return err
@@ -777,8 +804,8 @@ func do() error {
 
 	if f != nil {
 		defer func() {
-			if err := f.Close(); err != nil {
-				// log etc
+			if ferr := f.Close(); ferr != nil {
+				err = ferr
 			}
 		}()
 	}
@@ -793,11 +820,7 @@ func main() {
 }
 
 
-
-
-
-
-
+//释放相同的资源
 
 
 
