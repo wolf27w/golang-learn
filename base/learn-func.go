@@ -443,4 +443,96 @@ package main
 //2. 锁资源释放
 //3. 数据库连接释放
 
+//defer 是先进后出
 
+//func main() {
+//	var whatever [5]struct{}
+//
+//	for i := range whatever {
+//		defer fmt.Println(i)
+//	}
+//}
+//输出结果：
+//4
+//3
+//2
+//1
+//0
+
+//defer碰上闭包
+
+//func main() {
+//	var whatever [5]struct{}
+//	for i := range whatever {
+//		defer func() { fmt.Println(i) }()
+//	}
+//}
+//输出结果：
+//4
+//4
+//4
+//4
+//4
+
+//函数正常执行,由于闭包用到的变量 i 在执行的时候已经变成4,所以输出全都是4.
+
+//type Test struct {
+//	name string
+//}
+//
+//func (t *Test) Close() {
+//	fmt.Println(t.name, " closed")
+//}
+//func main() {
+//	ts := []Test{{"a"}, {"b"}, {"c"}}
+//	for _, t := range ts {
+//		defer t.Close()
+//	}
+//}
+//输出结果
+//c  closed
+//c  closed
+//c  closed
+
+
+//type Test struct {
+//	name string
+//}
+//
+//func (t *Test) Close() {
+//	fmt.Println(t.name, " closed")
+//}
+//func Close(t Test) {
+//	t.Close()
+//}
+//func main() {
+//	ts := []Test{{"a"}, {"b"}, {"c"}}
+//	for _, t := range ts {
+//		defer Close(t)
+//	}
+//}
+//输出结果
+//c  closed
+//b  closed
+//a  closed
+
+//type Test struct {
+//	name string
+//}
+//
+//func (t *Test) Close() {
+//	fmt.Println(t.name, " closed")
+//}
+//func main() {
+//	ts := []Test{{"a"}, {"b"}, {"c"}}
+//	for _, t := range ts {
+//		t2 := t
+//		defer t2.Close()
+//	}
+//}
+
+//输出结果
+//c  closed
+//b  closed
+//a  closed
+//defer后面的语句在执行的时候，函数调用的参数会被保存起来，但是不执行。也就是复制了一份。但是并没有说struct这里的this指针如何处理，通过这个例子可以看出go语言并没有把这个明确写出来的this指针当作参数来看待
