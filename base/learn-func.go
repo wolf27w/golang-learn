@@ -1,11 +1,5 @@
 package main
 
-import (
-	"fmt"
-	"io"
-	"os"
-)
-
 //函数的特点
 //• 无需声明原型。
 //• 支持不定 变参。
@@ -866,39 +860,39 @@ import (
 //当延迟函数执行时，只有最后一个变量会被用到，因此，f 变量 会成为最后那个资源 (another-book.txt)。而且两个 defer 都会将这个资源作为最后的资源来关闭
 
 
-func do() error {
-	f, err := os.Open("book.txt")
-	if err != nil {
-		return err
-	}
-	if f != nil {
-		defer func(f io.Closer) {
-			if err := f.Close(); err != nil {
-				fmt.Printf("defer close book.txt err %v\n", err)
-			}
-		}(f)
-	}
-
-	// ..code...
-
-	f, err = os.Open("another-book.txt")
-	if err != nil {
-		return err
-	}
-	if f != nil {
-		defer func(f io.Closer) {
-			if err := f.Close(); err != nil {
-				fmt.Printf("defer close another-book.txt err %v\n", err)
-			}
-		}(f)
-	}
-
-	return nil
-}
-
-func main() {
-	do()
-}
+//func do() error {
+//	f, err := os.Open("book.txt")
+//	if err != nil {
+//		return err
+//	}
+//	if f != nil {
+//		defer func(f io.Closer) {
+//			if err := f.Close(); err != nil {
+//				fmt.Printf("defer close book.txt err %v\n", err)
+//			}
+//		}(f)
+//	}
+//
+//	// ..code...
+//
+//	f, err = os.Open("another-book.txt")
+//	if err != nil {
+//		return err
+//	}
+//	if f != nil {
+//		defer func(f io.Closer) {
+//			if err := f.Close(); err != nil {
+//				fmt.Printf("defer close another-book.txt err %v\n", err)
+//			}
+//		}(f)
+//	}
+//
+//	return nil
+//}
+//
+//func main() {
+//	do()
+//}
 
 
 
