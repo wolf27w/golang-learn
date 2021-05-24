@@ -1,6 +1,9 @@
 package main
 
-import "os"
+import (
+	"fmt"
+	"os"
+)
 
 //函数的特点
 //• 无需声明原型。
@@ -796,21 +799,61 @@ import "os"
 //通过命名的返回变量来返回 defer 内的错误。
 
 
-func do() (err error) {
+//func do() (err error) {
+//	f, err := os.Open("book.txt")
+//	if err != nil {
+//		return err
+//	}
+//
+//	if f != nil {
+//		defer func() {
+//			if ferr := f.Close(); ferr != nil {
+//				err = ferr
+//			}
+//		}()
+//	}
+//
+//	// ..code...
+//
+//	return nil
+//}
+//
+//func main() {
+//	do()
+//}
+
+
+//释放相同的资源
+
+
+//如果你尝试使用相同的变量释放不同的资源，那么这个操作可能无法正常执行。
+
+func do() error {
 	f, err := os.Open("book.txt")
 	if err != nil {
 		return err
 	}
-
 	if f != nil {
 		defer func() {
-			if ferr := f.Close(); ferr != nil {
-				err = ferr
+			if err := f.Close(); err != nil {
+				fmt.Printf("defer close book.txt err %v\n", err)
 			}
 		}()
 	}
 
 	// ..code...
+
+	f, err = os.Open("another-book.txt")
+	if err != nil {
+		return err
+	}
+	if f != nil {
+		defer func() {
+			if err := f.Close(); err != nil {
+				fmt.Printf("defer close another-book.txt err %v\n", err)
+			}
+		}()
+	}
 
 	return nil
 }
@@ -818,10 +861,6 @@ func do() (err error) {
 func main() {
 	do()
 }
-
-
-//释放相同的资源
-
 
 
 
