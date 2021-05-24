@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"net/http"
+)
 
 //函数的特点
 //• 无需声明原型。
@@ -693,6 +696,24 @@ func main() {
 //解释：名为 test 的函数一直运行至结束，然后 defer 函数会被执行且会因为值为 nil 而产生 panic 异常。然而值得注意的是，run() 的声明是没有问题，因为在test函数运行完成后它才会被调用。
 
 
+//在错误的位置使用defer
+
+//当http.Get失败时抛出异常
+func do() error {
+	res, err := http.Get("http://www.google.com")
+	defer res.Body.Close()
+	if err != nil {
+		return err
+	}
+
+	// ..code...
+
+	return nil
+}
+
+func main() {
+	do()
+}
 
 
 
