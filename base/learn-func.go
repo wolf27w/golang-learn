@@ -651,8 +651,21 @@ package main
 //解释：如果 defer 后面跟的不是一个 closure 最后执行的时候我们得到的并不是最新的值。
 
 
-
-
+//func foo() (i int) {
+//
+//	i = 0
+//	defer func() {
+//		fmt.Println(i)
+//	}()
+//
+//	return 2
+//}
+//
+//func main() {
+//	foo()
+//}
+//输出结果：2
+//解释：在有具名返回值的函数中（这里具名返回值为 i），执行 return 2 的时候实际上已经将 i 的值重新赋值为 2。所以defer closure 输出结果为 2 而不是 1。
 
 
 
