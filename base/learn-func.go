@@ -1028,12 +1028,35 @@ package main
 
 //如果需要保护代码 段，可将代码块重构成匿名函数，如此可确保后续代码被执 。
 
+//func test(x, y int) {
+//	var z int
+//
+//	func() {
+//		defer func() {
+//			if recover() != nil {
+//				z = 0
+//			}
+//		}()
+//		panic("test panic")
+//		z = x / y
+//		return
+//	}()
+//
+//	fmt.Printf("x / y = %d\n", z)
+//}
+//
+//func main() {
+//	test(2, 1)
+//}
+
+//输出结果
+//x / y = 0
 
 
+//除用 panic 引发中断性错误外，还可返回 error 类型错误对象来表示函数调用状态。
 
 
-
-
+//标准库 errors.New 和 fmt.Errorf 函数用于创建实现 error 接口的错误对象。通过判断错误对象实例来确定具体错误类型。
 
 
 
