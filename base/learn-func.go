@@ -1163,7 +1163,15 @@ package main
 //—— calc_test.go
 
 
+//######测试函数
 
+//测试函数格式
+
+//每个测试函数必须导入testing包，测试函数的基本格式（签名）如下
+
+//func TestName(t *testing.T){
+//	// ...
+//}
 
 
 
