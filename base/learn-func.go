@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 //函数的特点
 //• 无需声明原型。
 //• 支持不定 变参。
@@ -984,25 +982,25 @@ import "fmt"
 
 //捕获函数 recover 只有在延迟调用内直接调用才会终止错误，否则总是返回 nil。任何未捕获的错误都会沿调用堆栈向外传递。
 
-func test() {
-	defer func() {
-		fmt.Println(recover()) //有效
-	}()
-	defer recover()              //无效！
-	defer fmt.Println(recover()) //无效！
-	defer func() {
-		func() {
-			println("defer inner")
-			recover() //无效！
-		}()
-	}()
-
-	panic("test panic")
-}
-
-func main() {
-	test()
-}
+//func test() {
+//	defer func() {
+//		fmt.Println(recover()) //有效
+//	}()
+//	defer recover()              //无效！
+//	defer fmt.Println(recover()) //无效！
+//	defer func() {
+//		func() {
+//			println("defer inner")
+//			recover() //无效！
+//		}()
+//	}()
+//
+//	panic("test panic")
+//}
+//
+//func main() {
+//	test()
+//}
 
 //输出结果
 //defer inner
@@ -1010,10 +1008,25 @@ func main() {
 //test panic
 
 
+//使用延迟匿名函数或下面这样都是有效的。
 
 
+//func except() {
+//	fmt.Println(recover())
+//}
+//
+//func test() {
+//	defer except()
+//	panic("test panic")
+//}
+//
+//func main() {
+//	test()
+//}
+//输出结果
+//test panic
 
-
+//如果需要保护代码 段，可将代码块重构成匿名函数，如此可确保后续代码被执 。
 
 
 
