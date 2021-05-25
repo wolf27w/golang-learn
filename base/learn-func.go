@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 //函数的特点
 //• 无需声明原型。
 //• 支持不定 变参。
@@ -1086,22 +1084,22 @@ import "fmt"
 
 //Go实现类似 try catch 的异常处理
 
-func Try(fun func(), handler func(interface{})) {
-	defer func() {
-		if err := recover(); err != nil {
-			handler(err)
-		}
-	}()
-	fun()
-}
-
-func main() {
-	Try(func() {
-		panic("test panic")
-	}, func(err interface{}) {
-		fmt.Println(err)
-	})
-}
+//func Try(fun func(), handler func(interface{})) {
+//	defer func() {
+//		if err := recover(); err != nil {
+//			handler(err)
+//		}
+//	}()
+//	fun()
+//}
+//
+//func main() {
+//	Try(func() {
+//		panic("test panic")
+//	}, func(err interface{}) {
+//		fmt.Println(err)
+//	})
+//}
 
 //输出结果
 //test panic
