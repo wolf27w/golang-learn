@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 //函数的特点
 //• 无需声明原型。
 //• 支持不定 变参。
@@ -948,17 +946,17 @@ import "fmt"
 //    func recover() interface{}
 
 
-func main() {
-	defer func() {
-		if err := recover(); err != nil {
-			fmt.Println(err)
-		}
-	}()
-
-	var ch chan int = make(chan int, 10)
-	close(ch)
-	ch <- 1
-}
+//func main() {
+//	defer func() {
+//		if err := recover(); err != nil {
+//			fmt.Println(err)
+//		}
+//	}()
+//
+//	var ch chan int = make(chan int, 10)
+//	close(ch)
+//	ch <- 1
+//}
 //输出结果
 //send on closed channel
 
