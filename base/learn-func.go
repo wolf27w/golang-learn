@@ -896,6 +896,8 @@ package main
 
 
 //###################异常处理
+//golang没有结构化异常，使用panic抛出错误，recover捕获错误
+//Go中可以抛出一个panic的异常，然后在defer中通过recover捕获这个异常，然后正常处理。
 
 
 
