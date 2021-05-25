@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 //函数的特点
 //• 无需声明原型。
 //• 支持不定 变参。
@@ -923,30 +925,42 @@ package main
 //3.多个 defer 会形成 defer 栈，后定义的 defer 语句会被最先调用。
 
 
-func main() {
-	test()
-}
-
-func test() {
-	defer func() {
-		if err := recover(); err != nil {
-			println(err.(string)) // 将 interface{} 转型为具体类型。
-		}
-	}()
-
-	panic("panic error!")
-}
+//func main() {
+//	test()
+//}
+//
+//func test() {
+//	defer func() {
+//		if err := recover(); err != nil {
+//			println(err.(string)) // 将 interface{} 转型为具体类型。
+//		}
+//	}()
+//
+//	panic("panic error!")
+//}
 
 //输出结果
 //panic error!
 
 
+//由于 panic、recover 参数类型为 interface{}，因此可抛出任何类型对象。
+//    func panic(v interface{})
+//    func recover() interface{}
 
 
+func main() {
+	defer func() {
+		if err := recover(); err != nil {
+			fmt.Println(err)
+		}
+	}()
 
-
-
-
+	var ch chan int = make(chan int, 10)
+	close(ch)
+	ch <- 1
+}
+//输出结果
+//send on closed channel
 
 
 
