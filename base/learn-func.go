@@ -1107,3 +1107,4 @@ func main() {
 //test panic
 
 
+//惯例是:导致关键流程出现不可修复性错误的使用 panic，其他使用 error
