@@ -1297,7 +1297,33 @@ package main
 
 //很显然我们最初的split函数并没有考虑到sep为多个字符的情况，我们来修复下这个Bug：
 
+//package split
+//
+//import "strings"
+//
+//// split package with a single split function.
+//
+//// Split slices s into all substrings separated by sep and
+//// returns a slice of the substrings between those separators.
+//func Split(s, sep string) (result []string) {
+//	i := strings.Index(s, sep)
+//
+//	for i > -1 {
+//		result = append(result, s[:i])
+//		s = s[i+len(sep):] // 这里使用len(sep)获取sep的长度
+//		i = strings.Index(s, sep)
+//	}
+//	result = append(result, s)
+//	return
+//}
 
 
+//注意，当我们修改了我们的代码之后不要仅仅执行那些失败的测试函数，我们应该完整的运行所有的测试，保证不会因为修改代码而引入了新的问题。
 
-
+//split $ go test -v
+//    === RUN   TestSplit
+//    --- PASS: TestSplit (0.00s)
+//    === RUN   TestMoreSplit
+//    --- PASS: TestMoreSplit (0.00s)
+//    PASS
+//    ok      github.com/pprof/studygo/code_demo/test_demo/split       0.006s
