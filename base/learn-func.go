@@ -1265,9 +1265,24 @@ package main
 
 //运行go test输出过
 
+//split $ go test
+//--- FAIL: TestMultiSplit (0.00s)
+//split_test.go:20: excepted:[a d], got:[a cd]
+//FAIL
+//exit status 1
+//FAIL    github.com/pprof/studygo/code_demo/test_demo/split       0.006s
 
+//以为go test命令添加-v参数，查看测试函数名称和运行时间：
 
-
+//split $ go test -v
+//=== RUN   TestSplit
+//--- PASS: TestSplit (0.00s)
+//=== RUN   TestMoreSplit
+//--- FAIL: TestMoreSplit (0.00s)
+//split_test.go:21: excepted:[a d], got:[a cd]
+//FAIL
+//exit status 1
+//FAIL    github.com/pprof/studygo/code_demo/test_demo/split       0.005s
 
 
 
