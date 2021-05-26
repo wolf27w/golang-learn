@@ -1504,6 +1504,43 @@ package main
 //上面的命令会将覆盖率相关的信息输出到当前文件夹下面的c.out文件中，然后我们执行go tool cover -html=c.out，使用cover工具来处理生成的记录信息，该命令会打开本地的浏览器窗口生成一个HTML报告。
 
 
+//######################基准测试###############
+//基准测试函数格式
+
+
+//基准测试就是在一定的工作负载之下检测程序性能的一种方法。基准测试的基本格式如下：
+
+//func BenchmarkName(b *testing.B){
+//    // ...
+//}
+
+
+//基准测试以Benchmark为前缀，需要一个*testing.B类型的参数b，基准测试必须要执行b.N次，这样的测试才有对照性，b.N的值是系统根据实际情况去调整的，从而保证测试的稳定性。 testing.B拥有的方法如下：
+
+//func (c *B) Error(args ...interface{})
+//func (c *B) Errorf(format string, args ...interface{})
+//func (c *B) Fail()
+//func (c *B) FailNow()
+//func (c *B) Failed() bool
+//func (c *B) Fatal(args ...interface{})
+//func (c *B) Fatalf(format string, args ...interface{})
+//func (c *B) Log(args ...interface{})
+//func (c *B) Logf(format string, args ...interface{})
+//func (c *B) Name() string
+//func (b *B) ReportAllocs()
+//func (b *B) ResetTimer()
+//func (b *B) Run(name string, f func(b *B)) bool
+//func (b *B) RunParallel(body func(*PB))
+//func (b *B) SetBytes(n int64)
+//func (b *B) SetParallelism(p int)
+//func (c *B) Skip(args ...interface{})
+//func (c *B) SkipNow()
+//func (c *B) Skipf(format string, args ...interface{})
+//func (c *B) Skipped() bool
+//func (b *B) StartTimer()
+//func (b *B) StopTimer()
+
+
 
 
 
