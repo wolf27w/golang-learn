@@ -1199,11 +1199,7 @@ package main
 //func (c *T) Skipped() bool
 
 
-
-
-
-
-
+//##############测试函数示例
 
 
 
