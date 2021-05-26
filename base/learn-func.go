@@ -1358,6 +1358,34 @@ package main
 
 //代码把多个测试用例合到一起，再次执行go test命令。
 
+//split $ go test -v
+//    === RUN   TestSplit
+//    --- FAIL: TestSplit (0.00s)
+//        split_test.go:42: excepted:[枯藤 树昏鸦], got:[ 枯藤 树昏鸦]
+//    FAIL
+//    exit status 1
+//    FAIL    github.com/pprof/studygo/code_demo/test_demo/split       0.006s
+
+
+//打印的测试失败提示信息：excepted:[枯藤 树昏鸦], got:[ 枯藤 树昏鸦]，你会发现[ 枯藤 树昏鸦]中有个不明显的空串，这种情况下十分推荐使用%#v的格式化方式。
+//
+//我们修改下测试用例的格式化输出错误提示部分
+
+//func TestSplit(t *testing.T) {
+//   ...
+//
+//    for _, tc := range tests {
+//        got := Split(tc.input, tc.sep)
+//        if !reflect.DeepEqual(got, tc.want) {
+//            t.Errorf("excepted:%#v, got:%#v", tc.want, got)
+//        }
+//    }
+//}
+
+//运行go test命令后就能看到比较明显的提示信息了：
+
+
+
 
 
 
