@@ -1398,10 +1398,50 @@ package main
 //看起来都挺不错的，但是如果测试用例比较多的时候，我们是没办法一眼看出来具体是哪个测试用例失败了
 
 
+//func TestSplit(t *testing.T) {
+//    type test struct { // 定义test结构体
+//        input string
+//        sep   string
+//        want  []string
+//    }
+//    tests := map[string]test{ // 测试用例使用map存储
+//        "simple":      {input: "a:b:c", sep: ":", want: []string{"a", "b", "c"}},
+//        "wrong sep":   {input: "a:b:c", sep: ",", want: []string{"a:b:c"}},
+//        "more sep":    {input: "abcd", sep: "bc", want: []string{"a", "d"}},
+//        "leading sep": {input: "枯藤老树昏鸦", sep: "老", want: []string{"枯藤", "树昏鸦"}},
+//    }
+//    for name, tc := range tests {
+//        got := Split(tc.input, tc.sep)
+//        if !reflect.DeepEqual(got, tc.want) {
+//            t.Errorf("name:%s excepted:%#v, got:%#v", name, tc.want, got) // 将测试用例的name格式化输出
+//        }
+//    }
+//}
+
+//同时Go1.7+中新增了子测试，我们可以按照如下方式使用t.Run执行子测试：
 
 
-
-
+//func TestSplit(t *testing.T) {
+//    type test struct { // 定义test结构体
+//        input string
+//        sep   string
+//        want  []string
+//    }
+//    tests := map[string]test{ // 测试用例使用map存储
+//        "simple":      {input: "a:b:c", sep: ":", want: []string{"a", "b", "c"}},
+//        "wrong sep":   {input: "a:b:c", sep: ",", want: []string{"a:b:c"}},
+//        "more sep":    {input: "abcd", sep: "bc", want: []string{"a", "d"}},
+//        "leading sep": {input: "枯藤老树昏鸦", sep: "老", want: []string{"枯藤", "树昏鸦"}},
+//    }
+//    for name, tc := range tests {
+//        t.Run(name, func(t *testing.T) { // 使用t.Run()执行子测试
+//            got := Split(tc.input, tc.sep)
+//            if !reflect.DeepEqual(got, tc.want) {
+//                t.Errorf("excepted:%#v, got:%#v", tc.want, got)
+//            }
+//        })
+//    }
+//}
 
 
 
