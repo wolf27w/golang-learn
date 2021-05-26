@@ -1491,6 +1491,50 @@ package main
 //    ok      github.com/pprof/studygo/code_demo/test_demo/split       0.005s
 
 
+//从上面的结果可以看到我们的测试用例覆盖了100%的代码。
+
+
+//Go还提供了一个额外的-coverprofile参数，用来将覆盖率相关的记录信息输出到一个文件。例如：
+
+//    split $ go test -cover -coverprofile=c.out
+//    PASS
+//    coverage: 100.0% of statements
+//    ok      github.com/pprof/studygo/code_demo/test_demo/split       0.005s
+
+//上面的命令会将覆盖率相关的信息输出到当前文件夹下面的c.out文件中，然后我们执行go tool cover -html=c.out，使用cover工具来处理生成的记录信息，该命令会打开本地的浏览器窗口生成一个HTML报告。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
