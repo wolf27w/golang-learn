@@ -1443,9 +1443,37 @@ package main
 //    }
 //}
 
+//再执行go test命令就能够看到更清晰的输出内容了：
+
+// split $ go test -v
+//    === RUN   TestSplit
+//    === RUN   TestSplit/leading_sep
+//    === RUN   TestSplit/simple
+//    === RUN   TestSplit/wrong_sep
+//    === RUN   TestSplit/more_sep
+//    --- FAIL: TestSplit (0.00s)
+//        --- FAIL: TestSplit/leading_sep (0.00s)
+//            split_test.go:83: excepted:[]string{"枯藤", "树昏鸦"}, got:[]string{"", "枯藤", "树昏鸦"}
+//        --- PASS: TestSplit/simple (0.00s)
+//        --- PASS: TestSplit/wrong_sep (0.00s)
+//        --- PASS: TestSplit/more_sep (0.00s)
+//    FAIL
+//    exit status 1
+//    FAIL    github.com/pprof/studygo/code_demo/test_demo/split       0.006s
+
+//这个时候我们要把测试用例中的错误修改回来：
 
 
-
+//func TestSplit(t *testing.T) {
+//    ...
+//    tests := map[string]test{ // 测试用例使用map存储
+//        "simple":      {input: "a:b:c", sep: ":", want: []string{"a", "b", "c"}},
+//        "wrong sep":   {input: "a:b:c", sep: ",", want: []string{"a:b:c"}},
+//        "more sep":    {input: "abcd", sep: "bc", want: []string{"a", "d"}},
+//        "leading sep": {input: "枯藤老树昏鸦", sep: "老", want: []string{"", "枯藤", "树昏鸦"}},
+//    }
+//    ...
+//}
 
 
 
