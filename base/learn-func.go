@@ -1247,13 +1247,23 @@ package main
 //-rw-r--r--  1 pprof staff  408  4 29 15:50 split.go
 //-rw-r--r--  1 pprof  staff  466  4 29 16:04 split_test.go
 
+//在split包路径下，执行go test命令，可以看到输出结果如下：
 
+//split $ go test
+//PASS
+//ok      github.com/pprof/studygo/code_demo/test_demo/split       0.005s
 
+//一个测试用例有点单薄，我们再编写一个测试使用多个字符切割字符串的例子，在split_test.go中添加如下测试函数：
 
+//func TestMoreSplit(t *testing.T) {
+//	got := Split("abcd", "bc")
+//	want := []string{"a", "d"}
+//	if !reflect.DeepEqual(want, got) {
+//		t.Errorf("excepted:%v, got:%v", want, got)
+//	}
+//}
 
-
-
-
+//运行go test输出过
 
 
 
