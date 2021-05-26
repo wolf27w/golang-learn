@@ -1384,6 +1384,18 @@ package main
 
 //运行go test命令后就能看到比较明显的提示信息了：
 
+//    split $ go test -v
+//    === RUN   TestSplit
+//    --- FAIL: TestSplit (0.00s)
+//        split_test.go:42: excepted:[]string{"枯藤", "树昏鸦"}, got:[]string{"", "枯藤", "树昏鸦"}
+//    FAIL
+//    exit status 1
+//    FAIL    github.com/Q1mi/studygo/code_demo/test_demo/split       0.006s
+
+//##############子测试###################
+
+
+//看起来都挺不错的，但是如果测试用例比较多的时候，我们是没办法一眼看出来具体是哪个测试用例失败了
 
 
 
