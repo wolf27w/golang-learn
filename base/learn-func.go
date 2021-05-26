@@ -1481,11 +1481,14 @@ package main
 //######################测试覆盖率#################
 
 
+//测试覆盖率是你的代码被测试套件覆盖的百分比。通常我们使用的都是语句的覆盖率，也就是在测试中至少被运行一次的代码占总代码的比例。
 
+//Go提供内置功能来检查你的代码覆盖率。我们可以使用go test -cover来查看测试覆盖率。例如：
 
-
-
-
+// split $ go test -cover
+//    PASS
+//    coverage: 100.0% of statements
+//    ok      github.com/pprof/studygo/code_demo/test_demo/split       0.005s
 
 
 
