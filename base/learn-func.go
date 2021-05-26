@@ -1285,8 +1285,17 @@ package main
 //FAIL    github.com/pprof/studygo/code_demo/test_demo/split       0.005s
 
 
+//还可以在go test命令后添加-run参数，它对应一个正则表达式，只有函数名匹配上的测试函数才会被go test命令执行。
 
+//split $ go test -v -run="More"
+//    === RUN   TestMoreSplit
+//    --- FAIL: TestMoreSplit (0.00s)
+//        split_test.go:21: excepted:[a d], got:[a cd]
+//    FAIL
+//    exit status 1
+//    FAIL    github.com/pprof/studygo/code_demo/test_demo/split       0.006s
 
+//很显然我们最初的split函数并没有考虑到sep为多个字符的情况，我们来修复下这个Bug：
 
 
 
