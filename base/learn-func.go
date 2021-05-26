@@ -1329,6 +1329,34 @@ package main
 //    ok      github.com/pprof/studygo/code_demo/test_demo/split       0.006s
 
 
+//#####################测试组######################
+
+//还想要测试一下split函数对中文字符串的支持，这个时候我们可以再编写一个TestChineseSplit测试函数，但是我们也可以使用如下更友好的一种方式来添加更多的测试用例。
+
+//func TestSplit(t *testing.T) {
+//   // 定义一个测试用例类型
+//    type test struct {
+//        input string
+//        sep   string
+//        want  []string
+//    }
+//    // 定义一个存储测试用例的切片
+//    tests := []test{
+//        {input: "a:b:c", sep: ":", want: []string{"a", "b", "c"}},
+//        {input: "a:b:c", sep: ",", want: []string{"a:b:c"}},
+//        {input: "abcd", sep: "bc", want: []string{"a", "d"}},
+//        {input: "枯藤老树昏鸦", sep: "老", want: []string{"枯藤", "树昏鸦"}},
+//    }
+//    // 遍历切片，逐一执行测试用例
+//    for _, tc := range tests {
+//        got := Split(tc.input, tc.sep)
+//        if !reflect.DeepEqual(got, tc.want) {
+//            t.Errorf("excepted:%v, got:%v", tc.want, got)
+//        }
+//    }
+//}
+
+//代码把多个测试用例合到一起，再次执行go test命令。
 
 
 
