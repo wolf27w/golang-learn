@@ -1600,6 +1600,57 @@ package main
 
 //#############################性能比较函数#############################
 
+//性能比较函数通常是一个带有参数的函数，被多个不同的Benchmark函数传入不同的值来调用。举个例子如下：
+
+//func benchmark(b *testing.B, size int){/* ... */}
+//func Benchmark10(b *testing.B){ benchmark(b, 10) }
+//func Benchmark100(b *testing.B){ benchmark(b, 100) }
+//func Benchmark1000(b *testing.B){ benchmark(b, 1000) }
+
+//编写了一个计算斐波那契数列的函数如下：
+
+//// fib.go
+//
+//// Fib 是一个计算第n个斐波那契数的函数
+//func Fib(n int) int {
+//    if n < 2 {
+//        return n
+//    }
+//    return Fib(n-1) + Fib(n-2)
+//}
+
+
+//编写的性能比较函数如下：
+
+//// fib_test.go
+//
+//func benchmarkFib(b *testing.B, n int) {
+//    for i := 0; i < b.N; i++ {
+//        Fib(n)
+//    }
+//}
+//
+//func BenchmarkFib1(b *testing.B)  { benchmarkFib(b, 1) }
+//func BenchmarkFib2(b *testing.B)  { benchmarkFib(b, 2) }
+//func BenchmarkFib3(b *testing.B)  { benchmarkFib(b, 3) }
+//func BenchmarkFib10(b *testing.B) { benchmarkFib(b, 10) }
+//func BenchmarkFib20(b *testing.B) { benchmarkFib(b, 20) }
+//func BenchmarkFib40(b *testing.B) { benchmarkFib(b, 40) }
+
+//运行基准测试：
+
+//    split $ go test -bench=.
+//    goos: darwin
+//    goarch: amd64
+//    pkg: github.com/pprof/studygo/code_demo/test_demo/fib
+//    BenchmarkFib1-8         1000000000               2.03 ns/op
+//    BenchmarkFib2-8         300000000                5.39 ns/op
+//    BenchmarkFib3-8         200000000                9.71 ns/op
+//    BenchmarkFib10-8         5000000               325 ns/op
+//    BenchmarkFib20-8           30000             42460 ns/op
+//    BenchmarkFib40-8               2         638524980 ns/op
+//    PASS
+//    ok      github.com/pprof/studygo/code_demo/test_demo/fib 12.944s
 
 
 
