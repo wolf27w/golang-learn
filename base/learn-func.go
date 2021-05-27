@@ -1749,8 +1749,115 @@ package main
 
 //#####################子测试的Setup与Teardown############################
 
+//有时候我们可能需要为每个测试集设置Setup与Teardown，也有可能需要为每个子测试设置Setup与Teardown。下面我们定义两个函数工具函数如下：
+
+//// 测试集的Setup与Teardown
+//func setupTestCase(t *testing.T) func(t *testing.T) {
+//    t.Log("如有需要在此执行:测试之前的setup")
+//    return func(t *testing.T) {
+//        t.Log("如有需要在此执行:测试之后的teardown")
+//    }
+//}
+//
+//// 子测试的Setup与Teardown
+//func setupSubTest(t *testing.T) func(t *testing.T) {
+//    t.Log("如有需要在此执行:子测试之前的setup")
+//    return func(t *testing.T) {
+//        t.Log("如有需要在此执行:子测试之后的teardown")
+//    }
+//}
+
+//使用方式如下：
+
+//func TestSplit(t *testing.T) {
+//    type test struct { // 定义test结构体
+//        input string
+//        sep   string
+//        want  []string
+//    }
+//    tests := map[string]test{ // 测试用例使用map存储
+//        "simple":      {input: "a:b:c", sep: ":", want: []string{"a", "b", "c"}},
+//        "wrong sep":   {input: "a:b:c", sep: ",", want: []string{"a:b:c"}},
+//        "more sep":    {input: "abcd", sep: "bc", want: []string{"a", "d"}},
+//        "leading sep": {input: "枯藤老树昏鸦", sep: "老", want: []string{"", "枯藤", "树昏鸦"}},
+//    }
+//    teardownTestCase := setupTestCase(t) // 测试之前执行setup操作
+//    defer teardownTestCase(t)            // 测试之后执行testdoen操作
+//
+//    for name, tc := range tests {
+//        t.Run(name, func(t *testing.T) { // 使用t.Run()执行子测试
+//            teardownSubTest := setupSubTest(t) // 子测试之前执行setup操作
+//            defer teardownSubTest(t)           // 测试之后执行testdoen操作
+//            got := Split(tc.input, tc.sep)
+//            if !reflect.DeepEqual(got, tc.want) {
+//                t.Errorf("excepted:%#v, got:%#v", tc.want, got)
+//            }
+//        })
+//    }
+//}
 
 
+//测试结果如下：
+
+//    split $ go test -v
+//    === RUN   TestSplit
+//    === RUN   TestSplit/simple
+//    === RUN   TestSplit/wrong_sep
+//    === RUN   TestSplit/more_sep
+//    === RUN   TestSplit/leading_sep
+//    --- PASS: TestSplit (0.00s)
+//        split_test.go:71: 如有需要在此执行:测试之前的setup
+//        --- PASS: TestSplit/simple (0.00s)
+//            split_test.go:79: 如有需要在此执行:子测试之前的setup
+//            split_test.go:81: 如有需要在此执行:子测试之后的teardown
+//        --- PASS: TestSplit/wrong_sep (0.00s)
+//            split_test.go:79: 如有需要在此执行:子测试之前的setup
+//            split_test.go:81: 如有需要在此执行:子测试之后的teardown
+//        --- PASS: TestSplit/more_sep (0.00s)
+//            split_test.go:79: 如有需要在此执行:子测试之前的setup
+//            split_test.go:81: 如有需要在此执行:子测试之后的teardown
+//        --- PASS: TestSplit/leading_sep (0.00s)
+//            split_test.go:79: 如有需要在此执行:子测试之前的setup
+//            split_test.go:81: 如有需要在此执行:子测试之后的teardown
+//        split_test.go:73: 如有需要在此执行:测试之后的teardown
+//    === RUN   ExampleSplit
+//    --- PASS: ExampleSplit (0.00s)
+//    PASS
+//    ok      github.com/Q1mi/studygo/code_demo/test_demo/split       0.006s
+
+//#########################示例函数###############################
+
+//###############示例函数的格式
+
+//被go test特殊对待的第三种函数就是示例函数，它们的函数名以Example为前缀。它们既没有参数也没有返回值。标准格式如下：
+
+//func ExampleName() {
+//    // ...
+//}
+
+//示例函数示例
+
+//下面的代码是我们为Split函数编写的一个示例函数：
+
+//func ExampleSplit() {
+//    fmt.Println(split.Split("a:b:c", ":"))
+//    fmt.Println(split.Split("枯藤老树昏鸦", "老"))
+//    // Output:
+//    // [a b c]
+//    // [ 枯藤 树昏鸦]
+//}
+
+
+//为你的代码编写示例代码有如下三个用处：
+
+//   示例函数能够作为文档直接使用，例如基于web的godoc中能把示例函数与对应的函数或包相关联。
+//
+//    示例函数只要包含了// Output:也是可以通过go test运行的可执行测试。
+//
+//        split $ go test -run Example
+//        PASS
+//        ok      github.com/pprof/studygo/code_demo/test_demo/split       0.006s
+//    示例函数提供了可以直接运行的示例代码，可以直接在golang.org的godoc文档服务器上使用Go Playground运行示例代码。下图为strings.ToUpper函数在Playground的示例函数效果。
 
 
 
