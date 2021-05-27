@@ -1653,8 +1653,49 @@ package main
 //    ok      github.com/pprof/studygo/code_demo/test_demo/fib 12.944s
 
 
+//这里需要注意的是，默认情况下，每个基准测试至少运行1秒。如果在Benchmark函数返回时没有到1秒，则b.N的值会按1,2,5,10,20,50，…增加，并且函数再次运行。
+
+//最终的BenchmarkFib40只运行了两次，每次运行的平均值只有不到一秒。像这种情况下我们应该可以使用-benchtime标志增加最小基准时间，以产生更准确的结果。例如：
+
+//    split $ go test -bench=Fib40 -benchtime=20s
+//    goos: darwin
+//    goarch: amd64
+//    pkg: github.com/pprof/studygo/code_demo/test_demo/fib
+//    BenchmarkFib40-8              50         663205114 ns/op
+//    PASS
+//    ok      github.com/pprof/studygo/code_demo/test_demo/fib 33.849s
 
 
+//这一次BenchmarkFib40函数运行了50次，结果就会更准确一些了。
+
+
+//使用性能比较函数做测试的时候一个容易犯的错误就是把b.N作为输入的大小，例如以下两个例子都是错误的示范：
+
+//// 错误示范1
+//func BenchmarkFibWrong(b *testing.B) {
+//    for n := 0; n < b.N; n++ {
+//        Fib(n)
+//    }
+//}
+//
+//// 错误示范2
+//func BenchmarkFibWrong2(b *testing.B) {
+//    Fib(b.N)
+//}
+
+//##############################重置时间##################
+
+//b.ResetTimer之前的处理不会放到执行时间里，也不会输出到报告中，所以可以在之前做一些不计划作为测试报告的操作。
+
+//func BenchmarkSplit(b *testing.B) {
+//    time.Sleep(5 * time.Second) // 假设需要做一些耗时的无关操作
+//    b.ResetTimer()              // 重置计时器
+//    for i := 0; i < b.N; i++ {
+//        Split("枯藤老树昏鸦", "老")
+//    }
+//}
+
+//############并行测试################
 
 
 
