@@ -1541,6 +1541,64 @@ package main
 //func (b *B) StopTimer()
 
 
+//#################基准测试示例################
+//split包中的Split函数编写基准测试如下
+//func BenchmarkSplit(b *testing.B) {
+//	for i := 0; i < b.N; i++ {
+//		Split("枯藤老树昏鸦", "老")
+//	}
+//}
+
+//基准测试并不会默认执行，需要增加-bench参数，所以我们通过执行go test -bench=Split命令执行基准测试，输出结果如下：
+
+//    split $ go test -bench=Split
+//    goos: darwin
+//    goarch: amd64
+//    pkg: github.com/pprof/studygo/code_demo/test_demo/split
+//    BenchmarkSplit-8        10000000               203 ns/op
+//    PASS
+//    ok      github.com/pprof/studygo/code_demo/test_demo/split       2.255s
+
+
+//其中BenchmarkSplit-8表示对Split函数进行基准测试，数字8表示GOMAXPROCS的值，这个对于并发基准测试很重要。10000000和203ns/op表示每次调用Split函数耗时203ns，这个结果是10000000次调用的平均值。
+
+//我们还可以为基准测试添加-benchmem参数，来获得内存分配的统计数据。
+
+//    split $ go test -bench=Split -benchmem
+//    goos: darwin
+//    goarch: amd64
+//    pkg: github.com/pprof/studygo/code_demo/test_demo/split
+//    BenchmarkSplit-8        10000000               215 ns/op             112 B/op          3 allocs/op
+//    PASS
+//    ok      github.com/pprof/studygo/code_demo/test_demo/split       2.394s
+
+//其中，112 B/op表示每次操作内存分配了112字节，3 allocs/op则表示每次操作进行了3次内存分配。 我们将我们的Split函数优化如下
+
+//func Split(s, sep string) (result []string) {
+//    result = make([]string, 0, strings.Count(s, sep)+1)
+//    i := strings.Index(s, sep)
+//    for i > -1 {
+//        result = append(result, s[:i])
+//        s = s[i+len(sep):] // 这里使用len(sep)获取sep的长度
+//        i = strings.Index(s, sep)
+//    }
+//    result = append(result, s)
+//    return
+//}
+
+//这一次我们提前使用make函数将result初始化为一个容量足够大的切片，而不再像之前一样通过调用append函数来追加。我们来看一下这个改进会带来多大的性能提升：
+
+//    split $ go test -bench=Split -benchmem
+//    goos: darwin
+//    goarch: amd64
+//    pkg: github.com/pprof/studygo/code_demo/test_demo/split
+//    BenchmarkSplit-8        10000000               127 ns/op              48 B/op          1 allocs/op
+//    PASS
+//    ok      github.com/pprof/studygo/code_demo/test_demo/split       1.423s
+
+//这个使用make函数提前分配内存的改动，减少了2/3的内存分配次数，并且减少了一半的内存分配。
+
+//#############################性能比较函数#############################
 
 
 
