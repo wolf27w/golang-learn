@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 //############方法定义
 
 //只能为当前包内命名类型定义方法。
@@ -141,7 +143,37 @@ package main
 
 //注意：当接受者是指针时，即使用值类型调用那么函数内部也是对指针的操作。
 
+//方法不过是一种特殊的函数，只需将其还原，就知道 receiver T 和 *T 的差别。
 
+type Data struct {
+	x int
+}
+
+func (self Data) ValueTest() { // func ValueTest(self Data);
+	fmt.Printf("Value: %p\n", &self)
+}
+
+func (self *Data) PointerTest() { // func PointerTest(self *Data);
+	fmt.Printf("Pointer: %p\n", self)
+}
+
+func main() {
+	d := Data{}
+	p := &d
+	fmt.Printf("Data: %p\n", p)
+
+	d.ValueTest()   // ValueTest(d)
+	d.PointerTest() // PointerTest(&d)
+
+	p.ValueTest()   // ValueTest(*p)
+	p.PointerTest() // PointerTest(p)
+}
+//输出结果
+//Data: 0xc0000a8008
+//Value: 0xc0000a8018
+//Pointer: 0xc0000a8008
+//Value: 0xc0000a8020
+//Pointer: 0xc0000a8008
 
 
 
