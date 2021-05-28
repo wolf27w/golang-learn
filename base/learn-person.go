@@ -67,10 +67,33 @@ package main
 //{{  0} 0  5lmh}
 //{{枯藤  0} 0  5lmh}
 
+//所有的内置类型和自定义类型都是可以作为匿名字段去使用
 
 
+//人
+//type Person struct {
+//	name string
+//	sex  string
+//	age  int
+//}
+//
+//// 自定义类型
+//type mystr string
+//
+//// 学生
+//type Student struct {
+//	Person
+//	int
+//	mystr
+//}
+//
+//func main() {
+//	s1 := Student{Person{"5lmh", "man", 18}, 1, "bj"}
+//	fmt.Println(s1)
+//}
 
-
+//输出结果
+//{{5lmh man 18} 1 bj}
 
 
 
