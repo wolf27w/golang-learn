@@ -1947,10 +1947,29 @@ package main
 //    exit status 1
 //    FAIL    gotest    0.012s
 
+//上面的输出详细的展示了这个测试的过程，我们看到测试函数1Test_Division_1测试通过，而测试函数2Test_Division_2测试失败了，最后得出结论测试不通过。
+
+//func Test_Division_2(t *testing.T) {
+//        if _, e := Division(6, 0); e == nil { //try a unit test on function
+//            t.Error("Division did not work as expected.") // 如果不是如预期的那么就报错
+//        } else {
+//            t.Log("one test passed.", e) //记录一些你期望记录的信息
+//        }
+//    }
+
+//然后我们执行go test -v，就显示如下信息
+
+//    === RUN Test_Division_1
+//    --- PASS: Test_Division_1 (0.00 seconds)
+//        gotest_test.go:11: 第一个测试通过了
+//    === RUN Test_Division_2
+//    --- PASS: Test_Division_2 (0.00 seconds)
+//        gotest_test.go:20: one test passed. 除数不能为0
+//    PASS
+//    ok      gotest    0.013s
 
 
-
-
+//########################如何编写压力测试
 
 
 
