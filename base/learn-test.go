@@ -442,3 +442,43 @@ package main
 //如类型 S 包含匿名字段 *T，则 S 和 *S 方法集包含 T 方法
 //如类型 S 包含匿名字段 *T，则 S 和 *S 方法集包含 *T 方法
 
+
+
+//############################表达式
+
+//Golang 表达式 ：根据调用者不同，方法分为两种表现形式:
+
+//instance.method(args...) ---> <type>.func(instance, args...)
+
+//前者称为 method value，后者 method expression。
+//
+//两者都可像普通函数那样赋值和传参，区别在于 method value 绑定实例，而 method expression 则须显式传参。
+
+//type User struct {
+//	id   int
+//	name string
+//}
+//
+//func (self *User) Test() {
+//	fmt.Printf("%p, %v\n", self, self)
+//}
+//
+//func main() {
+//	u := User{1, "Tom"}
+//	u.Test()
+//
+//	mValue := u.Test
+//	mValue() // 隐式传递 receiver
+//
+//	mExpression := (*User).Test
+//	mExpression(&u) // 显式传递 receiver
+//}
+
+//输出结果
+
+//0xc0000a6020, &{1 Tom}
+//0xc0000a6020, &{1 Tom}
+//0xc0000a6020, &{1 Tom}
+
+
+//需要注意，method value 会复制 receiver。
