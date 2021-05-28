@@ -1910,11 +1910,11 @@ package main
 //函数中通过调用testing.T的Error, Errorf, FailNow, Fatal, FatalIf方法，说明测试不通过，调用Log方法用来记录测试的信息。
 
 
-package gotest
-
-import (
-"testing"
-)
+//package gotest
+//
+//import (
+//"testing"
+//)
 
 //func Test_Division_1(t *testing.T) {
 //	if i, e := Division(6, 2); i != 3 || e != nil { //try a unit test on function
@@ -1935,7 +1935,17 @@ import (
 //exit status 1
 //FAIL    gotest    0.013s
 
+//从这个结果显示测试没有通过，因为在第二个测试函数中我们写死了测试不通过的代码t.Error，那么我们的第一个函数执行的情况怎么样呢？默认情况下执行go test是不会显示测试通过的信息的，我们需要带上参数go test -v，
 
+//    === RUN Test_Division_1
+//    --- PASS: Test_Division_1 (0.00 seconds)
+//        gotest_test.go:11: 第一个测试通过了
+//    === RUN Test_Division_2
+//    --- FAIL: Test_Division_2 (0.00 seconds)
+//        gotest_test.go:16: 就是不通过
+//    FAIL
+//    exit status 1
+//    FAIL    gotest    0.012s
 
 
 
