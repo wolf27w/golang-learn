@@ -249,13 +249,34 @@ package main
 //hello golang
 //hello golang
 
+//##############################匿名字段
 
+//Golang匿名字段 ：可以像字段成员那样访问匿名字段方法，编译器负责查找。
 
+//type User struct {
+//	id   int
+//	name string
+//}
+//
+//type Manager struct {
+//	User
+//}
+//
+//func (self *User) ToString() string { // receiver = &(Manager.User)
+//	return fmt.Sprintf("User: %p, %v", self, self)
+//}
+//
+//func main() {
+//	m := Manager{User{1, "Tom"}}
+//	fmt.Printf("Manager: %p\n", &m)
+//	fmt.Println(m.ToString())
+//}
 
+//输出结果
+//Manager: 0xc000126020
+//User: 0xc000126020, &{1 Tom}
 
-
-
-
+//通过匿名字段，可获得和继承类似的复用能力。依据编译器查找次序，只需在外层定义同名方法，就可以实现 "override"。
 
 
 
