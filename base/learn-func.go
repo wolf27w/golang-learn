@@ -2006,6 +2006,16 @@ package main
 //}
 
 
+//我们执行命令go test webbench_test.go -test.bench=".*"，可以看到如下结果：
+
+//    Benchmark_Division-4                            500000000          7.76 ns/op         456 B/op          14 allocs/op
+//    Benchmark_TimeConsumingFunction-4            500000000          7.80 ns/op         224 B/op           4 allocs/op
+//    PASS
+//    ok      gotest    9.364s
+
+
+//上面的结果显示我们没有执行任何TestXXX的单元测试函数，显示的结果只执行了压力测试函数，第一条显示了Benchmark_Division执行了500000000次，每次的执行平均时间是7.76纳秒，第二条显示了Benchmark_TimeConsumingFunction执行了500000000，每次的平均执行时间是7.80纳秒。最后一条显示总共的执行时间。
+
 
 
 
