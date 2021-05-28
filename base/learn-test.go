@@ -1,10 +1,5 @@
 package main
 
-import (
-	"errors"
-	"fmt"
-)
-
 //############方法定义
 
 //只能为当前包内命名类型定义方法。
@@ -635,29 +630,74 @@ import (
 
 //############返回异常
 
-func getCircleArea(radius float32) (area float32, err error) {
-	if radius < 0 {
-		// 构建个异常对象
-		err = errors.New("半径不能为负")
-		return
-	}
-	area = 3.14 * radius * radius
-	return
-}
-
-func main() {
-	area, err := getCircleArea(-5)
-	if err != nil {
-		fmt.Println(err)
-	} else {
-		fmt.Println(area)
-	}
-}
+//func getCircleArea(radius float32) (area float32, err error) {
+//	if radius < 0 {
+//		// 构建个异常对象
+//		err = errors.New("半径不能为负")
+//		return
+//	}
+//	area = 3.14 * radius * radius
+//	return
+//}
+//
+//func main() {
+//	area, err := getCircleArea(-5)
+//	if err != nil {
+//		fmt.Println(err)
+//	} else {
+//		fmt.Println(area)
+//	}
+//}
 
 //输出结果
 //半径不能为负
 
+//#############自定义error：
 
+//type PathError struct {
+//	path       string
+//	op         string
+//	createTime string
+//	message    string
+//}
+//
+//func (p *PathError) Error() string {
+//	return fmt.Sprintf("path=%s \nop=%s \ncreateTime=%s \nmessage=%s", p.path,
+//		p.op, p.createTime, p.message)
+//}
+//
+//func Open(filename string) error {
+//
+//	file, err := os.Open(filename)
+//	if err != nil {
+//		return &PathError{
+//			path:       filename,
+//			op:         "read",
+//			message:    err.Error(),
+//			createTime: fmt.Sprintf("%v", time.Now()),
+//		}
+//	}
+//
+//	defer file.Close()
+//	return nil
+//}
+//
+//func main() {
+//	err := Open("/Users/5lmh/Desktop/go/src/test.txt")
+//	switch v := err.(type) {
+//	case *PathError:
+//		fmt.Println("get path error,", v)
+//	default:
+//
+//	}
+//
+//}
+
+//输出结果
+//get path error, path=/Users/5lmh/Desktop/go/src/test.txt
+//op=read
+//createTime=2021-05-28 11:40:56.228134 +0800 CST m=+0.000108372
+//message=open /Users/5lmh/Desktop/go/src/test.txt: no such file or directory
 
 
 
