@@ -107,7 +107,7 @@ package main
 //golang : golang@golang.com
 //go : go@go.com
 
-
+//注释：首先我们定义了一个叫做 User 的结构体类型，然后定义了一个该类型的方法叫做 Notify，该方法的接受者是一个 User 类型的值。要调用 Notify 方法我们需要一个 User 类型的值或者指针。
 
 
 
