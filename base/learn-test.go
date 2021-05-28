@@ -509,8 +509,43 @@ package main
 
 //在汇编层面，method value 和闭包的实现方式相同，实际返回 FuncVal 类型对象。
 
+// FuncVal { method_address, receiver_copy }
 
+//可依据方法集转换 method expression，注意 receiver 类型的差异。
 
+//type User struct {
+//	id   int
+//	name string
+//}
+//
+//func (self *User) TestPointer() {
+//	fmt.Printf("TestPointer: %p, %v\n", self, self)
+//}
+//
+//func (self User) TestValue() {
+//	fmt.Printf("TestValue: %p, %v\n", &self, self)
+//}
+//
+//func main() {
+//	u := User{1, "Tom"}
+//	fmt.Printf("User: %p, %v\n", &u, u)
+//
+//	mv := User.TestValue
+//	mv(u)
+//
+//	mp := (*User).TestPointer
+//	mp(&u)
+//
+//	mp2 := (*User).TestValue // *User 方法集包含 TestValue。签名变为 func TestValue(self *User)。实际依然是 receiver value copy。
+//	mp2(&u)
+//}
+
+//输出结果
+
+//User: 0xc0000a6020, {1 Tom}
+//TestValue: 0xc0000a6060, {1 Tom}
+//TestPointer: 0xc0000a6020, &{1 Tom}
+//TestValue: 0xc0000a60c0, {1 Tom}
 
 
 
