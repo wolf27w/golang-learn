@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 //############方法定义
 
 //只能为当前包内命名类型定义方法。
@@ -371,7 +373,32 @@ package main
 //类型 *T 方法集包含全部 receiver *T 方法。
 
 
+//给定一个结构体类型 S 和一个命名为 T 的类型，方法提升像下面规定的这样被包含在结构体方法集中：
+//
+//如类型 S 包含匿名字段 T，则 S 和 *S 方法集包含 T 方法。
+//
+//这条规则说的是当我们嵌入一个类型，嵌入类型的接受者为值类型的方法将被提升，可以被外部类型的值和指针调用。
 
+type S struct {
+	T
+}
+
+type T struct {
+	int
+}
+
+func (t T) testT() {
+	fmt.Println("如类型 S 包含匿名字段 T，则 S 和 *S 方法集包含 T 方法。")
+}
+
+func main() {
+	s1 := S{T{1}}
+	s2 := &s1
+	fmt.Printf("s1 is : %v\n", s1)
+	s1.testT()
+	fmt.Printf("s2 is : %v\n", s2)
+	s2.testT()
+}
 
 
 
