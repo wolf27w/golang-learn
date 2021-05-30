@@ -220,6 +220,17 @@ package main
 //
 //type cat struct {}
 
+//因为Sayer接口里只有一个say方法，所以我们只需要给dog和cat 分别实现say方法就可以实现Sayer接口了。
+
+//// dog实现了Sayer接口
+//func (d dog) say() {
+//    fmt.Println("汪汪汪")
+//}
+//
+//// cat实现了Sayer接口
+//func (c cat) say() {
+//    fmt.Println("喵喵喵")
+//}
 
 
 
