@@ -209,7 +209,12 @@ package main
 
 //我们来定义一个Sayer接口：
 
+//// Sayer 接口
+//type Sayer interface {
+//    say()
+//}
 
+//定义dog和cat两个结构体：
 
 
 
