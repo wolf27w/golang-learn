@@ -216,7 +216,9 @@ package main
 
 //定义dog和cat两个结构体：
 
-
+//type dog struct {}
+//
+//type cat struct {}
 
 
 
