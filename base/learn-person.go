@@ -248,6 +248,15 @@ package main
 //	x.say()     // 汪汪汪
 //}
 
+//值接收者和指针接收者实现接口的区别
+
+//我们有一个Mover接口和一个dog结构体。
+
+//type Mover interface {
+//    move()
+//}
+//
+//type dog struct {}
 
 
 
