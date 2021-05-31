@@ -458,7 +458,24 @@ package main
 
 //嵌套得到的接口的使用与普通接口一样，这里我们让cat实现animal接口：
 
-
+//type cat struct {
+//    name string
+//}
+//
+//func (c cat) say() {
+//    fmt.Println("喵喵喵")
+//}
+//
+//func (c cat) move() {
+//    fmt.Println("猫会动")
+//}
+//
+//func main() {
+//    var x animal
+//    x = cat{name: "花花"}
+//    x.move()
+//    x.say()
+//}
 
 
 
