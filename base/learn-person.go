@@ -258,6 +258,11 @@ package main
 //
 //type dog struct {}
 
+//值接收者实现接口
+
+//func (d dog) move() {
+//    fmt.Println("狗会动")
+//}
 
 
 
