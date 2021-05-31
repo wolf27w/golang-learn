@@ -238,7 +238,15 @@ package main
 
 //接口类型变量能够存储所有实现了该接口的实例。 例如上面的示例中，Sayer类型的变量能够存储dog和cat类型的变量。
 
-
+func main() {
+	var x Sayer // 声明一个Sayer类型的变量x
+	a := cat{}  // 实例化一个cat
+	b := dog{}  // 实例化一个dog
+	x = a       // 可以把cat实例直接赋值给x
+	x.say()     // 喵喵喵
+	x = b       // 可以把dog实例直接赋值给x
+	x.say()     // 汪汪汪
+}
 
 
 
