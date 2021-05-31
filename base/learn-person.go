@@ -534,3 +534,15 @@ package main
 //w = os.Stdout
 //w = new(bytes.Buffer)
 //w = nil
+//func main() {
+//	var x interface{}
+//	x = "pprof.cn"
+//	v, ok := x.(string)
+//	if ok {
+//		fmt.Println(v)
+//	} else {
+//		fmt.Println("类型断言失败")
+//	}
+//}
+
+//上面的示例中如果要断言多次就需要写多个if判断，这个时候我们可以使用switch语句来实现：
