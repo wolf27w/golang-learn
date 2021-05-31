@@ -280,11 +280,50 @@ package main
 
 //#########################指针接收者实现接口
 
+//func (d *dog) move() {
+//    fmt.Println("狗会动")
+//}
+//func main() {
+//    var x Mover
+//    var wangcai = dog{} // 旺财是dog类型
+//    x = wangcai         // x不可以接收dog类型
+//    var fugui = &dog{}  // 富贵是*dog类型
+//    x = fugui           // x可以接收*dog类型
+//}
+
+//此时实现Mover接口的是*dog类型，所以不能给x传入dog类型的wangcai，此时x只能存储*dog类型的值
+
+//#####################下面的代码是一个比较好的面试题
+
+//请问下面的代码是否能通过编译？
+
+//type People interface {
+//	Speak(string) string
+//}
+//
+//type Student struct{}
+//
+//func (stu *Stduent) Speak(think string) (talk string) {
+//	if think == "sb" {
+//		talk = "你是个大帅比"
+//	} else {
+//		talk = "您好"
+//	}
+//	return
+//}
+//
+//func main() {
+//	var peo People = Student{}
+//	think := "bitch"
+//	fmt.Println(peo.Speak(think))
+//}
 
 
+//######################类型与接口的关系
 
+//####################一个类型实现多个接口
 
-
+//一个类型可以同时实现多个接口，而接口间彼此独立，不知道对方的实现。 例如，狗可以叫，也可以动。我们就分别定义Sayer接口和Mover接口，如下： Mover接口。
 
 
 
