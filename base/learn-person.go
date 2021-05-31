@@ -396,7 +396,15 @@ package main
 
 
 
-
+func main() {
+	var x Mover
+	var a = dog{name: "旺财"}
+	var b = car{brand: "保时捷"}
+	x = a
+	x.move()
+	x = b
+	x.move()
+}
 
 
 
