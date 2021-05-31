@@ -325,7 +325,15 @@ package main
 
 //一个类型可以同时实现多个接口，而接口间彼此独立，不知道对方的实现。 例如，狗可以叫，也可以动。我们就分别定义Sayer接口和Mover接口，如下： Mover接口。
 
-
+//// Sayer 接口
+//type Sayer interface {
+//    say()
+//}
+//
+//// Mover 接口
+//type Mover interface {
+//    move()
+//}
 
 
 
