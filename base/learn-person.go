@@ -522,7 +522,7 @@ package main
 //    studentInfo["married"] = false
 //    fmt.Println(studentInfo)
 
-
+//###################类型断言
 
 
 
