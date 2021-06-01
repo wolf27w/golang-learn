@@ -185,38 +185,127 @@ package main
 //}
 
 
+//UDP编程
+
+//UDP协议，User Datagram Protocol）中文名称是用户数据报协议，是OSI（Open System Interconnection，开放式系统互联）参考模型中一种无连接的传输层协议，不需要建立连接就能直接进行数据发送和接收，属于不可靠的、没有时序的通信，但是UDP协议的实时性比较好，通常用于视频直播相关领域。
+
+//UDP服务端
+
+// UDP/server/main.go
+
+// UDP server端
+//func main() {
+//	listen, err := net.ListenUDP("udp", &net.UDPAddr{
+//		IP:   net.IPv4(0, 0, 0, 0),
+//		Port: 30000,
+//	})
+//	if err != nil {
+//		fmt.Println("listen failed, err:", err)
+//		return
+//	}
+//	defer listen.Close()
+//	for {
+//		var data [1024]byte
+//		n, addr, err := listen.ReadFromUDP(data[:]) // 接收数据
+//		if err != nil {
+//			fmt.Println("read udp failed, err:", err)
+//			continue
+//		}
+//		fmt.Printf("data:%v addr:%v count:%v\n", string(data[:n]), addr, n)
+//		_, err = listen.WriteToUDP(data[:n], addr) // 发送数据
+//		if err != nil {
+//			fmt.Println("write to udp failed, err:", err)
+//			continue
+//		}
+//	}
+//}
 
 
+//UDP客户端
+
+//func main() {
+//	socket, err := net.DialUDP("udp", nil, &net.UDPAddr{
+//		IP:   net.IPv4(0, 0, 0, 0),
+//		Port: 30000,
+//	})
+//	if err != nil {
+//		fmt.Println("连接服务端失败，err:", err)
+//		return
+//	}
+//	defer socket.Close()
+//	sendData := []byte("Hello server")
+//	_, err = socket.Write(sendData) // 发送数据
+//	if err != nil {
+//		fmt.Println("发送数据失败，err:", err)
+//		return
+//	}
+//	data := make([]byte, 4096)
+//	n, remoteAddr, err := socket.ReadFromUDP(data) // 接收数据
+//	if err != nil {
+//		fmt.Println("接收数据失败，err:", err)
+//		return
+//	}
+//	fmt.Printf("recv:%v addr:%v count:%v\n", string(data[:n]), remoteAddr, n)
+//}
+
+//TCP粘包
 
 
-//package main
-//
-//import (
-//"fmt"
-//"net/http"
-//)
+//func process(conn net.Conn) {
+//	defer conn.Close()
+//	reader := bufio.NewReader(conn)
+//	var buf [1024]byte
+//	for {
+//		n, err := reader.Read(buf[:])
+//		if err == io.EOF {
+//			break
+//		}
+//		if err != nil {
+//			fmt.Println("read from client failed, err:", err)
+//			break
+//		}
+//		recvStr := string(buf[:n])
+//		fmt.Println("收到client发来的数据：", recvStr)
+//	}
+//}
 //
 //func main() {
-//	//http://127.0.0.1:8000/go
-//	// 单独写回调函数
-//	http.HandleFunc("/go", myHandler)
-//	//http.HandleFunc("/ungo",myHandler2 )
-//	// addr：监听的地址
-//	// handler：回调函数
-//	http.ListenAndServe("127.0.0.1:8000", nil)
-//}
 //
-//// handler函数
-//func myHandler(w http.ResponseWriter, r *http.Request) {
-//	fmt.Println(r.RemoteAddr, "连接成功")
-//	// 请求方式：GET POST DELETE PUT UPDATE
-//	fmt.Println("method:", r.Method)
-//	// /go
-//	fmt.Println("url:", r.URL.Path)
-//	fmt.Println("header:", r.Header)
-//	fmt.Println("body:", r.Body)
-//	// 回复
-//	w.Write([]byte("www.5lmh.com"))
+//	listen, err := net.Listen("tcp", "127.0.0.1:30000")
+//	if err != nil {
+//		fmt.Println("listen failed, err:", err)
+//		return
+//	}
+//	defer listen.Close()
+//	for {
+//		conn, err := listen.Accept()
+//		if err != nil {
+//			fmt.Println("accept failed, err:", err)
+//			continue
+//		}
+//		go process(conn)
+//	}
 //}
 
 
+
+//TCP粘包客户端
+
+//func main() {
+//	conn, err := net.Dial("tcp", "127.0.0.1:30000")
+//	if err != nil {
+//		fmt.Println("dial failed, err", err)
+//		return
+//	}
+//	defer conn.Close()
+//	for i := 0; i < 20; i++ {
+//		msg := `Hello, Hello. How are you?`
+//		conn.Write([]byte(msg))
+//	}
+//}
+
+
+//服务端返回
+//收到client发来的数据： Hello, Hello. How are you?Hello, Hello. How are you?Hello, Hello. How are you?Hello, Hello. How are you?Hello, Hello. How are you?Hello, Hello. How are you?Hello, Hello. How are you?
+//收到client发来的数据： Hello, Hello. How are you?Hello, Hello. How are you?Hello, Hello. How are you?Hello, Hello. How are you?Hello, Hello. How are you?Hello, Hello. How are you?Hello, Hello. How are you?Hello, Hello. How are you?Hello, Hello. How are you?Hello, Hello. How are you?Hello, Hello. How are you?
+//收到client发来的数据： Hello, Hello. How are you?Hello, Hello. How are you?
