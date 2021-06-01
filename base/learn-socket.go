@@ -1,17 +1,5 @@
 package main
 
-import (
-	"base/proto"
-	"bufio"
-	"bytes"
-	"encoding/binary"
-	"fmt"
-	"io"
-	"net"
-)
-
-
-
 //
 //import (
 //	"fmt"
@@ -466,8 +454,53 @@ import (
 //超文本传输协议(HTTP，HyperText Transfer Protocol)是互联网上应用最为广泛的一种网络协议，它详细规定了浏览器和万维网服务器之间互相通信的规则，通过因特网传送万维网文档的数据传送协议
 //HTTP协议通常承载于TCP协议之上
 
+//func main() {
+//	//http://127.0.0.1:8000/go
+//	// 单独写回调函数
+//	http.HandleFunc("/go", myHandler)
+//	//http.HandleFunc("/ungo",myHandler2 )
+//	// addr：监听的地址
+//	// handler：回调函数
+//	http.ListenAndServe("127.0.0.1:8000", nil)
+//}
+//
+//// handler函数
+//func myHandler(w http.ResponseWriter, r *http.Request) {
+//	fmt.Println(r.RemoteAddr, "连接成功")
+//	// 请求方式：GET POST DELETE PUT UPDATE
+//	fmt.Println("method:", r.Method)
+//	// /go
+//	fmt.Println("url:", r.URL.Path)
+//	fmt.Println("header:", r.Header)
+//	fmt.Println("body:", r.Body)
+//	// 回复
+//	w.Write([]byte("www.5lmh.com"))
+//}
 
-
+//func main() {
+//	//resp, _ := http.Get("http://www.baidu.com")
+//	//fmt.Println(resp)
+//	res, _ := http.Get("http://192.168.1.86:8080/wolf")
+//	defer res.Body.Close()
+//	// 200 OK
+//	fmt.Println(res.Status)
+//	fmt.Println(res.Header)
+//
+//	buf := make([]byte, 1024)
+//	for {
+//		// 接收服务端信息
+//		n, err := res.Body.Read(buf)
+//		if err != nil && err != io.EOF {
+//			fmt.Println(err)
+//			return
+//		} else {
+//			fmt.Println("读取完毕")
+//			res := string(buf[:n])
+//			fmt.Println(res)
+//			break
+//		}
+//	}
+//}
 
 
 
