@@ -1,6 +1,7 @@
 package main
 
 import (
+	"base/proto"
 	"fmt"
 	"net"
 )
@@ -14,6 +15,11 @@ func main() {
 	defer conn.Close()
 	for i := 0; i < 20; i++ {
 		msg := `Hello, Hello. How are you?`
-		conn.Write([]byte(msg))
+		data, err := proto.Encode(msg)
+		if err != nil {
+			fmt.Println("encode msg failed, err:", err)
+			return
+		}
+		conn.Write(data)
 	}
 }
