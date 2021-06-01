@@ -310,7 +310,7 @@ package main
 //收到client发来的数据： Hello, Hello. How are you?Hello, Hello. How are you?Hello, Hello. How are you?Hello, Hello. How are you?Hello, Hello. How are you?Hello, Hello. How are you?Hello, Hello. How are you?Hello, Hello. How are you?Hello, Hello. How are you?Hello, Hello. How are you?Hello, Hello. How are you?
 //收到client发来的数据： Hello, Hello. How are you?Hello, Hello. How are you?
 
-
+//客户端分10次发送的数据，在服务端并没有成功的输出10次，而是多条数据“粘”到了一起。
 
 
 
