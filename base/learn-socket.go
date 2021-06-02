@@ -517,3 +517,5 @@ package main
 
 //在同一级目录下新建四个go文件connection.go|data.go|hub.go|server.go
 
+//运行      go run server.go hub.go data.go connection.go
+
