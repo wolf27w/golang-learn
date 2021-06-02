@@ -515,5 +515,5 @@ package main
 //举个聊天室的小例子
 
 
-
+//在同一级目录下新建四个go文件connection.go|data.go|hub.go|server.go
 
