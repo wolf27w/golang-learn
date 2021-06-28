@@ -64,6 +64,19 @@ package main
 
 //当main()函数返回的时候该goroutine就结束了，所有在main()函数中启动的goroutine会一同结束，main函数所在的goroutine就像是权利的游戏中的夜王，其他的goroutine都是异鬼，夜王一死它转化的那些异鬼也就全部GG了。
 
+//如果想让main函数等一下hello函数，最简单的方法就是time.Sleep
+
+//func hello() {
+//	fmt.Println("Hello Goroutine!")
+//}
+//func main() {
+//	go hello()
+//	fmt.Println("main goroutine done!")
+//	time.Sleep(time.Second)
+//}
+//输出结果：
+//main goroutine done!
+//Hello Goroutine!
 
 
 
