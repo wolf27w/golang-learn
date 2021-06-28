@@ -1,9 +1,4 @@
-//package main
-//
-//import (
-//	"fmt"
-//	"runtime"
-//)
+package main
 
 //###################并发编程####################
 
@@ -37,18 +32,35 @@
 //
 //在Go语言编程中你不需要去自己写进程、线程、协程，你的技能包里只有一个技能–goroutine，当你需要让某个任务并发执行的时候，你只需要把这个任务包装成一个函数，开启一个goroutine去执行这个函数就可以了，就是这么简单粗暴。
 
+//启动单个goroutine
+//启动goroutine的方式非常简单，只需要在调用的函数（普通函数和匿名函数）前面加上一个go关键字。
+
+//func hello() {
+//	fmt.Println("Hello Goroutine!")
+//}
+//func main() {
+//	hello()
+//	fmt.Println("main goroutine done!")
+//}
+//
+//输出结果：
+//Hello Goroutine!
+//main goroutine done!
 
 
+//func hello() {
+//	fmt.Println("Hello Goroutine!")
+//}
+//func main() {
+//	go hello()
+//	fmt.Println("main goroutine done!")
+//}
+//
+//输出结果：
+//main goroutine done!
+//Hello Goroutine!
 
-
-
-
-
-
-
-
-
-
+//在程序启动时，Go程序就会为main()函数创建一个默认的goroutine。
 
 
 
