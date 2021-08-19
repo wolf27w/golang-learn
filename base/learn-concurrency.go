@@ -79,6 +79,3 @@ package main
 //Hello Goroutine!
 
 //这是因为启动一个gorountine的时候需要时间，而main函数继续执行
-
-
-
