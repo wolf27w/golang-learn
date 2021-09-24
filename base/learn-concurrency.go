@@ -78,12 +78,39 @@ package main
 //main goroutine done!
 //Hello Goroutine!
 
-//这是因为启动一个gorountine的时候需要时间，而main函数继续执行
+//这是因为启动一个gorountine的时候需要时间，而main函数继续执行,main函数结束，gorountine也会结束
 
+//启动多个goroutine
 
+//在go中并发就是启动多个goroutne，看下面的例子
 
+//var wg sync.WaitGroup
+//
+//func hello(i int)  {
+//	defer wg.Done()
+//	fmt.Println("hello Goroutine!!!",i)
+//}
+//func main()  {
+//	for i := 0; i < 10; i++ {
+//		wg.Add(1)
+//		go hello(i)
+//	}
+//	wg.Wait()
+//}
 
+//数据结果
+//hello Goroutine!!! 9
+//hello Goroutine!!! 0
+//hello Goroutine!!! 7
+//hello Goroutine!!! 8
+//hello Goroutine!!! 4
+//hello Goroutine!!! 2
+//hello Goroutine!!! 1
+//hello Goroutine!!! 5
+//hello Goroutine!!! 3
+//hello Goroutine!!! 6
 
+//这是因为10个goroutine是并发执行的，而goroutine的调度是随机的
 
 
 
