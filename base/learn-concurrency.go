@@ -114,7 +114,35 @@ package main
 
 //注意：如果主协程退出了，其他任务也会结束，看下面的例子：
 
+//func main()  {
+//	//合起来
+//	go func() {
+//		i:=0
+//		for {
+//			i++
+//			fmt.Printf("new goroutine: i = %d\n",i)
+//			time.Sleep(time.Second)
+//		}
+//	}()
+//	i:=0
+//	//主协程
+//	for {
+//		i++
+//		fmt.Printf("main goroutine: i = %d\n",i)
+//		time.Sleep(time.Second)
+//		if i == 2 {
+//			break
+//		}
+//	}
+//}
 
+//输出结果
+//main goroutine: i = 1
+//new goroutine: i = 1
+//new goroutine: i = 2
+//main goroutine: i = 2
+
+//主协程终止，任务也相应的结束
 
 
 
