@@ -1,5 +1,10 @@
 package main
 
+import (
+	"fmt"
+	"runtime"
+)
+
 //###################并发编程####################
 
 //进程和线程
@@ -195,9 +200,31 @@ package main
 
 //runtime.Goexit() 退出当前协程
 
+func main()  {
+	go func() {
+		defer fmt.Println("this is defer A")
+		func() {
+			defer fmt.Println("ehis is defer B")
+			runtime.Goexit()
+			fmt.Println("b")
+
+		}()
+		fmt.Println("A")
+	}() //别忘记()
+	//防止阻塞
+	for{}
+}
+
+//输出结果
+//ehis is defer B
+//this is defer A
+
+//调用runtime.goExit()将立即终止当前goroutine执行，调度器确保所有已注册defer延迟调度被执行。
 
 
-
+//return结束当前函数,并返回指定值
+//runtime.Goexit结束当前goroutine,其他的goroutine不受影响,主程序也一样继续运行
+//os.Exit会结束当前程序,不管你三七二十一
 
 
 
