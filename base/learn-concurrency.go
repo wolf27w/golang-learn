@@ -167,10 +167,28 @@ package main
 
 //###runtime包
 
+//runtime.Gosched()用于让出CPU时间片，这就像跑接力赛，A跑了一会碰到代码runtime.Gosched()就把接力棒交给B了，A歇着了，B继续跑。
 
+//func main()  {
+//	go func(s string) {
+//		for i := 0; i < 2; i++ {
+//			fmt.Println(s)
+//		}
+//	}("word")
+//	for i := 0;i <2; i++ {
+//		runtime.Gosched()
+//		fmt.Println("hello")
+//	}
+//}
 
+//输出结果
 
+//word
+//word
+//hello
+//hello
 
+//这里需要注意
 
 
 
