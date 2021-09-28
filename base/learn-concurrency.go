@@ -1,10 +1,5 @@
 package main
 
-import (
-	"fmt"
-	"runtime"
-)
-
 //###################并发编程####################
 
 //进程和线程
@@ -200,20 +195,20 @@ import (
 
 //runtime.Goexit() 退出当前协程
 
-func main()  {
-	go func() {
-		defer fmt.Println("this is defer A")
-		func() {
-			defer fmt.Println("ehis is defer B")
-			runtime.Goexit()
-			fmt.Println("b")
-
-		}()
-		fmt.Println("A")
-	}() //别忘记()
-	//防止阻塞
-	for{}
-}
+//func main()  {
+//	go func() {
+//		defer fmt.Println("this is defer A")
+//		func() {
+//			defer fmt.Println("ehis is defer B")
+//			runtime.Goexit()
+//			fmt.Println("b")
+//
+//		}()
+//		fmt.Println("A")
+//	}() //别忘记()
+//	//防止阻塞
+//	for{}
+//}
 
 //输出结果
 //ehis is defer B
