@@ -151,7 +151,7 @@ package main
 
 //####goroutine调度
 
-
+//Go语言运行时（runtime）层面的实现，是go语言自己实现的一套调度系统。区别于操作系统调度OS线程。
 
 
 
