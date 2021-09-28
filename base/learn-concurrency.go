@@ -171,12 +171,14 @@ package main
 
 //func main()  {
 //	go func(s string) {
-//		for i := 0; i < 2; i++ {
+//		for i := 0; i < 100; i++ {
 //			fmt.Println(s)
 //		}
 //	}("word")
 //	for i := 0;i <2; i++ {
+//		//runtime.GOMAXPROCS(4)
 //		runtime.Gosched()
+//
 //		fmt.Println("hello")
 //	}
 //}
@@ -189,7 +191,9 @@ package main
 //hello
 
 //这里需要注意，输出结果中，先输出了word，后输出的hello，，这是因为主线程退出了，上面的函数就没有机会在执行了，这里主要是未来输出结果简短才这样做的，如果把word的for循环改成100，你会发现word的循环没执行完就结束了
+//如果代码中通过runtime.GOMAXPROCS(n) 其中n是整数，指定使用多核，goroutins都是在一个线程里，他们之间通过不停的让出时间片轮流运行，
 
+//runtime.Goexit() 退出当前协程
 
 
 
