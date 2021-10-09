@@ -277,24 +277,24 @@ import (
 
 //这是把两个核心任务分配到一个CPU上了，做完一个任务再做另一个任务，下面将逻辑核心数设为2
 
-func a()  {
-	for i := 1; i < 10; i ++ {
-		fmt.Println("A",i)
-	}
-}
-
-func b()  {
-	for i := 1; i < 10; i++ {
-		fmt.Println("B",i)
-	}
-}
-
-func main()  {
-	runtime.GOMAXPROCS(2)
-	go a()
-	go b()
-	time.Sleep(time.Second)
-}
+//func a()  {
+//	for i := 1; i < 10; i ++ {
+//		fmt.Println("A",i)
+//	}
+//}
+//
+//func b()  {
+//	for i := 1; i < 10; i++ {
+//		fmt.Println("B",i)
+//	}
+//}
+//
+//func main()  {
+//	runtime.GOMAXPROCS(2)
+//	go a()
+//	go b()
+//	time.Sleep(time.Second)
+//}
 
 //输出结果
 //B 1
