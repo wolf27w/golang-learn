@@ -315,7 +315,9 @@ package main
 //2、go程序可以同时使用多个操作系统线程
 //3、goroutine和OS线程是多对多的关系，即m：n
 
+// ### Channel
 
+//channel 
 
 
 
