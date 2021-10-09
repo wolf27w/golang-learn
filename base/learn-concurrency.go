@@ -334,7 +334,17 @@ package main
 //var ch2 chan bool  // 声明一个传递布尔型的通道
 //var ch3 chan []int // 声明一个传递int切片的通道
 
+//通道是引用类型，通道类型的空值是nil。
 
+//func main()  {
+//	var ch chan int
+//	fmt.Println(ch)
+//}
+//输出结果<nil>
+
+//声明的通道后需要使用make函数初始化之后才能使用
+
+//创建channel的格式如下：
 
 
 
