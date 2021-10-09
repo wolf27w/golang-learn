@@ -436,10 +436,34 @@ package main
 
 //  close()
 
+//可以通过内置的close()函数关闭channel（如果你的管道不往里存值或者取值的时候一定记得关闭管道）
 
+//func main()  {
+//	c := make(chan int)
+//	go func() {
+//		for i := 0; i < 5; i++ {
+//			c <- i
+//		}
+//		close(c)
+//	}()
+//	for {
+//		if data, ok := <-c; ok {
+//			fmt.Println(data)
+//		} else {
+//			break
+//		}
+//	}
+//	fmt.Println("main结束")
+//}
+//输出结果
+//0
+//1
+//2
+//3
+//4
+//main结束
 
-
-
+//如何优雅的从通道循环取值
 
 
 
