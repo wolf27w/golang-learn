@@ -1,5 +1,11 @@
 package main
 
+import (
+	"fmt"
+	"runtime"
+	"time"
+)
+
 //###################并发编程####################
 
 //进程和线程
@@ -229,9 +235,86 @@ package main
 
 //Go1.5版本之前，默认使用的是单核心执行。Go1.5版本之后，默认使用全部的CPU逻辑核心数。
 
+//可以通过将任务分配到不同到CPU逻辑核心上实现并行到效果
 
+//func a()  {
+//	for i := 1; i < 10; i ++ {
+//		fmt.Println("A",i)
+//	}
+//}
+//
+//func b()  {
+//	for i := 1; i < 10; i++ {
+//		fmt.Println("B",i)
+//	}
+//}
+//
+//func main()  {
+//	runtime.GOMAXPROCS(1)
+//	go a()
+//	go b()
+//	time.Sleep(time.Second)
+//}
+//输出结果：
+//B 1
+//B 2
+//B 3
+//B 4
+//B 5
+//B 6
+//B 7
+//B 8
+//B 9
+//A 1
+//A 2
+//A 3
+//A 4
+//A 5
+//A 6
+//A 7
+//A 8
+//A 9
 
+//这是把两个核心任务分配到一个CPU上了，做完一个任务再做另一个任务，下面将逻辑核心数设为2
 
+func a()  {
+	for i := 1; i < 10; i ++ {
+		fmt.Println("A",i)
+	}
+}
+
+func b()  {
+	for i := 1; i < 10; i++ {
+		fmt.Println("B",i)
+	}
+}
+
+func main()  {
+	runtime.GOMAXPROCS(2)
+	go a()
+	go b()
+	time.Sleep(time.Second)
+}
+
+//输出结果
+//B 1
+//B 2
+//B 3
+//B 4
+//B 5
+//A 1
+//A 2
+//A 3
+//A 4
+//A 5
+//A 6
+//A 7
+//A 8
+//A 9
+//B 6
+//B 7
+//B 8
+//B 9
 
 
 
