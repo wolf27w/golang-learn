@@ -578,14 +578,116 @@ package main
 
 //   Goroutine池
 
+// worker pool（goroutine池）
+//本质上是生产者消费者模型
+//可以有效控制goroutine数量，防止暴涨
+//需求：
+//计算一个数字的各个位数之和，例如数字123，结果为1+2+3=6
+//随机生成数字进行计算
+//控制台输出结果如下：
+//job id:2088376 randnum:3117708862702414273 result:73
+//job id:2088377 randnum:8121940470451593634 result:76
+//job id:2088378 randnum:6311301581954619591 result:78
+//job id:2088379 randnum:375513122517260052 result:57
+//job id:2088380 randnum:8753223451094272103 result:68
+//job id:2088381 randnum:8607478679035457116 result:94
+//job id:2088382 randnum:5583163151852913213 result:72
+//job id:2088383 randnum:6101000195477271840 result:63
+//job id:2088384 randnum:3471443027424726698 result:83
+
+//import (
+//	"fmt"
+//	"math/rand"
+//)
+//
+//type Job struct {
+//	// id
+//	Id int
+//	// 需要计算的随机数
+//	RandNum int
+//}
+//
+//type Result struct {
+//	// 这里必须传对象实例
+//	Job *Job
+//	// 求和
+//	sum int
+//}
+//// 创建工作池
+//// 参数1：开几个协程
+//func createPool(num int, JobChan chan *Job, resultChan chan *Result)  {
+//	for i := 0; i < num; i++ {
+//		go func(jonChan chan *Job, resultChan chan *Result) {
+//			// 执行运算
+//			// 遍历job管道所有数据，进行相加
+//			for job := range  jonChan {
+//				// 随机数接过来
+//				r_num := job.RandNum
+//				// 随机数每一位相加
+//				// 定义返回值
+//				var sum int
+//				for r_num != 0 {
+//					tmp := r_num % 10
+//					sum += tmp
+//					r_num /= 10
+//				}
+//				// 想要的结果是Result
+//				r := &Result{
+//					job: job,
+//					sum: sum,
+//				}
+//				//运算结果扔到管道
+//				resultChan <- r
+//			}
+//		}(JobChan,resultChan)
+//	}
+//}
+//
+//
+//func main()  {
+//	// 需要2个管道
+//	// 1.job管道
+//	jobChan := make(chan *Job, 128)
+//	// 2.结果管道
+//	resultChan := make(chan *Result, 128)
+//	// 3.创建工作池
+//	createPool(64, jobChan,resultChan)
+//	// 4.开个打印的协程
+//	go func(resultChan chan *Result) {
+//		// 遍历结果管道打印
+//		for result := range resultChan {
+//			fmt.Printf("job id:%v randnum:%v result:%d\n",result.job.Id,result.job.RandNum,result.sum)
+//		}
+//	}(resultChan)
+//	var id int
+//	// 循环创建job，输入到管道
+//	for {
+//		id++
+//		// 生成随机数
+//		r_num := rand.Int()
+//		job := &Job{
+//			Id:      id,
+//			RandNum: r_num,
+//		}
+//		jobChan <- job
+//	}
+//}
 
 
+//输出结果
 
+//job id:2088376 randnum:3117708862702414273 result:73
+//job id:2088377 randnum:8121940470451593634 result:76
+//job id:2088378 randnum:6311301581954619591 result:78
+//job id:2088379 randnum:375513122517260052 result:57
+//job id:2088380 randnum:8753223451094272103 result:68
+//job id:2088381 randnum:8607478679035457116 result:94
+//job id:2088382 randnum:5583163151852913213 result:72
+//job id:2088383 randnum:6101000195477271840 result:63
+//job id:2088384 randnum:3471443027424726698 result:83
+//job id:2088385 randnum:2994512928832232024 result:77
 
-
-
-
-
+//这是一个循环，所以输出结果就截一部分把
 
 
 
