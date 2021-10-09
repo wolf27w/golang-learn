@@ -346,9 +346,17 @@ package main
 
 //创建channel的格式如下：
 
+//make(chan 元素类型, [缓冲大小])  channel的缓冲大小是可选的。
 
+//举例
 
+//ch4 := make(chan int)
+//ch5 := make(chan bool)
+//ch6 := make(chan []int)
 
+//channel操作
+
+//通道有发送（send）、接收(receive）和关闭（close）三种操作
 
 
 
