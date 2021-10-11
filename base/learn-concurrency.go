@@ -806,6 +806,11 @@
 
 package main
 
+import (
+	"fmt"
+	"sync"
+)
+
 //func test1(ch chan string)  {
 //	time.Sleep(time.Second * 5)
 //	ch <- "test1"
@@ -1054,7 +1059,26 @@ package main
 // (wg *WaitGroup)Done()                         计数器-1
 // (wg *WaitGroup)Wait()                         阻塞直到计算器变为0
 
+//sync.WaitGroup内部维护着一个计数器，计数器的值可以增加和减少，例如当启动N个并发任务时，就将计数器值增加N，每个任务完成时通过调用Done()方法将计数器减1。通过调用Wait()来等待并发任务执行完，当计数器为0时，并使所有任务并发任务已经完成。
 
+//下面看利用sync.WaitGroup将下面当代码优化以下
+
+var wg sync.WaitGroup
+
+func hello()  {
+	defer wg.Done()
+	fmt.Println("hello groutine!")
+}
+func main()  {
+	wg.Add(1)
+	go hello()
+	fmt.Println("main goroutine done!")
+	wg.Wait()
+}
+//输出结果
+
+//main goroutine done!
+//hello groutine!
 
 
 
