@@ -1191,11 +1191,47 @@ package main
 
 //像这种场景下就需要为map加锁来保证并发的安全性了，Go语言的sync包中提供了一个开箱即用的并发安全版map–sync.Map。开箱即用表示不用像内置的map一样使用make函数初始化就能直接使用。同时sync.Map内置了诸如Store、Load、LoadOrStore、Delete、Range等操作方法。
 
+//var m = sync.Map{}
+//
+//func main()  {
+//	wg := sync.WaitGroup{}
+//	for i := 0; i < 20; i++ {
+//		wg.Add(1)
+//		go func(n int) {
+//			key := strconv.Itoa(n)
+//			m.Store(key,n)
+//			value, _ := m.Load(key)
+//			fmt.Printf("k=:%v,v:=%v\n",key,value)
+//			wg.Done()
+//		}(i)
+//	}
+//	wg.Wait()
+//}
 
+//输出结果
 
+//k=:19,v:=19
+//k=:11,v:=11
+//k=:0,v:=0
+//k=:2,v:=2
+//k=:14,v:=14
+//k=:3,v:=3
+//k=:15,v:=15
+//k=:1,v:=1
+//k=:4,v:=4
+//k=:5,v:=5
+//k=:6,v:=6
+//k=:10,v:=10
+//k=:7,v:=7
+//k=:9,v:=9
+//k=:16,v:=16
+//k=:13,v:=13
+//k=:12,v:=12
+//k=:17,v:=17
+//k=:18,v:=18
+//k=:8,v:=8
 
-
-
+//    原子操作(atomic包)
 
 
 
