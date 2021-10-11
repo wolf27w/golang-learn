@@ -806,11 +806,6 @@
 
 package main
 
-import (
-	"fmt"
-	"sync"
-)
-
 //func test1(ch chan string)  {
 //	time.Sleep(time.Second * 5)
 //	ch <- "test1"
@@ -1063,23 +1058,24 @@ import (
 
 //下面看利用sync.WaitGroup将下面当代码优化以下
 
-var wg sync.WaitGroup
-
-func hello()  {
-	defer wg.Done()
-	fmt.Println("hello groutine!")
-}
-func main()  {
-	wg.Add(1)
-	go hello()
-	fmt.Println("main goroutine done!")
-	wg.Wait()
-}
+//var wg sync.WaitGroup
+//
+//func hello()  {
+//	defer wg.Done()
+//	fmt.Println("hello groutine!")
+//}
+//func main()  {
+//	wg.Add(1)
+//	go hello()
+//	fmt.Println("main goroutine done!")
+//	wg.Wait()
+//}
 //输出结果
 
 //main goroutine done!
 //hello groutine!
 
+//需要注意sync.WaitGroup是一个结构体，传递的时候要传递指针。
 
 
 
