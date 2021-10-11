@@ -1125,9 +1125,26 @@ package main
 
 //在这种情况下就会出现即使判断了icons不是nil也不意味着变量初始化完成了。考虑到这种情况，我们能想到的办法就是添加互斥锁，保证初始化icons的时候不会被其他的goroutine操作，但是这样做又会引发性能问题
 
+//使用sync.Once改造的示例代码如下：
 
+//var  icons map[string]image.Image
+//
+//func loadIcons() {
+//	icons = map[string]image.Image{
+//		"left":  loadIcon("left.png"),
+//		"up":    loadIcon("up.png"),
+//		"right": loadIcon("right.png"),
+//		"down":  loadIcon("down.png"),
+//	}
+//}
+//
+//// Icon 是并发安全的
+//func Icon(name string) image.Image {
+//	loadIconsOnce.Do(loadIcons)
+//	return icons[name]
+//}
 
-
+//sync.Once其实内部包含一个互斥锁和一个布尔值，互斥锁保证布尔值和数据的安全，而布尔值用来记录初始化是否完成。这样设计就能保证初始化操作的时候是并发安全的并且初始化操作也不会被执行多次。
 
 
 
