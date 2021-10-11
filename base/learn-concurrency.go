@@ -1045,7 +1045,17 @@ package main
 //需要注意的是读写锁非常适合读多写少的场景，如果读和写的操作差别不大，读写锁读又是就发挥不出来了。
 
 
-//
+//   Sync
+
+//sync.WaitGroup 在代码中生硬的使用time.Sleep肯定不合适，go语言中可以使用sync，WaitGroup来实现并发任务的同步，sync.WaitGroup有以下几个方法：
+
+//              方法名                                   功能
+// (wg * WaitGroup)Add(delta int)                计数器+delta
+// (wg *WaitGroup)Done()                         计数器-1
+// (wg *WaitGroup)Wait()                         阻塞直到计算器变为0
+
+
+
 
 
 
