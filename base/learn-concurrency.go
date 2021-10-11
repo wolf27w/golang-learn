@@ -1,4 +1,9 @@
-package main
+//package main
+//
+//import (
+//	"fmt"
+//	"time"
+//)
 
 //###################并发编程####################
 
@@ -738,7 +743,6 @@ package main
 //	fmt.Println(time.Now())
 //	fmt.Println(<-timer5.C)
 //	for {
-
 //	}
 //}
 //输出结果
@@ -785,15 +789,109 @@ package main
 //    …
 //}
 
+//这种方式虽然可以接收多个通道需求，但是性能较差，为了应对这种环境，go内置了select关键字，可以同时响应多个通道的操作
+
+//select的使用类似switch语句，可以有一系列的case分支和默认的分支，每个case会对应一个通道的通信(接收或发送)过程，select会一直等待，直到某个case的通信操作完成时，就会执行case分支对应的语句。具体如下：
+
+//    select {
+//    case <-chan1:
+//       // 如果chan1成功读到数据，则进行该case处理语句
+//    case chan2 <- 1:
+//       // 如果成功向chan2写入数据，则进行该case处理语句
+//    default:
+//       // 如果上面都没有成功，则进入default处理流程
+//    }
+
+//select可以同时监听一个或多个channel，直到其中一个channel ready
+
+package main
+
+//func test1(ch chan string)  {
+//	time.Sleep(time.Second * 5)
+//	ch <- "test1"
+//}
+//func test2(ch chan string)  {
+//	time.Sleep(time.Second * 2)
+//	ch <- "test2"
+//}
 //
+//func main()  {
+//	// 2个管道
+//	output1 := make(chan string)
+//	outout2 := make(chan string)
+//	//跑2个子协程，写数据
+//	go test1(output1)
+//	go test2(outout2)
+//	// 用select监控
+//	select {
+//	case s1 := <-output1:
+//		fmt.Println("s1=",s1)
+//	case s2 := <-outout2:
+//		fmt.Println("s2",s2)
+//
+//
+//	}
+//}
 
+//输出结果
+//s2 test2
 
+// 如果有多个channel同时ready，则随机选择一个执行
 
+//func main()  {
+//	int_chan := make(chan int,1)
+//	string_chan := make(chan string,1)
+//	go func() {
+//		int_chan <- 1
+//	}()
+//	go func() {
+//		string_chan <- "hello"
+//	}()
+//	select {
+//	case value := <- int_chan:
+//		fmt.Println("int",value)
+//	case value := <- string_chan:
+//		fmt.Println("string",value)
+//	}
+//	fmt.Println("main结束")
+//}
 
+//输出结果
 
+//string hello
+//main结束
 
+//可以用于判断管道是否存满
 
+//判断管道是否存满
+//func main()  {
+//	//创建管道
+//	output1 := make(chan string,10)
+//	// 子协程写数据
+//	go write(output1)
+//	//取数据
+//	for s := range output1 {
+//		fmt.Println("res",s)
+//		time.Sleep(time.Second)
+//	}
+//}
+//
+//func write(ch chan string)  {
+//	for {
+//		// 写数据
+//		select {
+//		case ch <- "hello":
+//			fmt.Println("write hello")
+//		default:
+//			fmt.Println("channel full")
+//		}
+//		time.Sleep(time.Millisecond * 500)
+//	}
+//}
 
+//  并发锁和安全锁
+
+//有时多个goroutine同时操作一个资源，这种情况就会发生竟态问题(数据竟态).例如：现实生活中的例子有十字路口被各个方向的的汽车竞争；还有火车上的卫生间被车厢里的人竞争。
 
 
 
