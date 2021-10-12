@@ -1391,7 +1391,7 @@ package main
 
 //Processor，它包含了运行 goroutine 的资源，如果线程想运行 goroutine，必须先获取 P，P 中还包含了可运行的 G 队列。
 
-
+//(1) GMP 模型
 
 
 
