@@ -1413,7 +1413,7 @@ package main
 //runtime/debug 中的 SetMaxThreads 函数，设置 M 的最大数量
 //一个 M 阻塞了，会创建新的 M。
 
-
+//M 与 P 的数量没有绝对关系，一个 M 阻塞，P 就会去创建或者切换另一个 M，所以，即使 P 的默认数量是 1，也有可能会创建很多个 M 出来。
 
 
 
