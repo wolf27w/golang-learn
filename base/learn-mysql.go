@@ -36,15 +36,24 @@ func init() {
 
 func main() {
 
-	res, err := Db.Exec("update person set username=? where user_id=?", "stu0003", 2)
+	/*
+	   _, err := Db.Exec("delete from person where user_id=?", 1)
+	   if err != nil {
+	       fmt.Println("exec failed, ", err)
+	       return
+	   }
+	*/
+
+	res, err := Db.Exec("delete from person where user_id=?", 3)
 	if err != nil {
 		fmt.Println("exec failed, ", err)
 		return
 	}
-	row, err := res.RowsAffected()
+
+	row,err := res.RowsAffected()
 	if err != nil {
 		fmt.Println("rows failed, ",err)
 	}
-	fmt.Println("update succ:",row)
 
+	fmt.Println("delete succ: ",row)
 }
