@@ -211,3 +211,7 @@ func main() {
 	fmt.Println("update succ:",row)
 
 }
+
+// 输出结果
+
+//  update succ: 0
