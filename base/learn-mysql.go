@@ -291,3 +291,11 @@
 //    2) 一致性
 //    3) 隔离性
 //    4) 持久性
+
+//golang MySQL事务应用：
+//
+//    1） import (“github.com/jmoiron/sqlx")
+//    2)  Db.Begin()        开始事务
+//    3)  Db.Commit()        提交事务
+//    4)  Db.Rollback()     回滚事务
+
