@@ -105,6 +105,7 @@
 
 //insert succ: 2
 
+//使用select * from person;查看表中插入了一条数据
 //  ### Select操作
 
 //package main
