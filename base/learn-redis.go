@@ -54,35 +54,44 @@
 //输出结果：
 //redis conn success
 
-package main
-
-import (
-    "fmt"
-    "github.com/gomodule/redigo/redis"
-)
-
-func main() {
-    c, err := redis.Dial("tcp", "10.123.6.236:6379")
-    if err != nil {
-        fmt.Println("conn redis failed,", err)
-        return
-    }
-
-    defer c.Close()
-    _, err = c.Do("Set", "abc", 100)
-    if err != nil {
-        fmt.Println(err)
-        return
-    }
-
-    r, err := redis.Int(c.Do("Get", "abc"))
-    if err != nil {
-        fmt.Println("get abc failed,", err)
-        return
-    }
-
-    fmt.Println(r)
-}
+//package main
+//
+//import (
+//    "fmt"
+//    "github.com/gomodule/redigo/redis"
+//)
+//
+//func main() {
+//    c, err := redis.Dial("tcp", "10.123.6.236:6379")
+//    if err != nil {
+//        fmt.Println("conn redis failed,", err)
+//        return
+//    }
+//
+//    defer c.Close()
+//    _, err = c.Do("Set", "abc", 100)
+//    if err != nil {
+//        fmt.Println(err)
+//        return
+//    }
+//
+//    r, err := redis.Int(c.Do("Get", "abc"))
+//    if err != nil {
+//        fmt.Println("get abc failed,", err)
+//        return
+//    }
+//
+//    fmt.Println(r)
+//}
 //100
 //输出结果
 
+//如果出现：    MISCONF Redis is configured to save RDB snapshots, but is currently not able to persist on disk. Commands that may modify the data set are disabled. Please check Redis logs for details about the error.
+//Redis被配置为保存数据库快照，但它目前不能持久化到硬盘。用来修改集合数据的命令不能用。请查看Redis日志的详细错误信息。
+//原因：
+//
+//强制关闭Redis快照导致不能持久化。
+//
+//解决方案：
+//
+//运行config set stop-writes-on-bgsave-error no　命令后，关闭配置项stop-writes-on-bgsave-error解决该问题。
