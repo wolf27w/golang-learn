@@ -35,18 +35,21 @@
 
 //           连接redis
 
-package main
-import (
-   "fmt"
-   "github.com/gomodule/redigo/redis"
-)
-func main() {
-   c, err := redis.Dial("tcp", "10.123.6.236:6379")
-   if err != nil {
-       fmt.Println("conn redis failed,", err)
-       return
-   }
-   fmt.Println("redis conn success")
+//package main
+//import (
+//   "fmt"
+//   "github.com/gomodule/redigo/redis"
+//)
+//func main() {
+//   c, err := redis.Dial("tcp", "10.123.6.236:6379")
+//   if err != nil {
+//       fmt.Println("conn redis failed,", err)
+//       return
+//   }
+//   fmt.Println("redis conn success")
+//
+//   defer c.Close()
+//}
 
-   defer c.Close()
-}
+//输出结果：
+//redis conn success
