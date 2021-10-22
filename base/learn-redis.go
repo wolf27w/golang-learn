@@ -54,6 +54,8 @@
 //输出结果：
 //redis conn success
 
+// #########redis的set、get操作
+
 //package main
 //
 //import (
@@ -95,3 +97,49 @@
 //解决方案：
 //
 //运行config set stop-writes-on-bgsave-error no　命令后，关闭配置项stop-writes-on-bgsave-error解决该问题。
+//在redis上登录后运行127.0.0.1:6379> config set stop-writes-on-bgsave-error n0即可
+
+
+//  String批量操作
+
+package main
+
+import (
+    "fmt"
+    "github.com/gomodule/redigo/redis"
+)
+
+func main() {
+    c, err := redis.Dial("tcp", "10.123.6.236:6379")
+    if err != nil {
+        fmt.Println("conn redis failed,", err)
+        return
+    }
+
+    defer c.Close()
+    _, err = c.Do("MSet", "abc", 100, "efg", 300)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+
+    r, err := redis.Ints(c.Do("MGet", "abc", "efg"))
+    if err != nil {
+        fmt.Println("get abc failed,", err)
+        return
+    }
+
+    for _, v := range r {
+        fmt.Println(v)
+    }
+}
+
+//输出结果：
+//100
+//300
+//在redis上操作
+
+//root@e8d032aeb22f:/data# redis-cli -h 127.0.0.1 -p 6379
+//127.0.0.1:6379> mget abc efg
+//1) "100"
+//2) "300"
