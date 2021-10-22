@@ -213,6 +213,8 @@
 //
 //}
 
+//使用select * from persion;查看的数据是1	stu0003	man	stu01@qq.com
+
 // 输出结果
 
 //  update succ: 1   //修改后在执行就会是0
