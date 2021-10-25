@@ -180,35 +180,44 @@
 //       #####List队列操作
 
 
-package main
-
-import (
-    "fmt"
-    "github.com/gomodule/redigo/redis"
-)
-
-func main() {
-    c, err := redis.Dial("tcp", "10.123.6.236:6379")
-    if err != nil {
-        fmt.Println("conn redis failed,", err)
-        return
-    }
-
-    defer c.Close()
-    _, err = c.Do("lpush", "book_list", "abc", "ceg", 300)
-    if err != nil {
-        fmt.Println(err)
-        return
-    }
-
-    r, err := redis.String(c.Do("lpop", "book_list"))
-    if err != nil {
-        fmt.Println("get abc failed,", err)
-        return
-    }
-
-    fmt.Println(r)
-}
+//package main
+//
+//import (
+//    "fmt"
+//    "github.com/gomodule/redigo/redis"
+//)
+//
+//func main() {
+//    c, err := redis.Dial("tcp", "10.123.6.236:6379")
+//    if err != nil {
+//        fmt.Println("conn redis failed,", err)
+//        return
+//    }
+//
+//    defer c.Close()
+//    _, err = c.Do("lpush", "book_list", "abc", "ceg", 300)
+//    if err != nil {
+//        fmt.Println(err)
+//        return
+//    }
+//
+//    r, err := redis.String(c.Do("lpop", "book_list"))
+//    if err != nil {
+//        fmt.Println("get abc failed,", err)
+//        return
+//    }
+//
+//    fmt.Println(r)
+//}
 
 //输出结果
 // 300
+
+//redis 命令行
+
+// 127.0.0.1:6379> lpop book_list
+//    "ceg"
+//    127.0.0.1:6379> lpop book_list
+//    "abc"
+//    127.0.0.1:6379> lpop book_list
+//    (nil)
