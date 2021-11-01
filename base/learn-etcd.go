@@ -126,3 +126,13 @@
 //    ENDPOINTS=$HOST_1:2379,$HOST_2:2379,$HOST_3:2379
 //
 //    etcdctl --endpoints=$ENDPOINTS member list
+
+//操作ETCD
+
+//这里使用官方的etcd/clientv3包来连接etcd并进行相关操作。
+
+//      安装
+
+//  go get go.etcd.io/etcd/clientv3
+
+//  put和get操作
