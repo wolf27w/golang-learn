@@ -116,3 +116,13 @@
 //        --advertise-client-urls http://10.240.0.19:2379 --listen-client-urls http:/10.240.0.19:2379 \
 //        --discovery ${DISCOVERY} \
 //        --initial-cluster-state ${CLUSTER_STATE} --initial-cluster-token ${TOKEN}
+
+//到此etcd集群就搭建起来了，可以使用etcdctl来连接etcd。
+
+//    export ETCDCTL_API=3
+//    HOST_1=10.240.0.17
+//    HOST_2=10.240.0.18
+//    HOST_3=10.240.0.19
+//    ENDPOINTS=$HOST_1:2379,$HOST_2:2379,$HOST_3:2379
+//
+//    etcdctl --endpoints=$ENDPOINTS member list
