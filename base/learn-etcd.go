@@ -57,3 +57,62 @@
 //在每个etcd节点指定集群成员，为了区分不同的集群最好同时配置一个独一无二的token。
 //
 //下面是提前定义好的集群信息，其中n1、n2和n3表示3个不同的etcd节点。
+
+//    TOKEN=token-01
+//    CLUSTER_STATE=new
+//    CLUSTER=n1=http://10.240.0.17:2380,n2=http://10.240.0.18:2380,n3=http://10.240.0.19:2380
+
+//在n1这台机器上执行以下命令来启动etcd：
+
+//   etcd --data-dir=data.etcd --name n1 \
+//        --initial-advertise-peer-urls http://10.240.0.17:2380 --listen-peer-urls http://10.240.0.17:2380 \
+//        --advertise-client-urls http://10.240.0.17:2379 --listen-client-urls http://10.240.0.17:2379 \
+//        --initial-cluster ${CLUSTER} \
+//        --initial-cluster-state ${CLUSTER_STATE} --initial-cluster-token ${TOKEN}
+
+//在n2这台机器上执行以下命令启动etcd：
+
+//    etcd --data-dir=data.etcd --name n2 \
+//        --initial-advertise-peer-urls http://10.240.0.18:2380 --listen-peer-urls http://10.240.0.18:2380 \
+//        --advertise-client-urls http://10.240.0.18:2379 --listen-client-urls http://10.240.0.18:2379 \
+//        --initial-cluster ${CLUSTER} \
+//        --initial-cluster-state ${CLUSTER_STATE} --initial-cluster-token ${TOKEN}
+
+//在n3这台机器上执行以下命令启动etcd：
+
+//   etcd --data-dir=data.etcd --name n3 \
+//        --initial-advertise-peer-urls http://10.240.0.19:2380 --listen-peer-urls http://10.240.0.19:2380 \
+//        --advertise-client-urls http://10.240.0.19:2379 --listen-client-urls http://10.240.0.19:2379 \
+//        --initial-cluster ${CLUSTER} \
+//        --initial-cluster-state ${CLUSTER_STATE} --initial-cluster-token ${TOKEN}
+
+//etcd 官网提供了一个可以公网访问的 etcd 存储地址。你可以通过如下命令得到 etcd 服务的目录，并把它作为-discovery参数使用。
+
+//    curl https://discovery.etcd.io/new?size=3
+//    https://discovery.etcd.io/a81b5818e67a6ea83e9d4daea5ecbc92
+//
+//    # grab this token
+//    TOKEN=token-01
+//    CLUSTER_STATE=new
+//    DISCOVERY=https://discovery.etcd.io/a81b5818e67a6ea83e9d4daea5ecbc92
+//
+//
+//    etcd --data-dir=data.etcd --name n1 \
+//        --initial-advertise-peer-urls http://10.240.0.17:2380 --listen-peer-urls http://10.240.0.17:2380 \
+//        --advertise-client-urls http://10.240.0.17:2379 --listen-client-urls http://10.240.0.17:2379 \
+//        --discovery ${DISCOVERY} \
+//        --initial-cluster-state ${CLUSTER_STATE} --initial-cluster-token ${TOKEN}
+//
+//
+//    etcd --data-dir=data.etcd --name n2 \
+//        --initial-advertise-peer-urls http://10.240.0.18:2380 --listen-peer-urls http://10.240.0.18:2380 \
+//        --advertise-client-urls http://10.240.0.18:2379 --listen-client-urls http://10.240.0.18:2379 \
+//        --discovery ${DISCOVERY} \
+//        --initial-cluster-state ${CLUSTER_STATE} --initial-cluster-token ${TOKEN}
+//
+//
+//    etcd --data-dir=data.etcd --name n3 \
+//        --initial-advertise-peer-urls http://10.240.0.19:2380 --listen-peer-urls http://10.240.0.19:2380 \
+//        --advertise-client-urls http://10.240.0.19:2379 --listen-client-urls http:/10.240.0.19:2379 \
+//        --discovery ${DISCOVERY} \
+//        --initial-cluster-state ${CLUSTER_STATE} --initial-cluster-token ${TOKEN}
