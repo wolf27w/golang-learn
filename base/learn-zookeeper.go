@@ -275,3 +275,19 @@
 //    list, _, err = conn.Children("/go_servers")
 //    return
 //}
+//先启动server，可以看到有三个节点注册到zk
+
+//  127.0.0.1:8897
+//    127.0.0.1:8899
+//    127.0.0.1:8898
+//    2018/08/27 14:04:58 Connected to 127.0.0.1:2181
+//    2018/08/27 14:04:58 Connected to 127.0.0.1:2181
+//    2018/08/27 14:04:58 Connected to 127.0.0.1:2181
+//    2018/08/27 14:04:58 Authenticated: id=100619932030205976, timeout=10000
+//    2018/08/27 14:04:58 Re-submitting `0` credentials after reconnect
+//    2018/08/27 14:04:58 Authenticated: id=100619932030205977, timeout=10000
+//    2018/08/27 14:04:58 Re-submitting `0` credentials after reconnect
+//    2018/08/27 14:04:58 Authenticated: id=100619932030205978, timeout=10000
+//    2018/08/27 14:04:58 Re-submitting `0` credentials after reconnect
+
+//启动client，可以看到每次client都会随机连接到一个节点进行通信：
