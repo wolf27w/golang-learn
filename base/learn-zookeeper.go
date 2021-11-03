@@ -357,3 +357,40 @@
 //    read tcp 127.0.0.1:54084->127.0.0.1:8898: read: connection reset by peer
 //    127.0.0.1:8898: 2018-08-27 14:05:28.380455 +0800 CST m=+29.568760988
 //    ......
+
+//至此，我们的分布式server就实现了
+
+//    Zookeeper命令行使用
+
+//Zookeeper部署
+//Zookeeper的部署相对来说还是比较简单，读者可以在网上找到相应的教程。Zookeeper有三种运行形式：集群模式、单机模式、伪集群模式。
+//
+//以下实验都是在单机模式下进行。
+//
+//服务端使用
+//
+//zookeeper下bin目录下常用的脚本解释：
+//
+//1.zkCleanup 清理Zookeeper历史数据，包括事物日志文件和快照数据文件
+//
+//2.zkCli Zookeeper的一个简易客户端
+//
+//3.zkEnv 设置Zookeeper的环境变量
+//
+//4.zkServer Zookeeper服务器的启动、停止、和重启脚本
+//
+//1.运行服务
+//
+//进入bin目录，使用zkServer.sh start启动服务
+//
+//使用jps命令查看，存在QuorumPeerMain进程，表示Zookeeper已经启动
+//
+//2.停止服务
+//
+//在bin目录下，使用zkServer.sh stop停止服务
+//
+//使用jps命令查看，QuorumPeerMain进程已不存在，表示Zookeeper已经关闭
+//
+//客户端使用
+//
+//1.打开客户端
