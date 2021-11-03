@@ -291,3 +291,69 @@
 //    2018/08/27 14:04:58 Re-submitting `0` credentials after reconnect
 
 //启动client，可以看到每次client都会随机连接到一个节点进行通信：
+
+//   2018/08/27 14:05:21 Connected to 127.0.0.1:2181
+//    2018/08/27 14:05:21 Authenticated: id=100619932030205979, timeout=10000
+//    2018/08/27 14:05:21 Re-submitting `0` credentials after reconnect
+//    2018/08/27 14:05:21 Recv loop terminated: err=EOF
+//    connect host: 127.0.0.1:8899
+//    2018/08/27 14:05:21 Send loop terminated: err=<nil>
+//    read tcp 127.0.0.1:54062->127.0.0.1:8899: read: connection reset by peer
+//    127.0.0.1:8899: 2018-08-27 14:05:21.291641 +0800 CST m=+22.480149656
+//    2018/08/27 14:05:22 Connected to [::1]:2181
+//    2018/08/27 14:05:22 Authenticated: id=100619932030205980, timeout=10000
+//    2018/08/27 14:05:22 Re-submitting `0` credentials after reconnect
+//    2018/08/27 14:05:22 Recv loop terminated: err=EOF
+//    2018/08/27 14:05:22 Send loop terminated: err=<nil>
+//    connect host: 127.0.0.1:8897
+//    read tcp 127.0.0.1:54064->127.0.0.1:8897: read: connection reset by peer
+//    127.0.0.1:8897: 2018-08-27 14:05:22.302322 +0800 CST m=+23.490801385
+//    2018/08/27 14:05:23 Connected to 127.0.0.1:2181
+//    2018/08/27 14:05:23 Authenticated: id=100619932030205981, timeout=10000
+//    2018/08/27 14:05:23 Re-submitting `0` credentials after reconnect
+//    2018/08/27 14:05:23 Recv loop terminated: err=EOF
+//    2018/08/27 14:05:23 Send loop terminated: err=<nil>
+//    connect host: 127.0.0.1:8897
+//    read tcp 127.0.0.1:54070->127.0.0.1:8897: read: connection reset by peer
+//    127.0.0.1:8897: 2018-08-27 14:05:23.312873 +0800 CST m=+24.501324228
+//    2018/08/27 14:05:24 Connected to 127.0.0.1:2181
+//    2018/08/27 14:05:24 Authenticated: id=100619932030205982, timeout=10000
+//    2018/08/27 14:05:24 Re-submitting `0` credentials after reconnect
+//    2018/08/27 14:05:24 Recv loop terminated: err=EOF
+//    connect host: 127.0.0.1:8899
+//    2018/08/27 14:05:24 Send loop terminated: err=<nil>
+//    read tcp 127.0.0.1:54072->127.0.0.1:8899: read: connection reset by peer
+//    127.0.0.1:8899: 2018-08-27 14:05:24.323668 +0800 CST m=+25.512090155
+//    2018/08/27 14:05:25 Connected to 127.0.0.1:2181
+//    2018/08/27 14:05:25 Authenticated: id=100619932030205983, timeout=10000
+//    2018/08/27 14:05:25 Re-submitting `0` credentials after reconnect
+//    2018/08/27 14:05:25 Recv loop terminated: err=EOF
+//    2018/08/27 14:05:25 Send loop terminated: err=<nil>
+//    connect host: 127.0.0.1:8897
+//    read tcp 127.0.0.1:54074->127.0.0.1:8897: read: connection reset by peer
+//    127.0.0.1:8897: 2018-08-27 14:05:25.330257 +0800 CST m=+26.518650566
+//    2018/08/27 14:05:26 Connected to [::1]:2181
+//    2018/08/27 14:05:26 Authenticated: id=100619932030205984, timeout=10000
+//    2018/08/27 14:05:26 Re-submitting `0` credentials after reconnect
+//    2018/08/27 14:05:26 Recv loop terminated: err=EOF
+//    2018/08/27 14:05:26 Send loop terminated: err=<nil>
+//    connect host: 127.0.0.1:8897
+//    read tcp 127.0.0.1:54080->127.0.0.1:8897: read: connection reset by peer
+//    127.0.0.1:8897: 2018-08-27 14:05:26.357251 +0800 CST m=+27.545614616
+//    2018/08/27 14:05:27 Connected to 127.0.0.1:2181
+//    2018/08/27 14:05:27 Authenticated: id=100619932030205985, timeout=10000
+//    2018/08/27 14:05:27 Re-submitting `0` credentials after reconnect
+//    connect host: 127.0.0.1:8899
+//    2018/08/27 14:05:27 Recv loop terminated: err=EOF
+//    2018/08/27 14:05:27 Send loop terminated: err=<nil>
+//    read tcp 127.0.0.1:54082->127.0.0.1:8899: read: connection reset by peer
+//    127.0.0.1:8899: 2018-08-27 14:05:27.369096 +0800 CST m=+28.557430764
+//    2018/08/27 14:05:28 Connected to [::1]:2181
+//    2018/08/27 14:05:28 Authenticated: id=100619932030205986, timeout=10000
+//    2018/08/27 14:05:28 Re-submitting `0` credentials after reconnect
+//    2018/08/27 14:05:28 Recv loop terminated: err=EOF
+//    2018/08/27 14:05:28 Send loop terminated: err=<nil>
+//    connect host: 127.0.0.1:8898
+//    read tcp 127.0.0.1:54084->127.0.0.1:8898: read: connection reset by peer
+//    127.0.0.1:8898: 2018-08-27 14:05:28.380455 +0800 CST m=+29.568760988
+//    ......
