@@ -108,3 +108,7 @@
 //1代表producer往集群发送数据只要leader应答就可以发送下一条，只确保leader发送成功。
 //all代表producer往集群发送数据需要所有的follower都完成从leader的同步才会发送下一条，确保 leader发送成功和所有的副本都完成备份。安全性最⾼高，但是效率最低。
 //最后要注意的是，如果往不存在的topic写数据，kafka会⾃动创建topic，partition和replication的数量 默认配置都是1。
+
+//  Topic和数据⽇志
+
+//topic 是同⼀类别的消息记录（record）的集合。在Kafka中，⼀个主题通常有多个订阅者。对于每个 主题，Kafka集群维护了⼀个分区数据⽇志⽂件结构如下：
