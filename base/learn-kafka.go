@@ -180,7 +180,7 @@ func main() {
 	fmt.Printf("pid:%v offset:%v\n", pid, offset)
 }
 
-
+//连接kafka消费消息
 
 
 
