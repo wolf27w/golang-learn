@@ -36,6 +36,15 @@
 //持久性日志：Kafka可以为一种外部的持久性日志的分布式系统提供服务。这种日志可以在节点间备份数据，并为故障节点数据回复提供一种重新同步的机制。Kafka中日志压缩功能为这种用法提供了条件。在这种用法中，Kafka类似于Apache BookKeeper项目。
 
 
+//    Kafka中包含以下基础概念
 
+//    1.Topic(话题)：Kafka中用于区分不同类别信息的类别名称。由producer指定
+//    2.Producer(生产者)：将消息发布到Kafka特定的Topic的对象(过程)
+//    3.Consumers(消费者)：订阅并处理特定的Topic中的消息的对象(过程)
+//    4.Broker(Kafka服务集群)：已发布的消息保存在一组服务器中，称之为Kafka集群。集群中的每一个服务器都是一个代理(Broker). 消费者可以订阅一个或多个话题，并从Broker拉数据，从而消费这些已发布的消息。
+//    5.Partition(分区)：Topic物理上的分组，一个topic可以分为多个partition，每个partition是一个有序的队列。partition中的每条消息都会被分配一个有序的id（offset）
+//    Message：消息，是通信的基本单位，每个producer可以向一个topic（主题）发布一些消息。
+
+//   消息
 
 
