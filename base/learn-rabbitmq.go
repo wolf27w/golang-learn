@@ -265,15 +265,15 @@
 
 //      mainSimpleRecieve.go代码
 
-package main
-
-import "github.com/student/kuteng-RabbitMQ/RabbitMQ"
-
-func main() {
-	rabbitmq := RabbitMQ.NewRabbitMQSimple("" +
-		"kuteng")
-	rabbitmq.ConsumeSimple()
-}
+//package main
+//
+//import "github.com/student/kuteng-RabbitMQ/RabbitMQ"
+//
+//func main() {
+//	rabbitmq := RabbitMQ.NewRabbitMQSimple("" +
+//		"kuteng")
+//	rabbitmq.ConsumeSimple()
+//}
 
 
 
