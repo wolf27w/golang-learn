@@ -91,11 +91,14 @@
 //    5.follower将消息写入本地磁盘后向leader发送ACK
 //    6.leader收到所有的follower的ACK之后向生产者发送ACK
 
+// 选择partition的原则
 
+//那在kafka中，如果某个topic有多个partition，producer⼜怎么知道该将数据发往哪个partition呢？ kafka中有几个原则：
 
-
-
-
+//    1.partition在写入的时候可以指定需要写入的partition，如果有指定，则写入对应的partition。
+//    2.如果没有指定partition，但是设置了数据的key，则会根据key的值hash出一个partition。
+//    3.如果既没指定partition，又没有设置key，则会采用轮询⽅式，即每次取一小段时间的数据写入某
+//    个partition，下一小段的时间写入下一个partition
 
 
 
