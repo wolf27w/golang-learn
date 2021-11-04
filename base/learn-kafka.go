@@ -84,7 +84,12 @@
 
 //我们看上⾯的架构图中，producer就是生产者，是数据的入口。Producer在写入数据的时候会把数据 写入到leader中，不会直接将数据写入follower！那leader怎么找呢？写入的流程又是什么样的呢？我 们看下图：
 
-
+//    1.⽣产者从Kafka集群获取分区leader信息
+//    2.⽣产者将消息发送给leader
+//    3.leader将消息写入本地磁盘
+//    4.follower从leader拉取消息数据
+//    5.follower将消息写入本地磁盘后向leader发送ACK
+//    6.leader收到所有的follower的ACK之后向生产者发送ACK
 
 
 
