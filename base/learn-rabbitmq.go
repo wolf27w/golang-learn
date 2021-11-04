@@ -248,7 +248,32 @@
 
 //     mainSimlpePublish.go代码
 
+//package main
+//
+//import (
+//    "fmt"
+//
+//    "github.com/student/kuteng-RabbitMQ/RabbitMQ"
+//)
+//
+//func main() {
+//    rabbitmq := RabbitMQ.NewRabbitMQSimple("" +
+//        "kuteng")
+//    rabbitmq.PublishSimple("Hello kuteng222!")
+//    fmt.Println("发送成功！")
+//}
 
+//      mainSimpleRecieve.go代码
+
+package main
+
+import "github.com/student/kuteng-RabbitMQ/RabbitMQ"
+
+func main() {
+	rabbitmq := RabbitMQ.NewRabbitMQSimple("" +
+		"kuteng")
+	rabbitmq.ConsumeSimple()
+}
 
 
 
