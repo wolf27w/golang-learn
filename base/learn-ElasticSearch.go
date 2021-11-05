@@ -149,6 +149,12 @@
 //
 //使用go.mod来管理依赖：
 
+//    require (
+//        github.com/olivere/elastic/v7 v7.0.4
+//    )
+
+//简单示例：
+
 
 
 
