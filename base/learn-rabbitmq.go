@@ -1137,6 +1137,8 @@
 //    kutengOne.RecieveTopic()
 //}
 
+//recieve2/mainrecieve.go代码
+
 
 
 
