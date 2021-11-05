@@ -912,11 +912,11 @@
 
 // recieve2/mainrecieve.go代码
 
-package main
-
-import "github.com/student/kuteng-RabbitMQ/RabbitMQ"
-
-func main() {
-	kutengtwo := RabbitMQ.NewRabbitMQRouting("kuteng", "kuteng_two")
-	kutengtwo.RecieveRouting()
-}
+//package main
+//
+//import "github.com/student/kuteng-RabbitMQ/RabbitMQ"
+//
+//func main() {
+//	kutengtwo := RabbitMQ.NewRabbitMQRouting("kuteng", "kuteng_two")
+//	kutengtwo.RecieveRouting()
+//}
