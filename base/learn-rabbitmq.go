@@ -1126,6 +1126,18 @@
 //
 //}
 
+//recieve1/mainrecieve.go代码
+
+//package main
+//
+//import "github.com/student/kuteng-RabbitMQ/RabbitMQ"
+//
+//func main() {
+//    kutengOne := RabbitMQ.NewRabbitMQTopic("exKutengTopic", "#")
+//    kutengOne.RecieveTopic()
+//}
+
+
 
 
 
