@@ -453,7 +453,40 @@
 //
 //}
 
+//  mainSimlpePublish.go代码
 
+//package main
+//
+//import (
+//    "fmt"
+//    "strconv"
+//    "time"
+//
+//    "github.com/student/kuteng-RabbitMQ/RabbitMQ"
+//)
+//
+//func main() {
+//    rabbitmq := RabbitMQ.NewRabbitMQSimple("" +
+//        "kuteng")
+//
+//    for i := 0; i <= 100; i++ {
+//        rabbitmq.PublishSimple("Hello kuteng!" + strconv.Itoa(i))
+//        time.Sleep(1 * time.Second)
+//        fmt.Println(i)
+//    }
+//}
+
+//mainSimpleRecieve.go代码(两个消费端的代码是一样的)
+
+//package main
+//
+//import "github.com/student/kuteng-RabbitMQ/RabbitMQ"
+//
+//func main() {
+//	rabbitmq := RabbitMQ.NewRabbitMQSimple("" +
+//		"kuteng")
+//	rabbitmq.ConsumeSimple()
+//}
 
 
 
