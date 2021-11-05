@@ -141,7 +141,13 @@
 //    }'
 
 
-
+//1. 操作ElasticSearch
+//1.1.1. elastic client
+//我们使用第三方库https://github.com/olivere/elastic 来连接ES并进行操作。
+//
+//注意下载与你的ES相同版本的client，例如我们这里使用的ES是7.2.1的版本，那么我们下载的client也要与之对应为github.com/olivere/elastic/v7。
+//
+//使用go.mod来管理依赖：
 
 
 
