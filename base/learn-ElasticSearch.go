@@ -60,8 +60,85 @@
 //
 //查看健康状态
 
+//    curl -X GET 127.0.0.1:9200/_cat/health?v
 
+//输出：
 
+//    epoch      timestamp cluster       status node.total node.data shards pri relo init unassign pending_tasks max_task_wait_time active_shards_percent
+//    1564726309 06:11:49  elasticsearch yellow          1         1      3   3    0    0        1             0                  -                 75.0%
+
+//查询当前es集群中所有的indices
+//    curl -X GET 127.0.0.1:9200/_cat/indices?v
+//输出：
+//
+//    health status index                uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+//    green  open   .kibana_task_manager LUo-IxjDQdWeAbR-SYuYvQ   1   0          2            0     45.5kb         45.5kb
+//    green  open   .kibana_1            PLvyZV1bRDWex05xkOrNNg   1   0          4            1     23.9kb         23.9kb
+//    yellow open   user                 o42mIpDeSgSWZ6eARWUfKw   1   1          0            0       283b           283b
+//创建索引
+//    curl -X PUT 127.0.0.1:9200/www
+//输出：
+//
+//    {"acknowledged":true,"shards_acknowledged":true,"index":"www"}
+//删除索引
+//    curl -X DELETE 127.0.0.1:9200/www
+//输出：
+//
+//    {"acknowledged":true}
+//插入记录
+//    curl -H "ContentType:application/json" -X POST 127.0.0.1:9200/user/person -d '
+//    {
+//        "name": "LMH",
+//        "age": 18,
+//        "married": true
+//    }'
+//输出：
+//
+//{
+//    "_index": "user",
+//    "_type": "person",
+//    "_id": "MLcwUWwBvEa8j5UrLZj4",
+//    "_version": 1,
+//    "result": "created",
+//    "_shards": {
+//        "total": 2,
+//        "successful": 1,
+//        "failed": 0
+//    },
+//    "_seq_no": 3,
+//    "_primary_term": 1
+//}
+//也可以使用PUT方法，但是需要传入id
+//
+//    curl -H "ContentType:application/json" -X PUT 127.0.0.1:9200/user/person/4 -d '
+//    {
+//        "name": "LMH",
+//        "age": 18,
+//        "married": false
+//    }'
+//检索
+//Elasticsearch的检索语法比较特别，使用GET方法携带JSON格式的查询条件。
+//
+//全检索：
+//
+//    curl -X GET 127.0.0.1:9200/user/person/_search
+//按条件检索：
+//
+//    curl -H "ContentType:application/json" -X PUT 127.0.0.1:9200/user/person/4 -d '
+//    {
+//        "query":{
+//            "match": {"name": "LMH"}
+//        }
+//    }'
+//ElasticSearch默认一次最多返回10条结果，可以像下面的示例通过size字段来设置返回结果的数目。
+//
+//    curl -H "ContentType:application/json" -X PUT 127.0.0.1:9200/user/person/4 -d '
+//    {
+//        "query":{
+//            "match": {"name": "LMH"},
+//            "size": 2
+//        }
+//    }'
 
 
 
