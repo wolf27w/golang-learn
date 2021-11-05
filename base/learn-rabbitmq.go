@@ -899,3 +899,24 @@
 //
 //}
 
+//   recieve1/mainrecieve.go代码
+
+//package main
+//
+//import "github.com/student/kuteng-RabbitMQ/RabbitMQ"
+//
+//func main() {
+//    kutengone := RabbitMQ.NewRabbitMQRouting("kuteng", "kuteng_one")
+//    kutengone.RecieveRouting()
+//}
+
+// recieve2/mainrecieve.go代码
+
+package main
+
+import "github.com/student/kuteng-RabbitMQ/RabbitMQ"
+
+func main() {
+	kutengtwo := RabbitMQ.NewRabbitMQRouting("kuteng", "kuteng_two")
+	kutengtwo.RecieveRouting()
+}
