@@ -142,3 +142,5 @@
 //    fmt.Println("producer.Publish success")
 //
 //}
+
+//消费者
