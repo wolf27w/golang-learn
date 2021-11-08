@@ -97,3 +97,5 @@
 //
 //    fmt.Println("ping nsq success")
 //}
+
+//生产者创建topic并写入nsq：
