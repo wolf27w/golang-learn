@@ -69,3 +69,31 @@
 //验证事物按预期工作，在Web浏览器中打开http://127.0.0.1:4171/ 以查看nsqadminUI并查看统计信息。另外，检查test.*.log写入的日志文件（）的内容/tmp。
 //
 //链接nsq 并创建生产者：
+
+//package main
+//
+//import (
+//    "fmt"
+//
+//    nsq "github.com/nsqio/go-nsq"
+//)
+//
+//func main() {
+//    // 定义nsq生产者
+//    var producer *nsq.Producer
+//    // 初始化生产者
+//    // producer, err := nsq.NewProducer("地址:端口", nsq.*Config )
+//    producer, err := nsq.NewProducer("127.0.0.1:4150", nsq.NewConfig())
+//    if err != nil {
+//        panic(err)
+//    }
+//
+//    err = producer.Ping()
+//    if nil != err {
+//        // 关闭生产者
+//        producer.Stop()
+//        producer = nil
+//    }
+//
+//    fmt.Println("ping nsq success")
+//}
