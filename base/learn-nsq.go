@@ -202,3 +202,9 @@ func InitConsumer(topic string, channel string, address string) {
 
 
 
+
+
+
+
+
+
