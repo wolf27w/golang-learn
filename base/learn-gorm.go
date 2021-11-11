@@ -1546,6 +1546,80 @@
 //db.Callback().RowQuery().Register("publish:update_table_name", updateTableName)
 //请前往查看所有的 API —— https://godoc.org/github.com/jinzhu/gorm 。
 
+//1. GORM Dialects
+//1.1. 编写一个新的 Dialect
+//GORM 原生支持 sqlite, mysql, postgres 和 mssql。
+//
+//你可以通过实现 dialect interface 接口，来新增对某个新的数据库的支持。
+//
+//有一些关系型数据库与 mysql 和 postgres 语法兼容，因此你可以直接使用这两个数据库的 dialect 。
+//
+//1.2. Dialect 专属的数据类型
+//一些 SQL 语法的 dialects 支持他们自定义的，非标准的字段类型，如 PostgreSQL 中的 jsonb 字段类型。GORM 支持一些类似此种类型，下面是这些类型的简单实用范例。
+//
+//1.2.1. PostgreSQL
+//GORM 支持 PostgreSQL 专有的字段类型：
+//
+//jsonb
+//hstore
+//以下这是 Model 的定义：
+//
+//import (
+//    "encoding/json"
+//    "github.com/jinzhu/gorm/dialects/postgres"
+//)
+//
+//type Document struct {
+//    Metadata postgres.Jsonb
+//    Secrets  postgres.Hstore
+//    Body     string
+//    ID       int
+//}
+//你可以这样子使用 Model：
+//
+//password := "0654857340"
+//metadata := json.RawMessage(`{"is_archived": 0}`)
+//sampleDoc := Document{
+//  Body: "This is a test document",
+//  Metadata: postgres.Jsonb{ metadata },
+//  Secrets: postgres.Hstore{"password": &password},
+//}
+//
+//// 将范例数据写入数据库
+//db.Create(&sampleDoc)
+//
+//// 读取数据，来检测是否正确写入
+//resultDoc := Document{}
+//db.Where("id = ?", sampleDoc.ID).First(&resultDoc)
+//
+//metadataIsEqual := reflect.DeepEqual(resultDoc.Metadata, sampleDoc.Metadata)
+//secretsIsEqual := reflect.DeepEqual(resultDoc.Secrets, resultDoc.Secrets)
+//
+//// 应该打印 "true"
+//fmt.Println("Inserted fields are as expected:", metadataIsEqual && secretsIsEqual)
+
+//1. 自定义Logger
+//1.1. Logger
+//Gorm 建立了对 Logger 的支持，默认模式只会在错误发生的时候打印日志。
+//
+//// 开启 Logger, 以展示详细的日志
+//db.LogMode(true)
+//
+//// 关闭 Logger, 不再展示任何日志，即使是错误日志
+//db.LogMode(false)
+//
+//// 对某个操作展示详细的日志，用来排查该操作的问题
+//db.Debug().Where("name = ?", "jinzhu").First(&User{})
+//1.2. 自定义 Logger
+//参考 GORM 的默认 logger 是怎么自定义的 https://github.com/jinzhu/gorm/blob/master/logger.go
+//
+//例如，使用 Revel 的 Logger 作为 GORM 的输出
+//
+//db.SetLogger(gorm.Logger{revel.TRACE})
+//使用 os.Stdout 作为输出
+//
+//db.SetLogger(log.New(os.Stdout, "\r\n", 0))
+
 
 
 
