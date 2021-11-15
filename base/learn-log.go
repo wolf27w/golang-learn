@@ -111,10 +111,17 @@
 //
 //举个例子：
 //
-//func main() {
-//    logger := log.New(os.Stdout, "<New>", log.Lshortfile|log.Ldate|log.Ltime)
-//    logger.Println("这是自定义的logger记录的日志。")
-//}
+package main
+
+import (
+	"log"
+	"os"
+)
+
+func main() {
+   logger := log.New(os.Stdout, "<New>", log.Lshortfile|log.Ldate|log.Ltime)
+   logger.Println("这是自定义的logger记录的日志。")
+}
 //将上面的代码编译执行之后，得到结果如下：
 //
 //    <New>2019/10/11 14:06:51 main.go:34: 这是自定义的logger记录的日志。
