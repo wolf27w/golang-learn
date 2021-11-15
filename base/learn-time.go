@@ -66,11 +66,18 @@
 //    func (t Time) Add(d Duration) Time
 //举个例子，求一个小时之后的时间：
 //
-//func main() {
-//    now := time.Now()
-//    later := now.Add(time.Hour) // 当前时间加1小时后的时间
-//    fmt.Println(later)
-//}
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+   now := time.Now()
+   later := now.Add(time.Hour) // 当前时间加1小时后的时间
+   fmt.Println(later)
+}
 //Sub
 //求两个时间之间的差值：
 //
