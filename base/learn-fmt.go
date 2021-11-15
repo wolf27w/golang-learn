@@ -291,15 +291,19 @@
 //本函数返回成功扫描的数据个数和遇到的任何错误。
 //具体代码示例如下：
 //
-//    func main() {
-//        var (
-//            name    string
-//            age     int
-//            married bool
-//        )
-//        fmt.Scanln(&name, &age, &married)
-//        fmt.Printf("扫描结果 name:%s age:%d married:%t \n", name, age, married)
-//    }
+package main
+
+import "fmt"
+
+func main() {
+       var (
+           name    string
+           age     int
+           married bool
+       )
+       fmt.Scanln(&name, &age, &married)
+       fmt.Printf("扫描结果 name:%s age:%d married:%t \n", name, age, married)
+   }
 //将上面的代码编译后在终端执行，在终端依次输入枯藤、18和false使用空格分隔。
 //
 //    $ ./scan_demo
