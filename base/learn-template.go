@@ -268,3 +268,14 @@
 //    }
 //    tmpl.Execute(w, user)
 //}
+
+
+
+
+package main
+
+import "fmt"
+
+func main()  {
+	fmt.Println("hellp")
+}
