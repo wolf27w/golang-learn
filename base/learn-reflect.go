@@ -247,27 +247,27 @@
 //}
 //获取字段的tag
 //
-//package main
-//
-//import (
-//    "fmt"
-//    "reflect"
-//)
-//
-//type Student struct {
-//    Name string `json:"name1" db:"name2"`
-//}
-//
-//func main() {
-//    var s Student
-//    v := reflect.ValueOf(&s)
-//    // 类型
-//    t := v.Type()
-//    // 获取字段
-//    f := t.Elem().Field(0)
-//    fmt.Println(f.Tag.Get("json"))
-//    fmt.Println(f.Tag.Get("db"))
-//}
+package main
+
+import (
+   "fmt"
+   "reflect"
+)
+
+type Student struct {
+   Name string `json:"name1" db:"name2"`
+}
+
+func main() {
+   var s Student
+   v := reflect.ValueOf(&s)
+   // 类型
+   t := v.Type()
+   // 获取字段
+   f := t.Elem().Field(0)
+   fmt.Println(f.Tag.Get("json"))
+   fmt.Println(f.Tag.Get("db"))
+}
 //1.1.5. 反射练习
 //任务：解析如下配置文件
 //序列化：将结构体序列化为配置文件数据并保存到硬盘
