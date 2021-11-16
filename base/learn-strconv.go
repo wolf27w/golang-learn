@@ -111,3 +111,12 @@
 //
 //1.1.20. 其他
 //除上文列出的函数外，strconv包中还有Append系列、Quote系列等函数。具体用法可查看官方文档。
+
+
+package main
+
+import "fmt"
+
+func main()  {
+	fmt.Println("hello")
+}
