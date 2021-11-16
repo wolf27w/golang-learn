@@ -93,38 +93,38 @@
 //1.1.6. Post请求示例
 //上面演示了使用net/http包发送GET请求的示例，发送POST请求的示例代码如下：
 //
-//package main
-//
-//import (
-//    "fmt"
-//    "io/ioutil"
-//    "net/http"
-//    "strings"
-//)
-//
-//// net/http post demo
-//
-//func main() {
-//    url := "http://127.0.0.1:9090/post"
-//    // 表单数据
-//    //contentType := "application/x-www-form-urlencoded"
-//    //data := "name=枯藤&age=18"
-//    // json
-//    contentType := "application/json"
-//    data := `{"name":"枯藤","age":18}`
-//    resp, err := http.Post(url, contentType, strings.NewReader(data))
-//    if err != nil {
-//        fmt.Println("post failed, err:%v\n", err)
-//        return
-//    }
-//    defer resp.Body.Close()
-//    b, err := ioutil.ReadAll(resp.Body)
-//    if err != nil {
-//        fmt.Println("get resp failed,err:%v\n", err)
-//        return
-//    }
-//    fmt.Println(string(b))
-//}
+package main
+
+import (
+   "fmt"
+   "io/ioutil"
+   "net/http"
+   "strings"
+)
+
+// net/http post demo
+
+func main() {
+   url := "http://127.0.0.1:9090/post"
+   // 表单数据
+   //contentType := "application/x-www-form-urlencoded"
+   //data := "name=枯藤&age=18"
+   // json
+   contentType := "application/json"
+   data := `{"name":"枯藤","age":18}`
+   resp, err := http.Post(url, contentType, strings.NewReader(data))
+   if err != nil {
+       fmt.Println("post failed, err:%v\n", err)
+       return
+   }
+   defer resp.Body.Close()
+   b, err := ioutil.ReadAll(resp.Body)
+   if err != nil {
+       fmt.Println("get resp failed,err:%v\n", err)
+       return
+   }
+   fmt.Println(string(b))
+}
 //对应的Server端HandlerFunc如下：
 //
 //func postHandler(w http.ResponseWriter, r *http.Request) {
