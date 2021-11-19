@@ -89,15 +89,15 @@ package main
 //	}
 //}
 
-import (
-	"fmt"
-	"os/exec"
-)
-
-func main() {
-	c := "curl --location --request GET 'https://qa-gateway-wan.reach.store/supervision/audit/evaluate/role' --header 'app_key: evaluate' --header 'authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdW5xaSIsImV4cCI6MTYzNzgxMDMzMCwiaWF0IjoxNjM3MjA1NTMwfQ.8U5NNzGsL-FsuQ4YB-eRFupFHs_TNUmpv_s-2oOA1eABeOjbwyO8srAdXl6nBFoGX4-L2B9zWUirkwMVloRlhw'"
-	for true  {
-		cmd := exec.Command("sh","-c",c)
-		fmt.Println(cmd.Output())
-	}
-}
+//import (
+//	"fmt"
+//	"os/exec"
+//)
+//
+//func main() {
+//	c := "curl --location --request GET 'https://qa-gateway-wan.reach.store/supervision/audit/evaluate/role' --header 'app_key: evaluate' --header 'authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdW5xaSIsImV4cCI6MTYzNzgxMDMzMCwiaWF0IjoxNjM3MjA1NTMwfQ.8U5NNzGsL-FsuQ4YB-eRFupFHs_TNUmpv_s-2oOA1eABeOjbwyO8srAdXl6nBFoGX4-L2B9zWUirkwMVloRlhw'"
+//	for true  {
+//		cmd := exec.Command("sh","-c",c)
+//		fmt.Println(cmd.Output())
+//	}
+//}
