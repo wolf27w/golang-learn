@@ -164,7 +164,16 @@
 // 13-11-25 09:53:16 [INFO] ./myproject is running...
 // 我们打开浏览器就可以看到效果 http://localhost:8080/:
 
-
+//如果我们修改了 Controller 下面的 default.go 文件，我们就可以看到命令行输出：
+//
+//13-11-25 10:11:20 [EVEN] "/gopath/src/myproject/controllers/default.go": DELETE|MODIFY
+//13-11-25 10:11:20 [INFO] Start building...
+//13-11-25 10:11:20 [SKIP] "/gopath/src/myproject/controllers/default.go": CREATE
+//13-11-25 10:11:23 [SKIP] "/gopath/src/myproject/controllers/default.go": MODIFY
+//13-11-25 10:11:23 [SUCC] Build was successful
+//13-11-25 10:11:23 [INFO] Restarting myproject ...
+//13-11-25 10:11:23 [INFO] ./myproject is running...
+//刷新浏览器我们看到新的修改内容已经输出。
 
 
 
