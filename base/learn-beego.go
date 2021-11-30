@@ -174,7 +174,122 @@
 //13-11-25 10:11:23 [INFO] Restarting myproject ...
 //13-11-25 10:11:23 [INFO] ./myproject is running...
 //刷新浏览器我们看到新的修改内容已经输出。
-
+//2.2.4. pack 命令
+//pack 目录用来发布应用的时候打包，会把项目打包成 zip 包，这样我们部署的时候直接把打包之后的项目上传，解压就可以部署了：
+//
+//bee pack
+//app path: /gopath/src/apiproject
+//GOOS darwin GOARCH amd64
+//build apiproject
+//build success
+//exclude prefix:
+//exclude suffix: .go:.DS_Store:.tmp
+//file write to `/gopath/src/apiproject/apiproject.tar.gz`
+//我们可以看到目录下有如下的压缩文件：
+//
+//rwxr-xr-x  1 astaxie  staff  8995376 11 25 22:46 apiproject
+//-rw-r--r--  1 astaxie  staff  2240288 11 25 22:58 apiproject.tar.gz
+//drwxr-xr-x  3 astaxie  staff      102 11 25 22:31 conf
+//drwxr-xr-x  3 astaxie  staff      102 11 25 22:31 controllers
+//-rw-r--r--  1 astaxie  staff      509 11 25 22:31 main.go
+//drwxr-xr-x  3 astaxie  staff      102 11 25 22:31 models
+//drwxr-xr-x  3 astaxie  staff      102 11 25 22:31 tests
+//2.2.5. bale 命令
+//这个命令目前仅限内部使用，具体实现方案未完善，主要用来压缩所有的静态文件变成一个变量申明文件，全部编译到二进制文件里面，用户发布的时候携带静态文件，包括 js、css、img 和 views。最后在启动运行时进行非覆盖式的自解压。
+//
+//2.2.6. version 命令
+//这个命令是动态获取 bee、beego 和 Go 的版本，这样一旦用户出现错误，可以通过该命令来查看当前的版本
+//
+//$ bee version
+//bee   :1.2.2
+//beego :1.4.2
+//Go    :go version go1.3.3 darwin/amd64
+//2.2.7. generate 命令
+//这个命令是用来自动化的生成代码的，包含了从数据库一键生成 model，还包含了 scaffold 的，通过这个命令，让大家开发代码不再慢
+//
+//bee generate scaffold [scaffoldname] [-fields=""] [-driver=mysql] [-conn="root:@tcp(127.0.0.1:3306)/test"]
+//    The generate scaffold command will do a number of things for you.
+//    -fields: a list of table fields. Format: field:type, ...
+//    -driver: [mysql | postgres | sqlite], the default is mysql
+//    -conn:   the connection string used by the driver, the default is root:@tcp(127.0.0.1:3306)/test
+//    example: bee generate scaffold post -fields="title:string,body:text"
+//
+//bee generate model [modelname] [-fields=""]
+//    generate RESTful model based on fields
+//    -fields: a list of table fields. Format: field:type, ...
+//
+//bee generate controller [controllerfile]
+//    generate RESTful controllers
+//
+//bee generate view [viewpath]
+//    generate CRUD view in viewpath
+//
+//bee generate migration [migrationfile] [-fields=""]
+//    generate migration file for making database schema update
+//    -fields: a list of table fields. Format: field:type, ...
+//
+//bee generate docs
+//    generate swagger doc file
+//
+//bee generate test [routerfile]
+//    generate testcase
+//
+//bee generate appcode [-tables=""] [-driver=mysql] [-conn="root:@tcp(127.0.0.1:3306)/test"] [-level=3]
+//    generate appcode based on an existing database
+//    -tables: a list of table names separated by ',', default is empty, indicating all tables
+//    -driver: [mysql | postgres | sqlite], the default is mysql
+//    -conn:   the connection string used by the driver.
+//             default for mysql:    root:@tcp(127.0.0.1:3306)/test
+//             default for postgres: postgres://postgres:postgres@127.0.0.1:5432/postgres
+//    -level:  [1 | 2 | 3], 1 = models; 2 = models,controllers; 3 = models,controllers,router
+//2.2.8. migrate 命令
+//这个命令是应用的数据库迁移命令，主要是用来每次应用升级，降级的SQL管理。
+//
+//bee migrate [-driver=mysql] [-conn="root:@tcp(127.0.0.1:3306)/test"]
+//    run all outstanding migrations
+//    -driver: [mysql | postgresql | sqlite], the default is mysql
+//    -conn:   the connection string used by the driver, the default is root:@tcp(127.0.0.1:3306)/test
+//
+//bee migrate rollback [-driver=mysql] [-conn="root:@tcp(127.0.0.1:3306)/test"]
+//    rollback the last migration operation
+//    -driver: [mysql | postgresql | sqlite], the default is mysql
+//    -conn:   the connection string used by the driver, the default is root:@tcp(127.0.0.1:3306)/test
+//
+//bee migrate reset [-driver=mysql] [-conn="root:@tcp(127.0.0.1:3306)/test"]
+//    rollback all migrations
+//    -driver: [mysql | postgresql | sqlite], the default is mysql
+//    -conn:   the connection string used by the driver, the default is root:@tcp(127.0.0.1:3306)/test
+//
+//bee migrate refresh [-driver=mysql] [-conn="root:@tcp(127.0.0.1:3306)/test"]
+//    rollback all migrations and run them all again
+//    -driver: [mysql | postgresql | sqlite], the default is mysql
+//    -conn:   the connection string used by the driver, the default is root:@tcp(127.0.0.1:3306)/test
+//2.2.9. dockerize 命令
+//这个命令可以通过生成Dockerfile文件来实现docker化你的应用。
+//
+//例子:
+//生成一个以1.6.4版本Go环境为基础镜像的Dockerfile,并暴露9000端口:
+//
+//$ bee dockerize -image="library/golang:1.6.4" -expose=9000
+//______
+//| ___ \
+//| |_/ /  ___   ___
+//| ___ \ / _ \ / _ \
+//| |_/ /|  __/|  __/
+//\____/  \___| \___| v1.6.2
+//2016/12/26 22:34:54 INFO     ▶ 0001 Generating Dockerfile...
+//2016/12/26 22:34:54 SUCCESS  ▶ 0002 Dockerfile generated.
+//更多帮助信息可执行bee help dockerize.
+//
+//2.3. bee 工具配置文件
+//您可能已经注意到，在 bee 工具的源码目录下有一个 bee.json 文件，这个文件是针对 bee 工具的一些行为进行配置。该功能还未完全开发完成，不过其中的一些选项已经可以使用：
+//
+//"version": 0：配置文件版本，用于对比是否发生不兼容的配置格式版本。
+//"go_install": false：如果您的包均使用完整的导入路径（例如：github.com/user/repo/subpkg）,则可以启用该选项来进行 go install 操作，加快构建操作。
+//"watch_ext": []：用于监控其它类型的文件（默认只监控后缀为 .go 的文件）。
+//"dir_structure":{}：如果您的目录名与默认的 MVC 架构的不同，则可以使用该选项进行修改。
+//"cmd_args": []：如果您需要在每次启动时加入启动参数，则可以使用该选项。
+//"envs": []：如果您需要在每次启动时设置临时环境变量参数，则可以使用该选项。
 
 
 
