@@ -1624,16 +1624,7 @@
 //
 //如果你需要针对每一个请求处理器定制 XSRF 行为，你可以重写 Controller 的 CheckXSRFCookie 方法。例如你需要使用一个不支持 cookie 的 API， 你可以通过将 CheckXSRFCookie() 函数设空来禁用 XSRF 保护机制。然而如果 你需要同时支持 cookie 和非 cookie 认证方式，那么只要当前请求是通过 cookie 进行认证的，你就应该对其使用 XSRF 保护机制，这一点至关重要。
 
-//2.2. 支持controller 级别的屏蔽
-//XSRF 之前是全局设置的一个参数,如果设置了那么所有的 API 请求都会进行验证,但是有些时候API 逻辑是不需要进行验证的,因此现在支持在controller 级别设置屏蔽:
-//
-//type AdminController struct{
-//    beego.Controller
-//}
-//
-//func (a *AdminController) Prepare() {
-//    a.EnableXSRF = false
-//}
+
 
 
 
