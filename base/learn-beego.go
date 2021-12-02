@@ -1996,4 +1996,11 @@
 //Get 请求获取到了 Flash 信息，然后执行相应的逻辑，如果出错显示出错的页面，如果成功显示成功的页面。
 //默认情况下 ReadFromRequest 函数已经实现了读取的数据赋值给 flash，所以在你的模板里面你可以这样读取数据：
 
-
+//{{.flash.error}}
+//{{.flash.warning}}
+//{{.flash.notice}}
+//flash 对象有三个级别的设置：
+//
+//Notice 提示信息
+//Warning 警告信息
+//Error 错误信息
