@@ -2316,7 +2316,20 @@
 //    beego.Run()
 //}
 
-
+//1. 日志处理
+//beego 之前介绍的时候说过是基于几个模块搭建的，beego 的日志处理是基于 logs 模块搭建的，内置了一个变量 BeeLogger，默认已经是 logs.BeeLogger 类型，初始化了 console，也就是默认输出到 console。
+//
+//1.1. 使用入门
+//一般在程序中我们使用如下的方式进行输出：
+//
+//beego.Emergency("this is emergency")
+//beego.Alert("this is alert")
+//beego.Critical("this is critical")
+//beego.Error("this is error")
+//beego.Warning("this is warning")
+//beego.Notice("this is notice")
+//beego.Informational("this is informational")
+//beego.Debug("this is debug")
 
 
 
