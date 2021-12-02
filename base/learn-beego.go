@@ -2426,7 +2426,34 @@
 //}
 
 
+//1. 概述
+//2. 模型（Models）－ beego ORM
+//beego ORM 是一个强大的 Go 语言 ORM 框架。她的灵感主要来自 Django ORM 和 SQLAlchemy。
+//
+//目前该框架仍处于开发阶段，可能发生任何导致不兼容的改动。
+//
+//已支持数据库驱动：
+//
+//MySQL：github.com/go-sql-driver/mysql
+//PostgreSQL：github.com/lib/pq
+//Sqlite3：github.com/mattn/go-sqlite3
+//以上数据库驱动均通过基本测试，但我们仍需要您的反馈。
+//
+//ORM 特性：
+//
+//支持 Go 的所有类型存储
+//轻松上手，采用简单的 CRUD 风格
+//自动 Join 关联表
+//跨数据库兼容查询
+//允许直接使用 SQL 查询／映射
+//严格完整的测试保证 ORM 的稳定与健壮
+//更多特性请在文档中自行品读。
+//
+//安装 ORM：
+//
+//go get github.com/astaxie/beego/orm
 
+//
 
 
 
