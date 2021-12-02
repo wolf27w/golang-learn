@@ -1946,3 +1946,4 @@
 //}
 //
 //beego.InsertFilter("/*",beego.BeforeRouter,UrlManager)
+
