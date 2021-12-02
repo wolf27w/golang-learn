@@ -2270,6 +2270,51 @@
 //}
 //一旦在入口注册该错误处理代码，那么你可以在任何你的逻辑中遇到数据库错误调用 this.Abort("dbError") 来进行异常页面处理。
 
+//2. Controller 定义 Error
+//从 1.4.3 版本开始，支持 Controller 方式定义 Error 错误处理函数，这样就可以充分利用系统自带的模板处理，以及 context 等方法。
+//
+//package controllers
+//
+//import (
+//    "github.com/astaxie/beego"
+//)
+//
+//type ErrorController struct {
+//    beego.Controller
+//}
+//
+//func (c *ErrorController) Error404() {
+//    c.Data["content"] = "page not found"
+//    c.TplName = "404.tpl"
+//}
+//
+//func (c *ErrorController) Error501() {
+//    c.Data["content"] = "server error"
+//    c.TplName = "501.tpl"
+//}
+//
+//
+//func (c *ErrorController) ErrorDb() {
+//    c.Data["content"] = "database is now down"
+//    c.TplName = "dberror.tpl"
+//}
+//通过上面的例子我们可以看到，所有的函数都是有一定规律的，都是 Error 开头，后面的名字就是我们调用 Abort 的名字，例如 Error404 函数其实调用对应的就是 Abort("404")
+//
+//我们就只要在 beego.Run 之前采用 beego.ErrorController 注册这个错误处理函数就可以了
+//
+//package main
+//
+//import (
+//    _ "btest/routers"
+//    "btest/controllers"
+//
+//    "github.com/astaxie/beego"
+//)
+//
+//func main() {
+//    beego.ErrorController(&controllers.ErrorController{})
+//    beego.Run()
+//}
 
 
 
