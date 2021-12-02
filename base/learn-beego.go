@@ -2096,6 +2096,17 @@
 //
 //开发模式下序列化后输出的是格式化易阅读的 JSON 或 XML 字符串；在生产模式下序列化后输出的是压缩的字符串。
 
+//1. 表单数据验证
+//2. 表单验证
+//表单验证是用于数据验证和错误收集的模块。
+//
+//2.1. 安装及测试
+//安装：
+//
+//go get github.com/astaxie/beego/validation
+//测试：
+//
+//go test github.com/astaxie/beego/validation
 
 
 
