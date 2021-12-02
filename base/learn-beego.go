@@ -2216,7 +2216,27 @@
 //2.2.1. API 文档
 //请移步 Go Walker。
 
-
+//1. 错误处理
+//我们在做 Web 开发的时候，经常需要页面跳转和错误处理，beego 这方面也进行了考虑，通过 Redirect 方法来进行跳转：
+//
+//func (this *AddController) Get() {
+//    this.Redirect("/", 302)
+//}
+//如何中止此次请求并抛出异常，beego 可以在控制器中这样操作：
+//
+//func (this *MainController) Get() {
+//    this.Abort("401")
+//    v := this.GetSession("asta")
+//    if v == nil {
+//        this.SetSession("asta", int(1))
+//        this.Data["Email"] = 0
+//    } else {
+//        this.SetSession("asta", v.(int)+1)
+//        this.Data["Email"] = v.(int)
+//    }
+//    this.TplName = "index.tpl"
+//}
+//这样 this.Abort("401") 之后的代码不会再执行，而且会默认显示给用户如下页面：
 
 
 
