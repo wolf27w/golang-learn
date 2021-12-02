@@ -2548,7 +2548,16 @@
 //    fmt.Println(term["id"],":",term["name"])
 //}
 
-
+//2.2.4. 事务处理
+//o.Begin()
+//...
+//user := User{Name: "slene"}
+//id, err := o.Insert(&user)
+//if err == nil {
+//    o.Commit()
+//} else {
+//    o.Rollback()
+//}
 
 
 
