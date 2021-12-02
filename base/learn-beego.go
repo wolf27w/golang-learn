@@ -2528,6 +2528,25 @@
 //    fmt.Printf("NUM: %d, ERR: %v\n", num, err)
 //}
 
+//2.2.2. 关联查询
+//type Post struct {
+//    Id    int    `orm:"auto"`
+//    Title string `orm:"size(100)"`
+//    User  *User  `orm:"rel(fk)"`
+//}
+//
+//var posts []*Post
+//qs := o.QueryTable("post")
+//num, err := qs.Filter("User__Name", "slene").All(&posts)
+
+//2.2.3. SQL 查询
+//当您无法使用 ORM 来达到您的需求时，也可以直接使用 SQL 来完成查询／映射操作。
+//
+//var maps []orm.Params
+//num, err := o.Raw("SELECT * FROM user").Values(&maps)
+//for _,term := range maps{
+//    fmt.Println(term["id"],":",term["name"])
+//}
 
 
 
