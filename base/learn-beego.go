@@ -2566,6 +2566,13 @@
 //    orm.Debug = true
 //...
 
+//开启后将会输出所有查询语句，包括执行、准备、事务等。
+//
+//例如：
+//
+//[ORM] - 2013-08-09 13:18:16 - [Queries/default] - [    db.Exec /     0.4ms] -     [INSERT INTO `user` (`name`) VALUES (?)] - `slene`
+//...
+//注意：我们不建议您在部署产品后这样做。
 
 
 
