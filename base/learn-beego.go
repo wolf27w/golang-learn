@@ -2453,7 +2453,29 @@
 //
 //go get github.com/astaxie/beego/orm
 
+//2.1. 修改日志
+//2016-01-18: 规范了数据库驱动的命名
+//2014-03-10: GetDB 从注册的数据库中返回 *sql.DB. ResetModelCache 重置已注册的模型struct
+//2014-02-10: 随着 beego1.1.0 的发布提交的改进
 //
+//关于 时区设置
+//
+//新增的 api: Ormer.InsertMulti Ormer.ReadOrCreate RawSeter.RowsToMap RawSeter.RowsToStruct orm.NewOrmWithDB
+//
+//改进的 api: RawSeter.Values 支持设置 columns RawSeter.ValuesList 支持设置 columns RawSeter.ValuesFlat 支持设置 column RawSeter.QueryRow/QueryRows 从对应每个strcut field位置的赋值，改为对应名称取值（不需要对应好字段数量与位置）
+//
+//2013-10-14: 自动载入关系字段，多对多关系操作，完善关系查询
+//
+//2013-10-09: 原子操作更新值
+//2013-09-22: RegisterDataBase maxIdle / maxConn 设置为可选参数, MySQL 自定义引擎
+//2013-09-16: 支持设置 空闲链接数 和 最大链接数 SetMaxIdleConns / SetMaxOpenConns
+//2013-09-12: Read 支持设定条件字段 Update / All / One 支持设定返回字段
+//2013-09-09: Raw SQL QueryRow/QueryRows 功能完成
+//2013-08-27: 自动建表继续改进
+//2013-08-19: 自动建表功能完成
+//2013-08-13: 更新数据库类型测试
+//2013-08-13: 增加 Go 类型支持，包括 int8、uint8、byte、rune 等
+//2013-08-13: 增强 date／datetime 的时区支持
 
 
 
