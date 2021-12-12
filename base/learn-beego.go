@@ -5046,11 +5046,3 @@
 //输出到slack:
 //
 //  logs.SetLogger(logs.AdapterSlack, `{"webhookurl":"https://slack.com/xxx","level":1}`)
-
-
-
-
-
-
-
-
