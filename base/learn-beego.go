@@ -59,7 +59,7 @@
 //     version     show the bee & beego version
 //     migrate     run database migrations
 //     api         create an api application base on beego framework
-//     bale        packs non-Go files to Go source files    
+//     bale        packs non-Go files to Go source files
 //     new         create an application base on beego framework
 //     run         run the app which can hot compile
 //     pack        compress an beego project
@@ -5046,6 +5046,9 @@
 //输出到slack:
 //
 //  logs.SetLogger(logs.AdapterSlack, `{"webhookurl":"https://slack.com/xxx","level":1}`)
+
+
+
 
 
 
