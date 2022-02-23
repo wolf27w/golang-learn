@@ -1,3 +1,4 @@
+package main
 //###  beego的使用以及配置
 
 //####beego简介
