@@ -1,8 +1,8 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
-	"io/ioutil"
 	"os"
 )
 
@@ -18,7 +18,11 @@ func main()  {
 		return
 	}
 
-	defer file.Close()
-
-
+	defer content.Close()
+	str := "wulaoer.org\r\n"
+	writer := bufio.NewWriter(content)
+	for i := 0; i < 5; i++ {
+		writer.WriteString(str)
+	}
+	writer.Flush()
 }
