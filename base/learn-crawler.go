@@ -1,26 +1,24 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"io"
+	"io/ioutil"
 	"os"
 )
 
 func main()  {
 
-	file , err := os.Open("golang-learn/base/learn-if.go")
+	//file , err := os.Open("golang-learn/go.mod")
+	//如果是较小文件可以使用
+	file := "golang-learn/go.mod"
+	//content, err := ioutil.ReadFile(file)
+	content, err := os.OpenFile(file,os.O_WRONLY | os.O_CREATE, 077)
 	if err != nil {
 		fmt.Println("file错误信息",err)
+		return
 	}
+
 	defer file.Close()
-	reader := bufio.NewReader(file)
-	for {
-		str,err := reader.ReadString('\n')
-		if err == io.EOF {
-			break
-		}
-		fmt.Print(str)
-	}
-	fmt.Println("文件结束")
+
+
 }
