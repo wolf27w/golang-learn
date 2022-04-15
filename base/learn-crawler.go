@@ -11,15 +11,13 @@ func main()  {
 	//fmt.Println(os.Getwd())
 	path := "golang-learn/README.md"
 	//content, err := ioutil.ReadFile(path)
+	////content , err := os.Open(path)
 	//if err != nil {
-	//	fmt.Printf("文件错误",err)
+	//	fmt.Println("文件错误",err)
 	//}
-	//fmt.Printf(string(content))
 	file, err := os.Open(path)
 	if err != nil {
 		fmt.Printf("文件错误")
-	} else {
-		//fmt.Printf("file=%v",&file)
 	}
 	defer file.Close()
 	read := bufio.NewReader(file)
