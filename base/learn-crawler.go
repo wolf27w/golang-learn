@@ -1,5 +1,13 @@
 package main
 
+import (
+	"bufio"
+	"fmt"
+	"io"
+	"os"
+	"strings"
+)
+
 func main()  {
 	//fmt.Println(os.Getwd())
 	path := "golang-learn/index.html"
@@ -34,6 +42,26 @@ func main()  {
 	//fmt.Println("文件结束")
 
 
+	file, err := os.Open(path)
+	if err != nil {
+		fmt.Println("打开文件错误")
+	}
+	defer file.Close()
+	reader := bufio.NewReader(file)
+	for {
+		str,err := reader.ReadString('\n')
+		str = strings.TrimSpace(str)
+		fmt.Println(str)
+		if err == io.EOF {
+			break
+		}
+		//fmt.Print(str)
+	}
+	//fmt.Println("文件结束")
 
-	
+	//file , err := ioutil.ReadFile(path)
+	//if err != nil {
+	//	fmt.Printf("read fiel err = %v",err)
+	//}
+	//fmt.Printf(string(file))
 }
