@@ -1,32 +1,17 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"io"
-	"os"
+	"io/ioutil"
 )
 
 func main()  {
 	//fmt.Println(os.Getwd())
 	path := "golang-learn/README.md"
-	//content, err := ioutil.ReadFile(path)
-	////content , err := os.Open(path)
-	//if err != nil {
-	//	fmt.Println("文件错误",err)
-	//}
-	file, err := os.Open(path)
+	content, err := ioutil.ReadFile(path)
 	if err != nil {
-		fmt.Printf("文件错误")
+		fmt.Println("文件错误",err)
 	}
-	defer file.Close()
-	read := bufio.NewReader(file)
-	for {
-		str,err := read.ReadString('\n')
-		if err == io.EOF {
-			break
-		}
-		fmt.Print(str)
-	}
+	fmt.Printf("%v",content)
 
 }
