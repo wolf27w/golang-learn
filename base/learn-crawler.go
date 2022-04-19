@@ -10,7 +10,7 @@ func main()  {
 	//fmt.Println(os.Getwd())
 	path := "golang-learn/index5.html"
 	//content, err := os.OpenFile(path,os.O_WRONLY | os.O_TRUNC, 0655)
-	content, err := os.OpenFile(path,os.O_WRONLY | os.O_CREATE | os.O_EXCL, 0655)
+	content, err := os.OpenFile(path,os.O_RDWR | os.O_TRUNC | os.O_CREATE,00)
 	if err != nil {
 		fmt.Println("文件错误",err)
 		return
