@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
-	"mahonia"
 	"net/http"
+	"regexp"
 )
 
 var (
@@ -19,18 +19,17 @@ func HandleError(err error,why string)  {
 }
 
 func novel()  {
-	var enc mahonia.Decoder
 
-	enc = mahonia.NewDecoder("gbk")
-	resp,err := http.Get("https://www.qbiqu.com/7_7351/")
+	resp,err := http.Get("https://www.qbiqu.com/7_7351/14281108.html")
 	HandleError(err,"http.Get url")
 	defer resp.Body.Close()
 	pageByte,err := ioutil.ReadAll(resp.Body)
 	HandleError(err,"ioutil,ReadAll")
 	pagestr := string(pageByte)
-	fmt.Println("UTF-8 to GBK:", enc.ConvertString(pagestr))
-	//re := regexp.MustCompile(reQQEmail)
-	//results := re.FindAllStringSubmatch(pagestr,-1)
+	//fmt.Println(pagestr)
+	re := regexp.MustCompile()
+	results := re.FindAllStringSubmatch(pagestr,-1)
+	fmt.Println(results)
 	//for _, result := range results {
 	//	fmt.Println("email:",result[0])
 	//	fmt.Println("qq:",result[1])
