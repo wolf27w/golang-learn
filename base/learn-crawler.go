@@ -3,34 +3,39 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
-	"os"
+	"net/http"
+	"regexp"
 )
 
-func listAll(path string,curLayer int)  {
-	//path := "/Users/wolf/Documents/GitHub"
-	fileinfoos,err := ioutil.ReadDir(path)
-	if err!= nil {
-		fmt.Println("dir file filed %v",err)
-		return
-	}
-	for _, info := range fileinfoos {
-		if info.IsDir() {
-			for temHier := curLayer;temHier>0;temHier--{
-				fmt.Println("|\t")
-			}
-			fmt.Println(info.Name(),"\\")
-			listAll(path+"/"+info.Name(),curLayer+1)
-		} else {
-			for temHier:= curLayer;temHier>0;temHier--{
-				fmt.Println("|\t")
-			}
-			fmt.Println(info.Name())
-		}
+var (
+	reLineke = `&nbsp;&nbsp;&nbsp;&nbsp;[\u4e00-\u9fa5]`
+)
+
+
+// 处理异常
+func HandleError(err error, why string) {
+	if err != nil {
+		fmt.Println(why, err)
 	}
 }
 
-func main()  {
-	dir := os.Args
-	//fmt.Println(os.Getwd())
-	listAll(dir,0)
+func contente(url string)  {
+	resp,err := http.Get(url)
+	HandleError(err,"content error")
+	defer resp.Body.Close()
+	page,err := ioutil.ReadAll(resp.Body)
+	HandleError(err,"iou")
+	pages := string(page)
+	re := regexp.MustCompile(reLineke)
+	results := re.FindAllStringSubmatch(pages,-1)
+	for _, resylt := range results {
+		fmt.Println(resylt)
+	}
+}
+
+
+
+func main() {
+	path:="https://www.qbiqu.com/0_4/4235911.html"
+	contente(path)
 }
