@@ -2,70 +2,35 @@ package main
 
 import (
 	"fmt"
-	"github.com/jackdanger/collectlinks"
-	"net/http"
-	"net/url"
-	"time"
+	"io/ioutil"
+	"os"
 )
 
-var visited = make(map[string]bool)
-
-func main() {
-	fmt.Println("Hello, world")
-	url := "https://www.qbiqu.com/"
-
-	queue := make(chan string, )
-	go func() {
-		queue <- url
-	}()
-	fmt.Println(queue)
-	for uri := range queue {
-		download(uri, queue)
-	}
-}
-
-func download(url string, queue chan string) {
-	visited[url] = true
-	timeout := time.Duration(5 * time.Second)
-
-	client := &http.Client{
-		Timeout:timeout,
-	}
-	req, _ := http.NewRequest("GET", url, nil)
-	// 自定义Header
-	req.Header.Set("User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)")
-
-	resp, err := client.Do(req)
-	if err != nil {
-		fmt.Println("http get error", err)
+func listAll(path string,curLayer int)  {
+	//path := "/Users/wolf/Documents/GitHub"
+	fileinfoos,err := ioutil.ReadDir(path)
+	if err!= nil {
+		fmt.Println("dir file filed %v",err)
 		return
 	}
-	//函数结束后关闭相关链接
-	defer resp.Body.Close()
-
-	links := collectlinks.All(resp.Body)
-
-	for _, link := range links {
-		absolute := urlJoin(link, url)
-		if url != " " {
-			if !visited[absolute] {
-				//fmt.Println("parse url", absolute)
-				go func() {
-					queue <- absolute
-				}()
+	for _, info := range fileinfoos {
+		if info.IsDir() {
+			for temHier := curLayer;temHier>0;temHier--{
+				fmt.Println("|\t")
 			}
+			fmt.Println(info.Name(),"\\")
+			listAll(path+"/"+info.Name(),curLayer+1)
+		} else {
+			for temHier:= curLayer;temHier>0;temHier--{
+				fmt.Println("|\t")
+			}
+			fmt.Println(info.Name())
 		}
 	}
 }
 
-func urlJoin(href, base string) string {
-	uri, err := url.Parse(href)
-	if err != nil {
-		return " "
-	}
-	baseUrl, err := url.Parse(base)
-	if err != nil {
-		return " "
-	}
-	return baseUrl.ResolveReference(uri).String()
+func main()  {
+	dir := os.Args
+	//fmt.Println(os.Getwd())
+	listAll(dir,0)
 }
