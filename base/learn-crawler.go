@@ -2,43 +2,70 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
+	"github.com/jackdanger/collectlinks"
 	"net/http"
-	"regexp"
+	"net/url"
+	"time"
 )
 
-var (
-	// \d是数字
-	reQQEmail = `(\d+)@qq.com`
-)
+var visited = make(map[string]bool)
 
-func HandleError(err error,why string)  {
-	if err != nil {
-		fmt.Printf(why,err)
+func main() {
+	fmt.Println("Hello, world")
+	url := "https://www.qbiqu.com/"
+
+	queue := make(chan string, )
+	go func() {
+		queue <- url
+	}()
+	fmt.Println(queue)
+	for uri := range queue {
+		download(uri, queue)
 	}
 }
 
-func novel()  {
+func download(url string, queue chan string) {
+	visited[url] = true
+	timeout := time.Duration(5 * time.Second)
 
-	resp,err := http.Get("https://www.qbiqu.com/7_7351/14281108.html")
-	HandleError(err,"http.Get url")
+	client := &http.Client{
+		Timeout:timeout,
+	}
+	req, _ := http.NewRequest("GET", url, nil)
+	// 自定义Header
+	req.Header.Set("User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)")
+
+	resp, err := client.Do(req)
+	if err != nil {
+		fmt.Println("http get error", err)
+		return
+	}
+	//函数结束后关闭相关链接
 	defer resp.Body.Close()
-	pageByte,err := ioutil.ReadAll(resp.Body)
-	HandleError(err,"ioutil,ReadAll")
-	pagestr := string(pageByte)
-	//fmt.Println(pagestr)
-	re := regexp.MustCompile()
-	results := re.FindAllStringSubmatch(pagestr,-1)
-	fmt.Println(results)
-	//for _, result := range results {
-	//	fmt.Println("email:",result[0])
-	//	fmt.Println("qq:",result[1])
-	//}
+
+	links := collectlinks.All(resp.Body)
+
+	for _, link := range links {
+		absolute := urlJoin(link, url)
+		if url != " " {
+			if !visited[absolute] {
+				//fmt.Println("parse url", absolute)
+				go func() {
+					queue <- absolute
+				}()
+			}
+		}
+	}
 }
 
-
-
-func main()  {
-	novel()
-	
+func urlJoin(href, base string) string {
+	uri, err := url.Parse(href)
+	if err != nil {
+		return " "
+	}
+	baseUrl, err := url.Parse(base)
+	if err != nil {
+		return " "
+	}
+	return baseUrl.ResolveReference(uri).String()
 }
