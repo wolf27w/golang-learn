@@ -47,3 +47,6 @@ func HandleError(err error, why string) {
 func main() {
 	GetEmail()
 }
+
+
+
