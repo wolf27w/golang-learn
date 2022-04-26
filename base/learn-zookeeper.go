@@ -5,16 +5,20 @@
 //客户端doc地址：github.com/samuel/go-zookeeper/zk
 //**/
 //import (
-//	"fmt"
-//	"time"
+//    "errors"
+//    "fmt"
+//    "io/ioutil"
+//    "math/rand"
+//    "net"
+//    "time"
 //
 //	zk "github.com/samuel/go-zookeeper/zk"
 //)
 //
 ///**
-// * 获取一个zk连接
-// * @return {[type]}
-// */
+//* 获取一个zk连接
+//* @return {[type]}
+//*/
 //func getConnect(zkList []string) (conn *zk.Conn) {
 //	conn, _, err := zk.Connect(zkList, 10*time.Second)
 //	if err != nil {
@@ -214,7 +218,7 @@ func main() {
 }
 
 func startClient() {
-   // service := "127.0.0.1:8899"
+    //service := "172.32.239.42:32586"
    //获取地址
    serverHost, err := getServerHost()
    if err != nil {
