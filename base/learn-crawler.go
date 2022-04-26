@@ -48,40 +48,16 @@
 //	GetEmail()
 //}
 
-
-
-package main
-
-import (
-	"fmt"
-	"github.com/samuel/go-zookeeper/zk"
-	"time"
-)
-
-var (
-	path = "/zk/path"
-)
-func get(conn *zk.Conn) {
-	data, _, err := conn.Children(path)
-	if err != nil {
-		fmt.Printf("查询%s失败, err: %v\n", path, err)
-		return
-	}
-	//fmt.Printf("%s 的值为 %s\n", path, string(data))
-	fmt.Printf("%s 的值为 %v\n", path, data)
-}
-
-
-func main() {
-	// 创建zk连接地址
-	hosts := []string{"172.32.239.42:32586"}
-	// 连接zk
-	conn, _, err := zk.Connect(hosts, time.Second*5)
-	defer conn.Close()
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	println(conn.Server())
-	get(conn)
-}
+//1.1.2. 正则表达式
+//文档：https://studygolang.com/pkgdoc
+//API
+//re := regexp.MustCompile(reStr)，传入正则表达式，得到正则表达式对象
+//ret := re.FindAllStringSubmatch(srcStr,-1)：用正则对象，获取页面页面，srcStr是页面内容，-1代表取全部
+//爬邮箱
+//方法抽取
+//爬超链接
+//爬手机号
+//http://www.zhaohaowang.com/ 如果连接失效了自己找一个有手机号的就好了
+//爬身份证号
+//http://henan.qq.com/a/20171107/069413.htm 如果连接失效了自己找一个就好了
+//爬图片链接
