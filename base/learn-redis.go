@@ -37,18 +37,18 @@
 
 //package main
 //import (
-//  "fmt"
-//  "github.com/gomodule/redigo/redis"
+// "fmt"
+// "github.com/gomodule/redigo/redis"
 //)
 //func main() {
-//  c, err := redis.Dial("tcp", "127.0.0.1:6379")
-//  if err != nil {
-//      fmt.Println("conn redis failed,", err)
-//      return
-//  }
-//  fmt.Println("redis conn success")
+// c, err := redis.Dial("tcp", "127.0.0.1:6379")
+// if err != nil {
+//     fmt.Println("conn redis failed,", err)
+//     return
+// }
+// fmt.Println("redis conn success")
 //
-//  defer c.Close()
+// defer c.Close()
 //}
 
 //输出结果：
@@ -59,31 +59,31 @@
 //package main
 //
 //import (
-//    "fmt"
-//    "github.com/gomodule/redigo/redis"
+//   "fmt"
+//   "github.com/gomodule/redigo/redis"
 //)
 //
 //func main() {
-//    c, err := redis.Dial("tcp", "10.123.6.236:6379")
-//    if err != nil {
-//        fmt.Println("conn redis failed,", err)
-//        return
-//    }
+//   c, err := redis.Dial("tcp", "127.0.0.1:6379")
+//   if err != nil {
+//       fmt.Println("conn redis failed,", err)
+//       return
+//   }
 //
-//    defer c.Close()
-//    _, err = c.Do("Set", "abc", 100)
-//    if err != nil {
-//        fmt.Println(err)
-//        return
-//    }
+//   defer c.Close()
+//   _, err = c.Do("Set", "abc", 100)
+//   if err != nil {
+//       fmt.Println(err)
+//       return
+//   }
 //
-//    r, err := redis.Int(c.Do("Get", "abc"))
-//    if err != nil {
-//        fmt.Println("get abc failed,", err)
-//        return
-//    }
+//   r, err := redis.Int(c.Do("Get", "abc"))
+//   if err != nil {
+//       fmt.Println("get abc failed,", err)
+//       return
+//   }
 //
-//    fmt.Println(r)
+//   fmt.Println(r)
 //}
 //100
 //输出结果
@@ -105,33 +105,33 @@
 //package main
 //
 //import (
-//    "fmt"
-//    "github.com/gomodule/redigo/redis"
+//   "fmt"
+//   "github.com/gomodule/redigo/redis"
 //)
 //
 //func main() {
-//    c, err := redis.Dial("tcp", "10.123.6.236:6379")
-//    if err != nil {
-//        fmt.Println("conn redis failed,", err)
-//        return
-//    }
+//   c, err := redis.Dial("tcp", "127.0.0.1:6379")
+//   if err != nil {
+//       fmt.Println("conn redis failed,", err)
+//       return
+//   }
 //
-//    defer c.Close()
-//    _, err = c.Do("MSet", "abc", 100, "efg", 300)
-//    if err != nil {
-//        fmt.Println(err)
-//        return
-//    }
+//   defer c.Close()
+//   _, err = c.Do("MSet", "abc", 100, "efg", 300)
+//   if err != nil {
+//       fmt.Println(err)
+//       return
+//   }
 //
-//    r, err := redis.Ints(c.Do("MGet", "abc", "efg"))
-//    if err != nil {
-//        fmt.Println("get abc failed,", err)
-//        return
-//    }
+//   r, err := redis.Ints(c.Do("MGet", "abc", "efg"))
+//   if err != nil {
+//       fmt.Println("get abc failed,", err)
+//       return
+//   }
 //
-//    for _, v := range r {
-//        fmt.Println(v)
-//    }
+//   for _, v := range r {
+//       fmt.Println(v)
+//   }
 //}
 
 //输出结果：
@@ -149,23 +149,23 @@
 //package main
 //
 //import (
-//    "fmt"
-//    "github.com/gomodule/redigo/redis"
+//   "fmt"
+//   "github.com/gomodule/redigo/redis"
 //)
 //
 //func main() {
-//    c, err := redis.Dial("tcp", "10.123.6.236:6379")
-//    if err != nil {
-//        fmt.Println("conn redis failed,", err)
-//        return
-//    }
+//   c, err := redis.Dial("tcp", "127.0.0.1:6379")
+//   if err != nil {
+//       fmt.Println("conn redis failed,", err)
+//       return
+//   }
 //
-//    defer c.Close()
-//    _, err = c.Do("expire", "abc", 10)
-//    if err != nil {
-//        fmt.Println(err)
-//        return
-//    }
+//   defer c.Close()
+//   _, err = c.Do("expire", "abc", 10)
+//   if err != nil {
+//       fmt.Println(err)
+//       return
+//   }
 //}
 
 //  Redis命令行窗口：
@@ -183,31 +183,31 @@
 //package main
 //
 //import (
-//   "fmt"
-//   "github.com/gomodule/redigo/redis"
+//  "fmt"
+//  "github.com/gomodule/redigo/redis"
 //)
 //
 //func main() {
-//   c, err := redis.Dial("tcp", "127.0.0.1:6379")
-//   if err != nil {
-//       fmt.Println("conn redis failed,", err)
-//       return
-//   }
+//  c, err := redis.Dial("tcp", "127.0.0.1:6379")
+//  if err != nil {
+//      fmt.Println("conn redis failed,", err)
+//      return
+//  }
 //
-//   defer c.Close()
-//   _, err = c.Do("lpush", "book_list", "abc", "ceg", 300)
-//   if err != nil {
-//       fmt.Println(err)
-//       return
-//   }
+//  defer c.Close()
+//  _, err = c.Do("lpush", "book_list", "abc", "ceg", 300)
+//  if err != nil {
+//      fmt.Println(err)
+//      return
+//  }
 //
-//   r, err := redis.String(c.Do("lpop", "book_list"))
-//   if err != nil {
-//       fmt.Println("get abc failed,", err)
-//       return
-//   }
+//  r, err := redis.String(c.Do("lpop", "book_list"))
+//  if err != nil {
+//      fmt.Println("get abc failed,", err)
+//      return
+//  }
 //
-//   fmt.Println(r)
+//  fmt.Println(r)
 //}
 
 //输出结果
@@ -228,31 +228,31 @@
 //package main
 //
 //import (
-//   "fmt"
-//   "github.com/gomodule/redigo/redis"
+//  "fmt"
+//  "github.com/gomodule/redigo/redis"
 //)
 //
 //func main() {
-//   c, err := redis.Dial("tcp", "127.0.0.1:6379")
-//   if err != nil {
-//       fmt.Println("conn redis failed,", err)
-//       return
-//   }
+//  c, err := redis.Dial("tcp", "127.0.0.1:6379")
+//  if err != nil {
+//      fmt.Println("conn redis failed,", err)
+//      return
+//  }
 //
-//   defer c.Close()
-//   _, err = c.Do("HSet", "books", "abc", 100)
-//   if err != nil {
-//       fmt.Println(err)
-//       return
-//   }
+//  defer c.Close()
+//  _, err = c.Do("HSet", "books", "abc", 100)
+//  if err != nil {
+//      fmt.Println(err)
+//      return
+//  }
 //
-//   r, err := redis.Int(c.Do("HGet", "books", "abc"))
-//   if err != nil {
-//       fmt.Println("get abc failed,", err)
-//       return
-//   }
+//  r, err := redis.Int(c.Do("HGet", "books", "abc"))
+//  if err != nil {
+//      fmt.Println("get abc failed,", err)
+//      return
+//  }
 //
-//   fmt.Println(r)
+//  fmt.Println(r)
 //
 //}
 
@@ -264,41 +264,41 @@
 
 package main
 import(
-  "fmt"
-  "github.com/gomodule/redigo/redis"
+ "fmt"
+ "github.com/gomodule/redigo/redis"
 )
 
 var pool *redis.Pool  //创建redis连接池
 
 func init(){
-  pool = &redis.Pool{     //实例化一个连接池
-      MaxIdle:16,    //最初的连接数量
-      // MaxActive:1000000,    //最大连接数量
-      MaxActive:0,    //连接池最大连接数量,不确定可以用0（0表示自动定义），按需分配
-      IdleTimeout:300,    //连接关闭时间 300秒 （300秒不使用自动关闭）
-      Dial: func() (redis.Conn ,error){     //要连接的redis数据库
-          return redis.Dial("tcp","127.0.0.1:6379")
-      },
-  }
+ pool = &redis.Pool{     //实例化一个连接池
+     MaxIdle:16,    //最初的连接数量
+     // MaxActive:1000000,    //最大连接数量
+     MaxActive:0,    //连接池最大连接数量,不确定可以用0（0表示自动定义），按需分配
+     IdleTimeout:300,    //连接关闭时间 300秒 （300秒不使用自动关闭）
+     Dial: func() (redis.Conn ,error){     //要连接的redis数据库
+         return redis.Dial("tcp","127.0.0.1:6379")
+     },
+ }
 }
 
 func main(){
-  c := pool.Get() //从连接池，取一个链接
-  defer c.Close() //函数运行结束 ，把连接放回连接池
+ c := pool.Get() //从连接池，取一个链接
+ defer c.Close() //函数运行结束 ，把连接放回连接池
 
-  _,err := c.Do("Set","abc",200)
-  if err != nil {
-      fmt.Println(err)
-      return
-  }
+ _,err := c.Do("Set","abc",200)
+ if err != nil {
+     fmt.Println(err)
+     return
+ }
 
-  r,err := redis.Int(c.Do("Get","abc"))
-  if err != nil {
-      fmt.Println("get abc faild :",err)
-      return
-  }
-  fmt.Println(r)
-  pool.Close() //关闭连接池
+ r,err := redis.Int(c.Do("Get","abc"))
+ if err != nil {
+     fmt.Println("get abc faild :",err)
+     return
+ }
+ fmt.Println(r)
+ pool.Close() //关闭连接池
 }
 
 //输出结果接过200
